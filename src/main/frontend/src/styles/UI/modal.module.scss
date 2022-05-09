@@ -1,0 +1,58 @@
+@import "./../base";
+.backdrop {
+  background-color: rgba(#000, 0.7);
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  backdrop-filter: blur(4px);
+  z-index: 100;
+  transition: all 0.5s;
+  display: flex;
+  justify-content: center;
+  justify-items: center;
+}
+
+.modal {
+  min-height: 30vh;
+  max-width: 80vw;
+  min-width: 40vw;
+  max-height: 80vh;
+
+  background-color: $color-grey-light-1;
+  position: fixed;
+  margin-top: 10rem;
+  z-index: 200;
+  border-radius: 9px;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+
+  & > * {
+    padding: 1rem 2rem;
+  }
+  &__header {
+    background-color: $color-grey-light-3;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+
+    &__title {
+      font-size: 2rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1rem;
+    }
+    &__close {
+      height: 2.5rem;
+      width: 2.5rem;
+      background-size: 20px 30px;
+    }
+  }
+
+  @extend .scrollbar;
+}

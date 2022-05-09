@@ -1,0 +1,86 @@
+@import "./../base";
+
+.Form {
+  min-width: 50rem;
+  padding: 1rem;
+  display: grid;
+  grid-gap: 1rem;
+
+  &__Input {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+
+    & label {
+      display: flex;
+      flex-direction: row;
+      font-size: 1.5rem;
+      text-align: center;
+      color: $color-grey-dark-3;
+      & p {
+        text-align: left;
+        flex: 1;
+        margin: 0;
+        margin-left: 0.5rem;
+        font-size: 1.5rem;
+        color: $color-danger-dark;
+      }
+      .info {
+        text-align: end;
+      }
+    }
+
+    & > input {
+      padding: 0.5rem 1rem;
+      border-radius: 5px;
+      border: 1px solid $color-grey-dark-3;
+      background-color: $color-grey-light-1;
+
+      &::placeholder {
+        color: $color-grey-light-3;
+      }
+
+      &:focus {
+        outline: none;
+        border: 2px solid $color-grey-dark-2;
+      }
+    }
+
+    &-invalid {
+      & input {
+        background-color: $color-danger-light;
+        border: 2px solid $color-danger-dark;
+      }
+    }
+    &-disabled {
+      & input {
+        color: $color-grey-dark-3;
+        border: 2px solid $color-grey-light-2;
+      }
+    }
+  }
+
+  &__buttons {
+    &__1 {
+      grid-template-columns: 1fr;
+    }
+    &__2 {
+      grid-template-columns: 1fr 1fr;
+    }
+    display: grid;
+    grid-gap: 2rem;
+    margin-top: 2rem;
+    justify-self: stretch;
+    width: 100%;
+
+    & > * {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+Button {
+  width: 100%;
+  height: 100%;
+}

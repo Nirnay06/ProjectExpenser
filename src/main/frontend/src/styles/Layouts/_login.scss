@@ -1,0 +1,70 @@
+.loginLayout {
+  padding: 1rem;
+  background-color: $color-grey-light-2;
+  min-height: 100vh;
+  display: grid;
+  grid-gap: 1rem;
+  grid-template-rows: 5vh 10vh minmax(min-content, max-content);
+}
+.Login-box {
+  background-color: #fff;
+  box-shadow: 0rem 0rem 1rem 1rem rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  min-width: 50rem;
+
+  & > * {
+    padding: 3rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    align-items: center;
+    justify-items: stretch;
+  }
+  &__dark {
+    background-color: rgba(1, 1, 1, 0.05);
+  }
+}
+
+.login__header {
+  justify-self: right;
+}
+
+.loginLayout__logo {
+  align-self: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  &__img {
+    height: 10rem;
+  }
+  &__title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    &-main {
+      text-transform: uppercase;
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 0;
+      color: $color-grey-dark-1;
+    }
+    &-secondary {
+      color: $color-grey-dark-3;
+    }
+  }
+}
+
+.Forget__password {
+  margin-top: 2rem;
+  width: 90%;
+  text-align: center;
+  font-size: 1.8rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(5rem, max-content));
+  justify-content: space-evenly;
+  align-items: center;
+}

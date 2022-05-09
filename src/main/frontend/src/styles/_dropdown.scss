@@ -1,0 +1,13 @@
+.dropdown {
+  &__link {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+  }
+  &__icon {
+    height: 3rem;
+    width: 3rem;
+    margin-right: 1rem;
+  }
+}

@@ -1,0 +1,131 @@
+@import "./../base";
+
+.accountdetail {
+  background: transparent;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-content: stretch;
+
+  & > * {
+  }
+
+  &__header {
+    height: 30rem;
+    width: 100%;
+    border-radius: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0rem 0rem 0.5rem 0px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    display: grid;
+    grid-template-rows: 1fr 3fr 1fr;
+
+    &--button {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      justify-items: center;
+      background-color: rgba($color-grey-light-1, 0.3);
+      padding: 0rem 2rem;
+      border-bottom: 1px solid $color-grey-light-3;
+      :not(:last-child) {
+        margin-right: 2rem;
+      }
+    }
+    &--detail {
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 1rem 4rem;
+      border-bottom: 1px solid $color-grey-light-3;
+    }
+    &--tabs {
+      background-color: white;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: stretch;
+      padding: 0rem 3rem;
+    }
+  }
+
+  &__content {
+    position: sticky;
+    top: 50rem;
+  }
+}
+
+.header {
+  &__title {
+    flex-grow: 1;
+  }
+  &__back {
+    height: 4rem;
+    width: 4rem;
+    box-shadow: $box-shadow;
+    padding: 0.85rem;
+    border-radius: 1rem;
+    &_button {
+      height: 100%;
+      width: 100%;
+      fill: $color-grey-dark-2;
+    }
+  }
+
+  &__buttons {
+    justify-self: flex-end;
+    width: 10rem;
+  }
+}
+
+.account {
+  &__icon {
+    font-size: 5rem;
+    color: $color-grey-light-1;
+    padding: 2rem;
+    border-radius: 2rem;
+    margin-right: 3rem;
+  }
+  &__details {
+    display: flex;
+    flex-direction: column;
+    &:not(:last-child) {
+      margin-bottom: 1rem;
+    }
+  }
+  &__detail {
+    display: flex;
+    flex-direction: column;
+    &:not(:last-child) {
+      margin-bottom: 0.5rem;
+    }
+    &--title {
+      font-size: 1.5rem;
+      font-weight: 400;
+      color: $color-grey-dark-3;
+    }
+    &--value {
+      font-size: 1.7rem;
+      font-weight: 600;
+      color: $color-grey-dark-1;
+    }
+  }
+}
+
+.navigation__tab {
+  margin: 0 1rem;
+  padding: 1rem 1rem;
+  color: $color-grey-dark-3;
+  &-active {
+    border-bottom: 4px solid rgb(72, 72, 231);
+    color: $color-grey-dark-1;
+  }
+  &--text {
+    text-align: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+  }
+}

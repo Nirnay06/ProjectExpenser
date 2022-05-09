@@ -1,0 +1,108 @@
+@import "./../base";
+
+$table-header-height: 4rem;
+$table-header-margin-bottom: 1rem;
+
+.table {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  align-items: stretch;
+  & > * {
+    &:not(:last-child) {
+      margin-bottom: $table-header-margin-bottom;
+    }
+  }
+  &__header {
+    position: sticky;
+    top: $navbar-height;
+    z-index: 600;
+    height: $table-header-height;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 0.5rem 0;
+    background-color: $background-color;
+    &__item {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(min-content, max-content));
+      grid-gap: 1rem;
+      align-items: stretch;
+      text-align: center;
+      span {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+      }
+    }
+    &__button {
+      border-radius: 10rem;
+    }
+  }
+
+  &__row {
+    background-color: white;
+    height: 5rem;
+    padding: 0.5rem 2rem;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: center;
+    &:hover {
+      box-shadow: $box-shadow;
+    }
+    &__data {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      flex: 1;
+      cursor: pointer;
+    }
+    &__item {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(min-content, max-content));
+      grid-gap: 1rem;
+      align-items: center;
+      text-align: center;
+      span {
+        font-size: 1.5rem;
+        font-weight: 700;
+        text-align: center;
+      }
+      &-right {
+        justify-self: end;
+      }
+    }
+    &__icon {
+      border-radius: 50%;
+      height: 3.5rem;
+      width: 3.5rem;
+      background-color: yellow;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      svg {
+        height: 70%;
+        width: 70%;
+      }
+    }
+  }
+  &__group__header {
+    position: sticky;
+    top: $navbar-height + $table-header-height;
+    background-color: $background-color;
+    z-index: 100;
+    font-size: 1.7rem;
+    font-weight: 600;
+    height: 4rem;
+    vertical-align: top;
+  }
+}

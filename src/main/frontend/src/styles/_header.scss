@@ -1,0 +1,86 @@
+.page__header {
+  position: sticky;
+  top: 0;
+  z-index: 99;
+  height: $navbar-height;
+  min-height: 5rem;
+  background-color: $color-grey-light-1;
+  display: grid;
+  grid-template-columns:
+    minmax(min-content, max-content) 1fr
+    minmax(min-content, max-content) minmax(min-content, max-content);
+  grid-column-gap: 2rem;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+
+  &--logo {
+    grid-column: 1/2;
+    height: 5rem;
+    width: 5rem;
+  }
+  &--links {
+    grid-column: 2/3;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+  }
+  &--buttons {
+    grid-column: 3/4;
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+  }
+  &--user div {
+    grid-column: 4/5;
+    display: grid;
+    grid-template-columns: 2fr minmax(min-content, 6rem) 1fr;
+    align-items: center;
+    grid-gap: 1rem;
+  }
+}
+
+.user__icon {
+  height: 2rem;
+  width: 2rem;
+}
+
+.user__name {
+  text-transform: uppercase;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-align: center;
+  height: 100%;
+  margin: 0 auto;
+}
+
+.link {
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.2s;
+  color: $color-grey-dark-3;
+  &:not(:last-child) {
+    margin-right: 1.5srem;
+  }
+
+  &__active {
+    background-color: $color-grey-light-2;
+    color: $color-grey-dark-1;
+    border-bottom: 1px solid currentColor;
+  }
+
+  &__icon {
+    height: 2.5rem;
+    width: 2.5rem;
+    font-size: 5rem;
+    margin-right: 0.8rem;
+    fill: currentColor;
+  }
+
+  &__text {
+    text-align: center;
+    margin: 0 auto;
+    color: currentColor;
+  }
+}

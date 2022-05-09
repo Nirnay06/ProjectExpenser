@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+    <Appenders>
+        # File appender
+        <RollingFile name="fout"
+            fileName="logs/expenser.log"
+            filePattern="logs/expenser.%d{MM-dd-yyyy}.log"
+            ignoreExceptions="false">
+            <PatternLayout>
+                <Pattern>%d{yyyy-MM-dd HH:mm:ss} %p %m%n</Pattern>
+            </PatternLayout>
+            <TimeBasedTriggeringPolicy/>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        # Override log level for specified package
+        <Logger name="com.expenser" level="ERROR"/>
+        <Root level="ERROR">
+            <AppenderRef ref="fout"/>
+        </Root>
+    </Loggers>
+</Configuration>

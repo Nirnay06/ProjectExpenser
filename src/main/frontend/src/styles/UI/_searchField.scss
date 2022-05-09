@@ -1,0 +1,27 @@
+.searchField {
+  padding: 0.5rem 1rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  background-color: transparent;
+  align-items: center;
+  border-radius: 1rem;
+
+  :not(:last-child) {
+    margin-right: 1rem;
+  }
+  & input {
+    background-color: transparent;
+    outline: none;
+    border: none;
+  }
+
+  .ant-input:focus {
+    background-color: transparent;
+    box-shadow: none;
+    border: none;
+  }
+  &:focus-within {
+    border: 1px solid royalblue;
+  }
+}

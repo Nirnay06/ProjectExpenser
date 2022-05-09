@@ -1,0 +1,95 @@
+@import "./../base";
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+
+  &__header {
+    background-color: #ffff;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min-content, 30rem));
+    grid-gap: 3rem;
+    padding: 2rem;
+  }
+  &__datePicker {
+    padding: 0.5rem;
+    display: flex;
+    justify-content: space-evenly;
+    padding-top: 1rem;
+  }
+  &__content {
+    padding: 0.5rem 2rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(min-content, 1fr));
+    grid-gap: 1.5rem;
+  }
+}
+
+.sidebar__content {
+  margin: 0rem 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  min-width: 95vw;
+  min-height: 60rem;
+  margin-bottom: 10rem;
+
+  & > * {
+    border-radius: 10px;
+  }
+}
+
+.sidebar__container {
+  margin-right: 2rem;
+  background-color: rgba($color-grey-light-1, 0.8);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 2rem;
+  :not(:last-child) {
+    margin-bottom: 2rem;
+  }
+}
+.main__content {
+  background-color: $color-grey-light-1;
+  flex: 4;
+}
+
+.dropdownHeader__item {
+  border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 1rem;
+  overflow: hidden;
+
+  &:not(:last-child) {
+    margin-right: 3rem;
+  }
+
+  & > * {
+    width: 15rem;
+    text-align: center;
+    font-size: 1.4rem;
+    vertical-align: middle;
+    border-radius: 1rem;
+  }
+}
+
+.gridRow {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-gap: 1.5rem;
+  align-content: flex-start;
+}
+.content__row {
+  background-color: $color-grey-light-1;
+  min-height: 5rem;
+  padding: 0.5rem;
+  border-radius: 1rem;
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+}
