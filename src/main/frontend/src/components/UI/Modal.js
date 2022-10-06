@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import styles from './../../styles/UI/modal.module.scss';
 import icons from './../../assets/sprite.svg';
+import { Modal } from 'antd';
 const Backdrop = (props) => {
     const onBackDropClickHandler = (e) => {
         if (e.target.className === styles.backdrop) {
@@ -15,7 +16,7 @@ const Backdrop = (props) => {
 const ModalBox = (props) => {
     const { headerTitle = 'title', showCloseButton = true, headerButtons } = props;
     return (
-        <div className={styles.modal}>
+        <div className={styles.modal} style={props.style}>
             <div className={styles.modal__header}>
                 {headerTitle ? <div className={styles.modal__header__title}>{headerTitle}</div> : <div></div>}
                 {headerButtons && headerButtons}
@@ -30,15 +31,21 @@ const ModalBox = (props) => {
         </div>
     )
 }
-const Modal = (props) => {
-    const overlayDiv = document.getElementById('modal');
-    return (
-        <>
-            {ReactDOM.createPortal(<Backdrop onCloseModal={props.onCloseModal}><ModalBox {...props}>
-                {/* {props.children} */}
-            </ModalBox></Backdrop>, overlayDiv)
-            }
-        </>);
+const CustomModal = (props) => {
+    const { visible, onCancel, title, style, children, ...others } = props;
+    return <>
+        <Modal
+            visible={visible}
+            width={1000}
+            keyboard={true}
+            onCancel={onCancel}
+            title={title}
+            footer={null}
+            style={{ borderRadius: "5px", overflow: "hidden", top: '20px', ...style }}
+            {...others}
+        >
+            {children}
+        </Modal></>
 }
 
-export default Modal;
+export default CustomModal;

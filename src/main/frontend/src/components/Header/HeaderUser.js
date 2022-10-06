@@ -22,33 +22,33 @@ const HeaderUser = (props) => {
     };
     const menu = (
         <Menu selectable className='dropdown'>
-            <Menu.Item>
+            <Menu.Item key="add_voucher">
                 <a href='#' className='dropdown__link'>
-                    <svg className='dropdown__icon'>
+                    <svg className='dropdown__icon icon icon-ticket'>
                         <use href={`${icons}#icon-ticket`}></use>
                     </svg>
                     <p className='dropdown__text'>Add Voucher</p>
                 </a>
             </Menu.Item>
-            <Menu.Item>
-                <Link to="/upgrade" className='dropdown__link'>
-                    <svg className='dropdown__icon'>
+            <Menu.Item key="upgrade">
+                <Link to="/upgrade" className='dropdown__link' >
+                    <svg className='dropdown__icon  icon icon-star-full'>
                         <use href={`${icons}#icon-star-full`}></use>
                     </svg>
                     <p className='dropdown__text'>Upgrade</p>
                 </Link>
             </Menu.Item>
-            <Menu.Item >
+            <Menu.Item key="settings">
                 <Link to="/settings" className='dropdown__link'>
-                    <svg className='dropdown__icon'>
+                    <svg className='dropdown__icon  icon icon-cogs'>
                         <use href={`${icons}#icon-cogs`}></use>
                     </svg>
                     <p className='dropdown__text'>Settings</p>
                 </Link>
             </Menu.Item>
-            <Menu.Item>
+            <Menu.Item key="exit">
                 <Link to="/login" className='dropdown__link' onClick={AuthenticationService.logoutHandler}>
-                    <svg className='dropdown__icon'>
+                    <svg className='dropdown__icon  icon icon-exit'>
                         <use href={`${icons}#icon-exit`}></use>
                     </svg>
                     <p className='dropdown__text'>Logout</p>

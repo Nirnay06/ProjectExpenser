@@ -4,8 +4,10 @@ import { Checkbox, Dropdown, Menu } from "antd";
 import { EllipsisOutlined } from "@ant-design/icons";
 import icons from "./../../assets/sprite.svg";
 import { useState } from "react";
-import Modal from "../UI/Modal";
+import moment from "moment";
+
 import RecordModalContainer from "../Record/RecordModal";
+import CustomModal from "../UI/Modal";
 
 const AccountRecord = (props) => {
   const [showRecordModal, toggleRecordModal] = useState(false);
@@ -24,16 +26,26 @@ const AccountRecord = (props) => {
   );
   return (
     <>
-      {showRecordModal && (
-        <Modal
-          headerTitle="Edit Account"
-          onCloseModal={() => {
-            toggleRecordModal(false);
-          }}
-        >
-          <RecordModalContainer />
-        </Modal>
-      )}
+      <CustomModal
+        visible={showRecordModal}
+        onCancel={() => {
+          toggleRecordModal(false);
+        }}
+        title="Edit Record"
+        initialValues={{
+          accountName: "",
+          amount: "0",
+          CurrencyType: "INR",
+          category: "0-0-1",
+          recordDate: moment(new Date()),
+          recordTime: moment(new Date(), "HH:MM"),
+          location: {},
+          recordType: "expense",
+        }}
+        bodyStyle={{ padding: 0, paddingBottom: "1rem" }}
+      >
+        <RecordModalContainer />
+      </CustomModal>
       <tr className={styles.table__row}>
         <td className={styles.table__row__item}>
           <Checkbox
@@ -46,9 +58,9 @@ const AccountRecord = (props) => {
         </td>
         <div className={styles.table__row__data} onClick={onRecordModal}>
           <td className={styles.table__row__item}>
-            <div className={styles.table__row__icon}>
-              <svg>
-                <use href={`${icons}#icon-knife-fork`}></use>
+            <div className="dot dot-icon">
+              <svg className="icon icon-restaurant">
+                <use href={`${icons}#icon-restaurant`}></use>
               </svg>
             </div>
             <span>{title}</span>

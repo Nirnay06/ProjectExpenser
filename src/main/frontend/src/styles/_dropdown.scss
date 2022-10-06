@@ -4,10 +4,14 @@
     flex-direction: row;
     justify-content: start;
     align-items: center;
+    margin: 0.5rem;
   }
   &__icon {
     height: 3rem;
     width: 3rem;
     margin-right: 1rem;
+  }
+  &__text {
+    margin: 0;
   }
 }

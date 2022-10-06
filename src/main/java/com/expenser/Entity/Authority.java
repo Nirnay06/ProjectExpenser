@@ -9,6 +9,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Where;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
@@ -18,6 +20,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name ="authorities")
+@Where(clause = "deleted !=1")
 public class Authority extends AuditEntity {
 	
 	@Id

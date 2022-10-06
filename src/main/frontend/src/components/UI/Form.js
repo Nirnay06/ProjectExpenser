@@ -7,7 +7,10 @@ export const FormContext = React.createContext({
 });
 
 function Form(props) {
-    const { children, submit = () => { }, initialValues, validationFunction = () => { }, buttonText = 'Submit', cancel, cancelText = 'Cancel' } = props;
+    const { children, submit = () => { },
+        initialValues, validationFunction = () => { },
+        buttonText = 'Submit', cancel, cancelText = 'Cancel',
+        buttonContainerClass, } = props;
     const [form, setForm] = useState(initialValues);
     const [errors, setErrors] = useState({});
     const [initForm, setInitForm] = useState(true);
@@ -24,7 +27,7 @@ function Form(props) {
         }
     }
     return (
-        <form className={styles.Form} onKeyDown={onEnterPress}>
+        <form className={`${styles.Form} ${props.className}`} onKeyDown={onEnterPress} style={props.style}>
             <FormContext.Provider value={{
                 form,
                 setForm,
@@ -32,13 +35,13 @@ function Form(props) {
                 setErrors,
                 initForm,
                 setInitForm,
-                validationFunction
+                validationFunction,
             }}>
                 {children}
             </FormContext.Provider>
-            <div className={[styles.Form__buttons, styles[`Form__buttons${cancel ? '__2' : '__1'}`]].join(' ')}>
+            <div className={[styles.Form__buttons, styles[`Form__buttons${cancel ? '__2' : '__1'}`], buttonContainerClass].join(' ')}>
                 {
-                    cancel && <Button type="default" onClick={cancel} shape="round" size='large'>
+                    cancel && <Button block type="default" onClick={cancel} shape="round" size='large'>
                         {cancelText}
                     </Button>
                 }
@@ -48,13 +51,13 @@ function Form(props) {
                     arrowPointAtCenter
                     trigger="hover"
                     overlayInnerStyle={{ 'textAlign': 'Center' }}>
-                    <Button type="primary" onClick={submitFormHandler} shape="round" size='large'
+                    <Button type="primary" block onClick={submitFormHandler} shape="round" size='large'
                         disabled='disabled'>
                         {buttonText}
                     </Button>
                 </Tooltip>}
                 {
-                    !(hasAnyError || initForm) && <Button type="primary" onClick={submitFormHandler} shape="round" size='large'>
+                    !(hasAnyError || initForm) && <Button block type="primary" onClick={submitFormHandler} shape="round" size='large'>
                         {buttonText}
                     </Button>
                 }

@@ -150,4 +150,9 @@ public class UserServiceImpl implements UserService {
 		}
 		throw new BadCredentialsException("Username not found");
 	}
+
+	@Override
+	public User findByUserIdentifier(String userIdentifier) {
+		return userRepository.findByUserIdentifier(userIdentifier);
+	}
 }

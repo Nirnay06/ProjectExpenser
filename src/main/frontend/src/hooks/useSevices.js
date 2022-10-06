@@ -1,8 +1,10 @@
 import useAuthenticationService from "../Service/useAuthenticationService";
+import useRecordService from "../Service/useRecordService";
 
 const useServices = () => {
     const { AuthenticationService } = useAuthenticationService();
-    return { AuthenticationService };
+    const { RecordService } = useRecordService();
+    return { AuthenticationService, RecordService };
 }
 
 

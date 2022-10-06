@@ -11,7 +11,7 @@ import org.springframework.context.annotation.ComponentScans;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 @ComponentScans({ @ComponentScan("com.expenser.controller"), @ComponentScan("com.expenser.config"),
-		@ComponentScan("com.expenser.secuirty"), @ComponentScan("com.expenser.eventListener") })
+		@ComponentScan("com.expenser.security"), @ComponentScan("com.expenser.eventListener"), @ComponentScan("com.expenser.util") })
 @EntityScan("com.expenser.Entity")
 @EnableJpaRepositories("com.expenser.repository")
 @SpringBootApplication(exclude = UserDetailsServiceAutoConfiguration.class)

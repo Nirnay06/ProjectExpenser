@@ -4,15 +4,9 @@ import useHttp from '../../hooks/useHttp';
 
 
 const HeaderButton = (props) => {
-    const { sendRequest } = useHttp();
-    const onButtonClick = async () => {
-        sendRequest({
-            url: "/api/advance"
-        }, (data) => { console.log(data); })
-    }
     return (
         <>
-            <Button type="primary" shape="round" size={'small'} icon={<PlusCircleOutlined />} onClick={onButtonClick}>
+            <Button type="primary" shape="round" size={'small'} icon={<PlusCircleOutlined />} onClick={props.onClick}>
                 Record
             </Button>
         </>

@@ -11,23 +11,29 @@
 }
 
 .center {
-  text-align: center;
+  text-align: center !important;
 }
 
 .uppercase {
-  text-transform: uppercase;
+  text-transform: uppercase !important;
 }
 
 .text--dark-2 {
-  color: $color-grey-dark-2;
+  color: $color-grey-dark-2 !important;
 }
 
 .text--light-2 {
-  color: $color-grey-light-2;
+  color: $color-grey-light-2 !important;
 }
 .transparent {
   background-color: transparent !important;
 }
 .danger-text {
   color: $color-danger-dark !important;
+}
+.bg-color-grey-light-2 {
+  background-color: $color-grey-light-2 !important;
+}
+.padding-25 {
+  padding: 2.5rem !important;
 }

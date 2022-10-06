@@ -1,4 +1,4 @@
-import { useCallback, useContext, useState } from "react";
+import { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../store/AuthContext";
 import { message } from 'antd';
@@ -6,7 +6,6 @@ import { message } from 'antd';
 const useHttp = () => {
     let history = useHistory();
     const authCtx = useContext(AuthContext);
-    const [displaySpinner, setDisplaySpinner] = useState(false);
 
     const sendRequest = useCallback(async (requestConfig, applyData) => {
         let auth = sessionStorage.getItem("Authorization");
@@ -14,8 +13,7 @@ const useHttp = () => {
             requestConfig.headers = { ...requestConfig.headers, "Authorization": auth }
         }
         try {
-            setDisplaySpinner(true);
-            // setMessage((prev) => { return { ...prev, isVisible: false } });
+            authCtx.setDisplaySpinner(true);
             const response = await fetch(requestConfig.url, {
                 method: requestConfig.method ? requestConfig.method : 'GET',
                 headers: requestConfig.headers ? requestConfig.headers : {},
@@ -47,10 +45,10 @@ const useHttp = () => {
         catch (err) {
             console.log(err);
         }
-        setDisplaySpinner(false);
+        authCtx.setDisplaySpinner(false);
     }, []);
 
-    return { displaySpinner, sendRequest };
+    return { sendRequest };
 }
 
 export default useHttp;

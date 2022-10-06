@@ -26,4 +26,6 @@ public interface UserService {
 	public UserDTO findUserByTokenIdentifier(String tokenIdentifier);
 
 	public void updatePassword(SignupRequestDTO signupRequest);
+	
+	public User findByUserIdentifier(String userIdentifier);
 }

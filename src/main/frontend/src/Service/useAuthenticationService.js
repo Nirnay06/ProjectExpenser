@@ -114,15 +114,15 @@ const useAuthenticationService = () => {
                 },
             },
             (data) => {
-                console.log(data);
                 authCtx.setLoggedIn(true);
+                authCtx.setJWTUser();
             }
         );
     };
 
-
     const logoutHandler = () => {
         authCtx.setLoggedIn(false);
+        window.sessionStorage.removeItem('Authorization');
     };
     return { "AuthenticationService": { createUser, sendConfirmationMail, sendResetPasswordMail, fetchUserDetailsForToken, resetUserPassword, loginHandler, logoutHandler } };
 }

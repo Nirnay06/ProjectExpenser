@@ -50,7 +50,7 @@ const InputField = (props) => {
     }, [form, validationFunction, setErrors, isClicked, name, initForm, required]);
 
     return (
-        <div className={`${styles.Form__Input} ${errors[name] && isClicked ? styles['Form__Input-invalid'] : null} ${disabled ? styles['Form__Input-disabled'] : null} `}>
+        <div className={`${styles.Form__Input} ${props.className} ${errors[name] && isClicked ? styles['Form__Input-invalid'] : null} ${disabled ? styles['Form__Input-disabled'] : null} `}>
             <label>
                 {label}
                 {required && <p>*</p>}
@@ -73,7 +73,7 @@ const InputField = (props) => {
                 trigger="hover"
                 overlayInnerStyle={{ 'textAlign': 'Center' }}>
 
-                <input
+                {!props.children && <input
                     value={form[name]}
                     required={required}
                     name={name}
@@ -82,7 +82,7 @@ const InputField = (props) => {
                     onChange={handleFormChange}
                     onBlur={onClickHandler}
                     disabled={disabled}
-                >{props.children}</input>
+                ></input>}
             </Tooltip>
         </div>
     )

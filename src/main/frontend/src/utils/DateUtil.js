@@ -55,3 +55,7 @@ export function getMonthAndDate(odate = new Date()) {
     const date = new Date(odate);
     return date.toLocaleDateString('en-us', { month: 'short', day: 'numeric' });
 }
+
+export function isFutureDate(targetDate) {
+    return targetDate > new Date();
+}

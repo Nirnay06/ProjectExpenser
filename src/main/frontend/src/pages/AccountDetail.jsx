@@ -6,7 +6,7 @@ import { WalletOutlined } from "@ant-design/icons";
 import React, { useState } from "react";
 import AccountBalanceChart from "../components/Account/AccountBalanceChart";
 import AccountRecords from "../components/Account/AccountRecords";
-import Modal from "../components/UI/Modal";
+import CustomModal from "../components/UI/Modal";
 import AccountModalContainer from "../components/Account/AccountModal";
 
 const AccountDetailPage = (props) => {
@@ -15,22 +15,24 @@ const AccountDetailPage = (props) => {
   const { accountIdentifier } = useParams();
   return (
     <>
-      {showAccountModal && (
-        <Modal
-          headerTitle="Edit Account"
-          onCloseModal={() => {
-            toggleAccountModal(false);
-          }}
-        >
-          <AccountModalContainer />
-        </Modal>
-      )}
+      <CustomModal
+        visible={showAccountModal}
+        onCancel={() => {
+          toggleAccountModal(false);
+        }}
+        title="Edit Account"
+        bodyStyle={{ padding: 0, paddingBottom: "1rem" }}
+      >
+        <AccountModalContainer />
+      </CustomModal>
 
       <div className={styles.accountdetail}>
         <div className={styles.accountdetail__header}>
           <div className={styles["accountdetail__header--button"]}>
             <Link to="/accounts" className={styles.header__back}>
-              <svg className={styles.header__back_button}>
+              <svg
+                className={`${styles.header__back_button} icon icon-circle-left`}
+              >
                 <use xlinkHref={`${icons}#icon-circle-left`}></use>
               </svg>
             </Link>

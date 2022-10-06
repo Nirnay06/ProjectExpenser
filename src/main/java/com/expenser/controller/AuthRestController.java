@@ -17,6 +17,7 @@ import javax.validation.Valid;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
@@ -55,6 +56,9 @@ public class AuthRestController {
 	
 	@Autowired
 	UserService userService;
+	
+	@Autowired
+	ModelMapper mapper;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequest, HttpServletRequest request,
@@ -64,10 +68,15 @@ public class AuthRestController {
 			Authentication auth = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		if (auth != null) {
+			UserDTO user = mapper.map(userService.getUserByUsername((String)auth.getPrincipal()), UserDTO.class);
+			user.setAuthorities(null);
 			SecretKey key = Keys.hmacShaKeyFor(SecurityConstants.JWT_KEY.getBytes(StandardCharsets.UTF_8));
 			String jwt = Jwts.builder().setIssuer("Expenser").setSubject("JWT Token")
 					.claim("username", auth.getPrincipal())
-					.claim("authorities", getAuthoritiesString(auth.getAuthorities())).setIssuedAt(new Date())
+					.claim("user", user)
+					.claim("authorities", getAuthoritiesString(auth.getAuthorities()))
+					.claim("issuedAt", new Date()).claim("expiredAt",new Date(new Date().getTime() + 3600000))
+					.setIssuedAt(new Date())
 					.setExpiration(new Date(new Date().getTime() + 3600000)).signWith(key).compact();
 			response.setHeader(SecurityConstants.JWT_HEADER, jwt);
 			return new ResponseEntity<>(auth, HttpStatus.OK);

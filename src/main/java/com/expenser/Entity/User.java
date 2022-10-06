@@ -16,6 +16,9 @@ import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.SQLDelete;
+import org.hibernate.annotations.Where;
+
 import com.expenser.util.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -27,6 +30,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name = "users")
+@Where(clause = "deleted !=1")
+@SQLDelete(sql = "update users set deleted=1 where id=?")
 public class User extends AuditEntity{
 	
 	@Id
@@ -62,8 +67,8 @@ public class User extends AuditEntity{
 		
 	}
 	
-	public User(String username, String password, String firstName, String lastName, Set<Authority> authorities) {
-		this.userIdentifier = UUID.randomUUID().toString();
+	public User(String userIdentifier, String username, String password, String firstName, String lastName, Set<Authority> authorities) {
+		this.userIdentifier = userIdentifier;
 		this.username = username;
 		this.password = password;
 		this.authorities = authorities;

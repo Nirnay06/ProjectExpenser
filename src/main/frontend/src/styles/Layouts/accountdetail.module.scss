@@ -66,13 +66,10 @@
     height: 4rem;
     width: 4rem;
     box-shadow: $box-shadow;
-    padding: 0.85rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 1rem;
-    &_button {
-      height: 100%;
-      width: 100%;
-      fill: $color-grey-dark-2;
-    }
   }
 
   &__buttons {

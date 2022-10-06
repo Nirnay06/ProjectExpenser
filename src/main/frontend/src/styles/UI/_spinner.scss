@@ -1,21 +1,29 @@
 .spinner {
-    margin: 5rem auto;
-    text-align: center;
-  
-    svg {
-      height: 6rem;
-      width: 6rem;
-      fill: $color-primary;
-      animation: rotate 2s infinite linear;
-    }
+  z-index: 100000;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: rgba(#000, 0.2);
+  backdrop-filter: blur(1px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  svg {
+    height: 6rem;
+    width: 6rem;
+    fill: $color-primary;
+    animation: rotate 2s infinite linear;
   }
-  
-  @keyframes rotate {
-    0% {
-      transform: rotate(0);
-    }
-  
-    100% {
-      transform: rotate(360deg);
-    }
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
   }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}

@@ -1,0 +1,59 @@
+@import "./../../styles/base";
+.recordModalForm {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-gap: 0;
+}
+
+.recordModal__section {
+  padding: 2rem 3rem;
+  &__1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    grid-column: 1 / 3;
+    background-color: #bbe9db;
+  }
+  &__2 {
+    background-color: rgba($color-grey-light-3, 0.3);
+    grid-column: 3 / 4;
+    grid-row: 1/3;
+  }
+  &__3 {
+    background-color: rgba(#757a79, $alpha: 0.3);
+    grid-column: 1 / 3;
+  }
+}
+
+.recordModalButtonContainer {
+  margin: 0;
+  margin-top: 1rem;
+  grid-column: 3 / -1;
+  text-align: end;
+}
+
+.tabs {
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: repeat(3, min-content);
+  grid-gap: 1px;
+  padding: 0.1rem;
+  justify-items: center;
+  border: 1px solid white;
+}
+
+.tab {
+  background-color: transparent;
+  border-radius: 3px;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  width: fit-content;
+  transition: all 0.2s ease-in-out;
+  &:not(:last-child) {
+    border-right: 1px solid white;
+  }
+  &__active {
+    background-color: white;
+    color: $color-grey-dark-1;
+  }
+}

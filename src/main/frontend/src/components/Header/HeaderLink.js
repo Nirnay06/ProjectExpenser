@@ -3,7 +3,7 @@ import icons from './../../assets/sprite.svg';
 const HeaderLink = (props) => {
     return (
         <NavLink activeClassName='link__active' className="link" to={props.link.path} key={props.title}>
-            {props.link.icon && <svg className='link__icon'>
+            {props.link.icon && <svg className={`link__icon icon icon-${props.link.icon}`} >
                 <use href={`${icons}#icon-${props.link.icon}`}></use>
             </svg>}
             <div className="link__title">
