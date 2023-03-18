@@ -1,13 +1,13 @@
 import { useCallback, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import AuthContext from "../store/AuthContext";
-import { message } from 'antd';
+import { message } from 'antd'
 
 const useHttp = () => {
     let history = useHistory();
     const authCtx = useContext(AuthContext);
-
-    const sendRequest = useCallback(async (requestConfig, applyData) => {
+    const defaultErrorHandlingFunction = (data) => { message.error(data.message ? data.message : 'Something went wrong !!') }
+    const sendRequest = useCallback(async (requestConfig, applyData = () => { }, handleError = defaultErrorHandlingFunction) => {
         let auth = sessionStorage.getItem("Authorization");
         if (auth) {
             requestConfig.headers = { ...requestConfig.headers, "Authorization": auth }
@@ -31,10 +31,10 @@ const useHttp = () => {
                     if (history) {
                         history.push('/login');
                     }
-                    authCtx.logoutHandler();
+                    // authCtx.logoutHandler();
                 }
-                message.error(data.message ? data.message : 'Something went wrong !!')
-                throw new Error(data.message);
+                handleError(data);
+                throw new Error(data?.message);
             }
             auth = response.headers.get('Authorization');
             if (auth) {

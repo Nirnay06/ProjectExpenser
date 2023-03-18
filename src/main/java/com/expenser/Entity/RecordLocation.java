@@ -1,5 +1,7 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -27,7 +29,7 @@ import lombok.Setter;
 @Setter
 @Where(clause = "deleted !=1")
 @SQLDelete(sql = "update record_location set deleted=1 where id=?")
-public class RecordLocation {
+public class RecordLocation extends AuditEntity implements Serializable{
 
 	@Id
 	@SequenceGenerator(name="recordLocationSequence", sequenceName = "RECORD_LOCATION_SEQ", allocationSize = 1)
@@ -37,19 +39,15 @@ public class RecordLocation {
 	@Column(name ="identifier")
 	private String identifier;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name ="user_identifier")
-	private User user;
-	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name ="record_identifier")
+	@JoinColumn(name ="record_identifier", referencedColumnName = "identifier")
 	private UserRecord record;
 	
 	@Column(name ="latitude")
-	private double latitude;
+	private BigDecimal latitude;
 	
 	@Column(name ="longitude")
-	private double longitude;
+	private BigDecimal longitude;
 	
 	@Column(name ="title")
 	private String title;
@@ -80,10 +78,9 @@ public class RecordLocation {
 		
 	}
 
-	public RecordLocation(String identifier, User user, UserRecord record, double latitude, double longitude,
+	public RecordLocation(String identifier, UserRecord record, BigDecimal latitude, BigDecimal longitude,
 			String title, String addressLine, String city, String state, String country, boolean modified) {
 		this.identifier = identifier;
-		this.user = user;
 		this.record = record;
 		this.latitude = latitude;
 		this.longitude = longitude;

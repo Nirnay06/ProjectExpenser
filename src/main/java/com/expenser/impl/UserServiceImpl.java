@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 import com.expenser.Entity.Authority;
 import com.expenser.Entity.LinkToken;
 import com.expenser.Entity.User;
+import com.expenser.api.ClientService;
 import com.expenser.api.LinkTokenService;
 import com.expenser.api.UserService;
 import com.expenser.enums.AuthorityEnum;
@@ -46,6 +47,9 @@ public class UserServiceImpl implements UserService {
 	
 	@Autowired
 	LinkTokenService linkTokenService;
+	
+	@Autowired
+	ClientService clientService;
 
 	@Override
 	public User getUserByUsername(String username) {
@@ -59,18 +63,21 @@ public class UserServiceImpl implements UserService {
 	@Transactional
 	@Override
 	public void addUser(SignupRequestDTO signupRequest, String appURL) {
-		User newUser = new User();
-		newUser.setFirstname(signupRequest.getFirstname());
-		newUser.setLastname(signupRequest.getLastname());
-		newUser.setUsername(signupRequest.getUsername());
-		newUser.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+		User user = new User();
+		user.setFirstname(signupRequest.getFirstname());
+		user.setLastname(signupRequest.getLastname());
+		user.setUsername(signupRequest.getUsername());
+		user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
 		Set<Authority> auths = new HashSet<>();
 		Authority auth = new Authority(AuthorityEnum.USER.name());
-		auth.setUser(newUser);
+		auth.setUser(user);
 		auths.add(auth);
-		newUser.setAuthorities(auths);
-		userRepository.save(newUser);
-		sendRegistrationEmailToUser(newUser, appURL,EmailType.REGISTRATION_CONFIRM);
+		user.setAuthorities(auths);
+		User newUser = userRepository.save(user);
+		if(newUser!=null) {
+			clientService.createNewClient(user);
+		}
+		sendRegistrationEmailToUser(user, appURL,EmailType.REGISTRATION_CONFIRM);
 	}
 
 	@Override

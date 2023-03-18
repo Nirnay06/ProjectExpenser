@@ -1,5 +1,7 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.UUID;
 
@@ -11,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.hibernate.annotations.Where;
 
@@ -22,7 +26,7 @@ import lombok.Setter;
 @Where(clause = "deleted !=1")
 @Getter
 @Setter
-public class ExpenserCurrency extends AuditEntity {
+public class ExpenserCurrency extends AuditEntity implements Serializable {
 	
 	@Id
 	@SequenceGenerator(name = "masterCurrencySeq",sequenceName = "MASTER_CURRENCY_SEQ", allocationSize = 1)
@@ -36,16 +40,17 @@ public class ExpenserCurrency extends AuditEntity {
 	private String currencySymbol;
 	
 	@Column(name = "current_conversion_rate")
-	private double conversionRate;
+	private long conversionRate;
 	
 	@Column(name ="last_synced_date")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date syncDate;
 	
 	public ExpenserCurrency() {
 		
 	}
 
-	public ExpenserCurrency(String identifier, String currencySymbol, double conversionRate, Date syncDate) {
+	public ExpenserCurrency(String identifier, String currencySymbol, long conversionRate, Date syncDate) {
 		this.identifier= identifier;
 		this.currencySymbol = currencySymbol;
 		this.conversionRate = conversionRate;

@@ -20,6 +20,10 @@ const AuthProvider = (props) => {
       setSessionUser(details.user);
     }
   };
+  const logoutHandler = () => {
+    setLoggedIn(false);
+    window.sessionStorage.removeItem("Authorization");
+  };
   return (
     <AuthContext.Provider
       value={{
@@ -29,6 +33,7 @@ const AuthProvider = (props) => {
         setDisplaySpinner,
         JWTUser,
         setJWTUser,
+        logoutHandler,
       }}
     >
       {props.children}

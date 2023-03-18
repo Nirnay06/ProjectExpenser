@@ -1,5 +1,7 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -27,20 +29,21 @@ import lombok.Setter;
 @Setter
 @Where(clause = "deleted !=1")
 @SQLDelete(sql = "update user_currency set deleted=1 where id=?")
-public class UserCurrency extends AuditEntity {
+public class UserCurrency extends AuditEntity  implements Serializable{
 	
-
+	private static final long SerialVersionUID = 8127721722221l;
+	
 	@Id
 	@SequenceGenerator(name = "UserCurrencySequence", sequenceName = "USER_CURR_SEQ", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.AUTO, generator = "UserCurrencySequence")
 	private long id;
-	
+
 	@Column(name ="identifier")
 	private String identifier;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="user_identifier")
-	private User user;
+	@JoinColumn(name = "client_identifier", referencedColumnName = "client_identifier")
+	private Client client;
 	
 	@Column(name = "currency_title")
 	private String title;
@@ -49,20 +52,20 @@ public class UserCurrency extends AuditEntity {
 	private String icon;
 	
 	@Column(name ="user_currency_rate")
-	private double currencyRate;
+	private long currencyRate;
 	
-	@Column(name ="is_rate_overridden")
+	@Column(name ="IS_RATE_OVERRIDEN")
 	private boolean rateOverriden;
 	
 	@Column(name ="is_base_currency")
 	private boolean baseCurrency;
 	
 	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "master_currency_identifier")
+	@JoinColumn(name = "master_currency_identifier", referencedColumnName = "identifier" )
 	private ExpenserCurrency currency;
 
-	public UserCurrency(String identifier, String title, String icon, double currencyRate, boolean rateOverriden,
-			boolean baseCurrency, ExpenserCurrency currency) {
+	public UserCurrency(String identifier, String title, String icon, long currencyRate, boolean rateOverriden,
+			boolean baseCurrency, ExpenserCurrency currency, Client client) {
 		this.identifier = identifier;
 		this.title = title;
 		this.icon = icon;
@@ -70,6 +73,7 @@ public class UserCurrency extends AuditEntity {
 		this.rateOverriden = rateOverriden;
 		this.baseCurrency = baseCurrency;
 		this.currency = currency;
+		this.client = client;
 	}
 
 	public UserCurrency() {

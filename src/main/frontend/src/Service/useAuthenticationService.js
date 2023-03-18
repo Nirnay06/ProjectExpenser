@@ -121,8 +121,7 @@ const useAuthenticationService = () => {
     };
 
     const logoutHandler = () => {
-        authCtx.setLoggedIn(false);
-        window.sessionStorage.removeItem('Authorization');
+        authCtx.logoutHandler();
     };
     return { "AuthenticationService": { createUser, sendConfirmationMail, sendResetPasswordMail, fetchUserDetailsForToken, resetUserPassword, loginHandler, logoutHandler } };
 }

@@ -1,5 +1,7 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -31,7 +33,9 @@ import lombok.Setter;
 @Setter
 @Where(clause = "deleted !=1")
 @SQLDelete(sql = "update user_accounts set deleted=1 where id=?")
-public class UserAccount extends AuditEntity{
+public class UserAccount extends AuditEntity implements Serializable{
+	
+	private static final long SerialVersionUID = 812772172712l;
 	
 	@Id
 	@SequenceGenerator(name = "UserAccountSequence", sequenceName = "ACCOUNT_SEQ", allocationSize = 1)
@@ -39,10 +43,10 @@ public class UserAccount extends AuditEntity{
 	private long id;
 	
 	@ManyToOne(fetch =  FetchType.LAZY)
-	@JoinColumn(name = "user_identifier")
-	private User user;
-	
-	@Column(name = "identifier")
+	@JoinColumn(name = "client_identifier", referencedColumnName = "client_identifier")
+	private Client client;
+
+	@Column(name = "account_identifier")
 	private String identifier;
 	
 	@Column(name="is_active")
@@ -58,34 +62,34 @@ public class UserAccount extends AuditEntity{
 	@Column(name ="account_color")
 	private String accountColor;
 	
-	@Column(name ="balance")
-	private double accountBalance;
+	@Column(name ="ACCOUNT_BALANCE")
+	private long accountBalance;
 	
 	@Column(name ="icon")
 	private String icon;
 	
 	@Column(name = "initial_balance")
-	private double initialBalance;
+	private long initialBalance;
 	
-	@Column(name = "is_exlcude_from_stats")
+	@Column(name = "IS_EXCLUDE_FROM_STATS")
 	private boolean excludeFromStats;
 	
 	@Column(name = "is_archived")
 	private boolean archived;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name ="account_currency")
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name ="account_currency", referencedColumnName = "identifier")
 	private UserCurrency accountCurrency;
 	
 	public UserAccount() {
 		
 	}
 
-	public UserAccount(User user, String identifier, boolean active, AccountType accountType,
-			String accountName, String accountColor, double accountBalance, String icon, double initialBalance,
+	public UserAccount(Client client, String identifier, boolean active, AccountType accountType,
+			String accountName, String accountColor, long accountBalance, String icon, long initialBalance,
 			boolean excludeFromStats, boolean archived, UserCurrency accountCurrency) {
 		this.identifier = identifier;
-		this.user = user;
+		this.client = client;
 		this.active = active;
 		this.accountType = accountType;
 		this.accountName = accountName;

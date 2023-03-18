@@ -18,7 +18,7 @@ public class DateUtil {
 	 * @throws ParseException
 	 */
 	public static Date getDateFromDateAndTimeString(String date, String time) throws ParseException{
-		 Date dateTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm")
+		 Date dateTime = new SimpleDateFormat("MM/dd/yyyy'T'HH:mm")
                  .parse(date.concat("T").concat(time));
 		return dateTime;
 	}

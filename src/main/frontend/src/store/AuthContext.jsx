@@ -6,6 +6,7 @@ const AuthContext = React.createContext({
   setDisplaySpinner: () => {},
   JWTUser: {},
   setJWTUser: () => {},
+  logoutHandler: () => {},
 });
 
 export default AuthContext;

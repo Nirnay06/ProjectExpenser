@@ -19,8 +19,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expenser.Entity.User;
+import com.expenser.api.RecordService;
 import com.expenser.api.UserService;
+import com.expenser.exception.BusinessException;
 import com.expenser.model.APIResponseDTO;
+import com.expenser.model.ClientDTO;
 import com.expenser.model.RecordDTO;
 import com.expenser.model.UserDTO;
 import com.expenser.util.SecurityUtils;
@@ -35,17 +38,16 @@ public class RecordController {
 	@Autowired
 	ModelMapper mapper;
 
+	@Autowired
+	private RecordService recordService;
+
 	@PostMapping("/add")
-	public ResponseEntity<?> addAccountRecord(@RequestBody RecordDTO recordDTO, HttpServletRequest request) throws AccessDeniedException {
-		UserDTO user = SecurityUtils.getUserFromSession();
-		if (recordDTO != null) {
-			if (recordDTO.getUser() != null && recordDTO.getUser().getUserIdentifier() != null) {
-				if(user.getUserIdentifier().equals(recordDTO.getUser().getUserIdentifier())) {
-					
-					return new ResponseEntity<>(new APIResponseDTO("Record added successfully.", true), HttpStatus.OK);
-				}
-			}
-			throw new AccessDeniedException(null);
+	public ResponseEntity<?> addAccountRecord(@RequestBody RecordDTO recordDTO, HttpServletRequest request)
+			throws AccessDeniedException, BusinessException {
+		ClientDTO clientDTO = SecurityUtils.getClientFromSession();
+		if (recordDTO != null && clientDTO != null) {
+			recordService.addUserRecord(recordDTO, clientDTO);
+			return new ResponseEntity<>(new APIResponseDTO("Record added successfully.", true), HttpStatus.OK);
 		} else {
 			return new ResponseEntity<>(new APIResponseDTO("Something went wrong", false),
 					HttpStatus.INTERNAL_SERVER_ERROR);

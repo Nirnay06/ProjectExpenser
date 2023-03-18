@@ -31,9 +31,6 @@ public class UserSendEmailListener implements ApplicationListener<SendUserEmailE
 	@Autowired
 	private ProductConfigurationRepository configurationRepository;
 	
-	@Value("${server.servlet.context-path}")
-	private String appUrl;
-	
 	private static Logger logger = LogManager.getLogger(UserSendEmailListener.class);
 	
 	@Override

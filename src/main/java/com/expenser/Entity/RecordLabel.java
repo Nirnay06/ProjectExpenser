@@ -1,5 +1,6 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.CascadeType;
@@ -28,7 +29,7 @@ import lombok.Setter;
 @Setter
 @Where(clause = "deleted !=1")
 @SQLDelete(sql = "update record_labels set deleted=1 where id=?")
-public class RecordLabel {
+public class RecordLabel  extends AuditEntity implements Serializable{
 
 	@Id
 	@SequenceGenerator(name="recordLabelSequence", sequenceName = "RECORD_LABEL_SEQ", allocationSize = 1)
@@ -38,16 +39,12 @@ public class RecordLabel {
 	@Column(name  ="identifier")
 	private String identifier;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name ="user_identifier")
-	private User user;
-	
 	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name ="record_identifier")
+	@JoinColumn(name ="record_identifier", referencedColumnName = "identifier")
 	private UserRecord record;
 	
 	@OneToOne()
-	@JoinColumn(name ="user_label_identifier")
+	@JoinColumn(name ="user_label_identifier", referencedColumnName = "identifier")
 	private UserLabel userLabel;
 	
 	@PrePersist
@@ -61,9 +58,7 @@ public class RecordLabel {
 		
 	}
 
-	public RecordLabel(String identifier, User user, UserRecord record, UserLabel userLabel) {
-		this.identifier = identifier;
-		this.user = user;
+	public RecordLabel( UserRecord record, UserLabel userLabel) {
 		this.record = record;
 		this.userLabel = userLabel;
 	}

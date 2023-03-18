@@ -15,9 +15,7 @@ const fetchLocations = (value, callback) => {
   currentValue = value;
 
   const sendLocationAPI = () => {
-    fetch(
-      `https://api.geoapify.com/v1/geocode/autocomplete?text=${value}&apiKey=3b4517dcf1b547cbaba0643e1615c1c2`
-    )
+    fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${value}&apiKey=3b4517dcf1b547cbaba0643e1615c1c2`)
       .then((response) => response.json())
       .then((d) => {
         if (currentValue === value) {
@@ -49,7 +47,8 @@ const LocationSearch = (props) => {
 
   const handleChange = (newValue) => {
     setValue(data.filter((p) => p.place_id === newValue));
-    props.onChange(data.filter((p) => p.place_id === newValue));
+    let locationValue = data.filter((p) => p.place_id === newValue)[0];
+    props.onChange({ latitude: locationValue.lat, longitude: locationValue.lon, title: locationValue.name, identifier: locationValue.placeId });
   };
 
   const options = data.map((d) => (
@@ -63,8 +62,7 @@ const LocationSearch = (props) => {
       size="middle"
       style={{
         display: "flex",
-      }}
-    >
+      }}>
       <Select
         showSearch
         value={props.value && props.value.name}
@@ -74,28 +72,14 @@ const LocationSearch = (props) => {
         filterOption={false}
         onSearch={handleSearch}
         onChange={handleChange}
-        notFoundContent={<Option key={null}>{"No data found"}</Option>}
-      >
+        notFoundContent={<Option key={null}>{"No data found"}</Option>}>
         {options}
       </Select>
 
       <LocationMapContainer
-        lat={
-          updatedValue && updatedValue[0] && updatedValue[0].lat
-            ? updatedValue[0].lat
-            : 0
-        }
-        lon={
-          updatedValue && updatedValue[0] && updatedValue[0].lon
-            ? updatedValue[0].lon
-            : 0
-        }
-        name={
-          updatedValue && updatedValue[0] && updatedValue[0].name
-            ? updatedValue[0].name
-            : ""
-        }
-      ></LocationMapContainer>
+        lat={updatedValue && updatedValue[0] && updatedValue[0].lat ? updatedValue[0].lat : 0}
+        lon={updatedValue && updatedValue[0] && updatedValue[0].lon ? updatedValue[0].lon : 0}
+        name={updatedValue && updatedValue[0] && updatedValue[0].name ? updatedValue[0].name : ""}></LocationMapContainer>
     </Space>
   );
 };

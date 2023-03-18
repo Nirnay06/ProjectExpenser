@@ -1,5 +1,6 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -23,7 +24,7 @@ import lombok.Setter;
 @Setter
 @Table(name ="link_token")
 @Where(clause = "deleted !=1")
-public class LinkToken extends AuditEntity{
+public class LinkToken extends AuditEntity implements Serializable{
 
 	@Id
 	@GeneratedValue(generator ="LinkTokenSeq" )

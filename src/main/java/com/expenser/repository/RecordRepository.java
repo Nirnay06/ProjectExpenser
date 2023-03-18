@@ -14,8 +14,8 @@ public interface RecordRepository extends JpaRepository<UserRecord, Long>{
 	
 	public UserRecord findByIdentifier(String identifier);
 	
-	@Query(value = "select ur from UserRecord ur where ur.user.userIdentifier =:userIdentifier")
-	public List<UserRecord> findByUser(@Param("userIdentifier") String userIdentifier);
+	@Query(value = "select ur from UserRecord ur where ur.client.clientIdentifier =:clientIdentifier")
+	public List<UserRecord> findByClient(@Param("userIdentifier") String clientIdentifier);
 	
 	@Query(value = "select ur from UserRecord ur where ur.account.identifier =:accountIdentifier")
 	public List<UserRecord> findByAccount(@Param("accountIdentifier") String accountIdentifier);

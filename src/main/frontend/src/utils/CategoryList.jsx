@@ -7,7 +7,8 @@ export const CategoryList = [
     value: 10,
     title: "Food & Drinks",
     color: "#f44336",
-    iconName: "restaurant",
+    icon: "restaurant",
+    identifier: "",
     parentvalue: null,
     selectable: false,
     children: [
@@ -17,13 +18,14 @@ export const CategoryList = [
         value: 1000,
         title: "Groceries",
         parentvalue: 10,
-        iconName: "add_shopping_cart",
+        identifier: "303890ea-a84d-4453-861a-169b2079849f",
+        icon: "add_shopping_cart",
         children: [],
       },
       {
         title: "Restaurant, fast-food",
         color: "#f44336",
-        iconName: "fastfood",
+        icon: "fastfood",
         value: 1001,
         parentvalue: 10,
         customCategory: false,
@@ -34,7 +36,7 @@ export const CategoryList = [
         value: 1002,
         title: "Bar, cafe",
         parentvalue: 10,
-        iconName: "glass2",
+        icon: "glass2",
         children: [],
       },
       {
@@ -43,7 +45,7 @@ export const CategoryList = [
         value: 1003,
         title: "Food & Drinks",
         parentvalue: 10,
-        iconName: "restaurant",
+        icon: "restaurant",
         children: [],
       },
     ],
@@ -52,7 +54,7 @@ export const CategoryList = [
     value: 20,
     title: "Shopping",
     color: "#4fC3F7",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
@@ -62,13 +64,13 @@ export const CategoryList = [
         value: 2000,
         title: "Clothes & shoes",
         parentvalue: 20,
-        iconName: "t-shirt",
+        icon: "t-shirt",
         children: [],
       },
       {
         title: "Jewels, accessories",
         color: "#4fC3F7",
-        iconName: "diamond",
+        icon: "diamond",
         value: 2001,
         parentvalue: 20,
         customCategory: false,
@@ -76,7 +78,7 @@ export const CategoryList = [
       {
         title: "Health and beauty",
         color: "#4fC3F7",
-        iconName: "add_shopping_cart",
+        icon: "add_shopping_cart",
         value: 2002,
         parentvalue: 20,
         customCategory: false,
@@ -84,7 +86,7 @@ export const CategoryList = [
       {
         title: "Kids",
         color: "#4fC3F7",
-        iconName: "child_friendly",
+        icon: "child_friendly",
         value: 2003,
         parentvalue: 20,
         customCategory: false,
@@ -92,7 +94,7 @@ export const CategoryList = [
       {
         title: "Home, garden",
         color: "#4fC3F7",
-        iconName: "park",
+        icon: "park",
         value: 2004,
         parentvalue: 20,
         customCategory: false,
@@ -100,7 +102,7 @@ export const CategoryList = [
       {
         title: "Pets, animals",
         color: "#4fC3F7",
-        iconName: "pets",
+        icon: "pets",
         value: 2005,
         parentvalue: 20,
         customCategory: false,
@@ -108,7 +110,7 @@ export const CategoryList = [
       {
         title: "Electronics, accessories",
         color: "#4fC3F7",
-        iconName: "monitor",
+        icon: "monitor",
         value: 2006,
         parentvalue: 20,
         customCategory: false,
@@ -116,7 +118,7 @@ export const CategoryList = [
       {
         title: "Gifts, joy",
         color: "#4fC3F7",
-        iconName: "redeem",
+        icon: "redeem",
         value: 2007,
         parentvalue: 20,
         customCategory: false,
@@ -124,7 +126,7 @@ export const CategoryList = [
       {
         title: "Stationery, tools",
         color: "#4fC3F7",
-        iconName: "create",
+        icon: "create",
         value: 2008,
         parentvalue: 20,
         customCategory: false,
@@ -132,7 +134,7 @@ export const CategoryList = [
       {
         title: "Free time",
         color: "#4fC3F7",
-        iconName: "hourglass_full",
+        icon: "hourglass_full",
         value: 2009,
         parentvalue: 20,
         customCategory: false,
@@ -140,7 +142,7 @@ export const CategoryList = [
       {
         title: "Shopping",
         color: "#4fC3F7",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 2010,
         parentvalue: 20,
         customCategory: false,
@@ -151,7 +153,7 @@ export const CategoryList = [
         value: 2011,
         title: "Drug-store, chemist",
         parentvalue: 20,
-        iconName: "medical_services",
+        icon: "medical_services",
         children: [],
       },
     ],
@@ -160,14 +162,14 @@ export const CategoryList = [
     value: 30,
     title: "Housing",
     color: "#FFA726",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
       {
         title: "Rent",
         color: "#FFA726",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 3000,
         parentvalue: 30,
         customCategory: false,
@@ -178,7 +180,7 @@ export const CategoryList = [
         value: 3001,
         title: "Mortgage",
         parentvalue: 30,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
       {
@@ -187,13 +189,13 @@ export const CategoryList = [
         value: 3002,
         title: "Energy, utilities",
         parentvalue: 30,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
       {
         title: "Services",
         color: "#FFA726",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 3003,
         parentvalue: 30,
         customCategory: false,
@@ -201,7 +203,7 @@ export const CategoryList = [
       {
         title: "Maintenance, repairs",
         color: "#FFA726",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 3004,
         parentvalue: 30,
         customCategory: false,
@@ -209,7 +211,7 @@ export const CategoryList = [
       {
         title: "Housing",
         color: "#FFA726",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 3005,
         parentvalue: 30,
         customCategory: false,
@@ -217,7 +219,7 @@ export const CategoryList = [
       {
         title: "Property insurance",
         color: "#FFA726",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 3010,
         parentvalue: 30,
         customCategory: false,
@@ -228,7 +230,7 @@ export const CategoryList = [
     value: 40,
     title: "Transportation",
     color: "#78909C",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
@@ -238,13 +240,13 @@ export const CategoryList = [
         value: 4000,
         title: "Public transport",
         parentvalue: 40,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
       {
         title: "Taxi",
         color: "#78909C",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 4001,
         parentvalue: 40,
         customCategory: false,
@@ -255,7 +257,7 @@ export const CategoryList = [
         value: 4002,
         title: "Long distance",
         parentvalue: 40,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
       {
@@ -264,7 +266,7 @@ export const CategoryList = [
         value: 4003,
         title: "Business trips",
         parentvalue: 40,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
       {
@@ -273,7 +275,7 @@ export const CategoryList = [
         value: 4004,
         title: "Transportation",
         parentvalue: 40,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
     ],
@@ -282,14 +284,14 @@ export const CategoryList = [
     value: 50,
     title: "Vehicle",
     color: "#AA00FF",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
       {
         title: "Fuel",
         color: "#AA00FF",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 5000,
         parentvalue: 50,
         customCategory: false,
@@ -297,7 +299,7 @@ export const CategoryList = [
       {
         title: "Parking",
         color: "#AA00FF",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 5001,
         parentvalue: 50,
         customCategory: false,
@@ -305,7 +307,7 @@ export const CategoryList = [
       {
         title: "Vehicle maintenance",
         color: "#AA00FF",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 5002,
         parentvalue: 50,
         customCategory: false,
@@ -313,7 +315,7 @@ export const CategoryList = [
       {
         title: "Rentals",
         color: "#AA00FF",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 5003,
         parentvalue: 50,
         customCategory: false,
@@ -321,7 +323,7 @@ export const CategoryList = [
       {
         title: "Vehicle",
         color: "#AA00FF",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 5004,
         parentvalue: 50,
         customCategory: false,
@@ -329,7 +331,7 @@ export const CategoryList = [
       {
         title: "Vehicle insurance",
         color: "#AA00FF",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 5010,
         parentvalue: 50,
         customCategory: false,
@@ -337,7 +339,7 @@ export const CategoryList = [
       {
         title: "Leasing",
         color: "#AA00FF",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8006,
         parentvalue: 50,
         customCategory: false,
@@ -348,7 +350,7 @@ export const CategoryList = [
     value: 60,
     title: "Life & Entertainment",
     color: "#64DD17",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
@@ -358,13 +360,13 @@ export const CategoryList = [
         value: 6000,
         title: "Health care, doctor",
         parentvalue: 60,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
       {
         title: "Wellness, beauty",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6001,
         parentvalue: 60,
         customCategory: false,
@@ -375,13 +377,13 @@ export const CategoryList = [
         value: 6002,
         title: "Active sport, fitness",
         parentvalue: 60,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
       {
         title: "Culture, sport events",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6003,
         parentvalue: 60,
         customCategory: false,
@@ -389,7 +391,7 @@ export const CategoryList = [
       {
         title: "Life events",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6004,
         parentvalue: 60,
         customCategory: false,
@@ -397,7 +399,7 @@ export const CategoryList = [
       {
         title: "Hobbies",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6005,
         parentvalue: 60,
         customCategory: false,
@@ -405,7 +407,7 @@ export const CategoryList = [
       {
         title: "Education, development",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6006,
         parentvalue: 60,
         customCategory: false,
@@ -413,7 +415,7 @@ export const CategoryList = [
       {
         title: "Books, audio, subscriptions",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6007,
         parentvalue: 60,
         customCategory: false,
@@ -421,7 +423,7 @@ export const CategoryList = [
       {
         title: "TV, Streaming",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6008,
         parentvalue: 60,
         customCategory: false,
@@ -429,7 +431,7 @@ export const CategoryList = [
       {
         title: "Holvalueay, trips, hotels",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6009,
         parentvalue: 60,
         customCategory: false,
@@ -437,7 +439,7 @@ export const CategoryList = [
       {
         title: "Charity, gifts",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6010,
         parentvalue: 60,
         customCategory: false,
@@ -445,7 +447,7 @@ export const CategoryList = [
       {
         title: "Alcohol, tobacco",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6011,
         parentvalue: 60,
         customCategory: false,
@@ -453,7 +455,7 @@ export const CategoryList = [
       {
         title: "Lottery, gambling",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6012,
         parentvalue: 60,
         customCategory: false,
@@ -461,7 +463,7 @@ export const CategoryList = [
       {
         title: "Life & Entertainment",
         color: "#64DD17",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 6013,
         parentvalue: 60,
         customCategory: false,
@@ -472,14 +474,14 @@ export const CategoryList = [
     value: 70,
     title: "Communication, PC",
     color: "#536DFE",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
       {
         title: "Phone, mobile phone",
         color: "#536DFE",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 7001,
         parentvalue: 70,
         customCategory: false,
@@ -487,7 +489,7 @@ export const CategoryList = [
       {
         title: "Internet",
         color: "#536DFE",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 7002,
         parentvalue: 70,
         customCategory: false,
@@ -495,7 +497,7 @@ export const CategoryList = [
       {
         title: "Software, apps, games",
         color: "#536DFE",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 7003,
         parentvalue: 70,
         customCategory: false,
@@ -503,7 +505,7 @@ export const CategoryList = [
       {
         title: "Postal services",
         color: "#536DFE",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 7004,
         parentvalue: 70,
         customCategory: false,
@@ -511,7 +513,7 @@ export const CategoryList = [
       {
         title: "Communication, PC",
         color: "#536DFE",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 7005,
         parentvalue: 70,
         customCategory: false,
@@ -522,14 +524,14 @@ export const CategoryList = [
     value: 80,
     title: "Financial expenses",
     color: "#00BFA5",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
       {
         title: "Taxes",
         color: "#00BFA5",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8000,
         parentvalue: 80,
         customCategory: false,
@@ -537,7 +539,7 @@ export const CategoryList = [
       {
         title: "Insurances",
         color: "#00BFA5",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8001,
         parentvalue: 80,
         customCategory: false,
@@ -545,7 +547,7 @@ export const CategoryList = [
       {
         title: "Loan, interests",
         color: "#00BFA5",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8002,
         parentvalue: 80,
         customCategory: false,
@@ -553,7 +555,7 @@ export const CategoryList = [
       {
         title: "Fines",
         color: "#00BFA5",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8003,
         parentvalue: 80,
         customCategory: false,
@@ -561,7 +563,7 @@ export const CategoryList = [
       {
         title: "Advisory",
         color: "#00BFA5",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8004,
         parentvalue: 80,
         customCategory: false,
@@ -569,7 +571,7 @@ export const CategoryList = [
       {
         title: "Charges, Fees",
         color: "#00BFA5",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8005,
         parentvalue: 80,
         customCategory: false,
@@ -577,7 +579,7 @@ export const CategoryList = [
       {
         title: "Child Support",
         color: "#00BFA5",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8007,
         parentvalue: 80,
         customCategory: false,
@@ -585,7 +587,7 @@ export const CategoryList = [
       {
         title: "Financial expenses",
         color: "#00BFA5",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 8008,
         parentvalue: 80,
         customCategory: false,
@@ -596,14 +598,14 @@ export const CategoryList = [
     value: 90,
     title: "Investments",
     color: "#FF4081",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
       {
         title: "Realty",
         color: "#FF4081",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 9000,
         parentvalue: 90,
         customCategory: false,
@@ -611,7 +613,7 @@ export const CategoryList = [
       {
         title: "Vehicles, chattels",
         color: "#FF4081",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 9001,
         parentvalue: 90,
         customCategory: false,
@@ -619,7 +621,7 @@ export const CategoryList = [
       {
         title: "Financial investments",
         color: "#FF4081",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 9002,
         parentvalue: 90,
         customCategory: false,
@@ -627,7 +629,7 @@ export const CategoryList = [
       {
         title: "Savings",
         color: "#FF4081",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 9003,
         parentvalue: 90,
         customCategory: false,
@@ -635,7 +637,7 @@ export const CategoryList = [
       {
         title: "Collections",
         color: "#FF4081",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 9004,
         parentvalue: 90,
         customCategory: false,
@@ -643,7 +645,7 @@ export const CategoryList = [
       {
         title: "Investments",
         color: "#FF4081",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 9005,
         parentvalue: 90,
         customCategory: false,
@@ -654,14 +656,14 @@ export const CategoryList = [
     value: 100,
     title: "Income",
     color: "#FBC02D",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
       {
         title: "Wage, invoices",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10000,
         parentvalue: 100,
         customCategory: false,
@@ -669,7 +671,7 @@ export const CategoryList = [
       {
         title: "Interests, divvalueends",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10001,
         parentvalue: 100,
         customCategory: false,
@@ -680,13 +682,13 @@ export const CategoryList = [
         value: 10002,
         title: "Sale",
         parentvalue: 100,
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         children: [],
       },
       {
         title: "Rental income",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10003,
         parentvalue: 100,
         customCategory: false,
@@ -694,7 +696,7 @@ export const CategoryList = [
       {
         title: "Dues & grants",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10004,
         parentvalue: 100,
         customCategory: false,
@@ -702,7 +704,7 @@ export const CategoryList = [
       {
         title: "Lending, renting",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10005,
         parentvalue: 100,
         customCategory: false,
@@ -710,7 +712,7 @@ export const CategoryList = [
       {
         title: "Checks, coupons",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10006,
         parentvalue: 100,
         customCategory: false,
@@ -718,7 +720,7 @@ export const CategoryList = [
       {
         title: "Lottery, gambling",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10007,
         parentvalue: 100,
         customCategory: false,
@@ -726,7 +728,7 @@ export const CategoryList = [
       {
         title: "Refunds (tax, purchase)",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10008,
         parentvalue: 100,
         customCategory: false,
@@ -734,7 +736,7 @@ export const CategoryList = [
       {
         title: "Child Support",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10009,
         parentvalue: 100,
         customCategory: false,
@@ -742,7 +744,7 @@ export const CategoryList = [
       {
         title: "Gifts",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10010,
         parentvalue: 100,
         customCategory: false,
@@ -750,7 +752,7 @@ export const CategoryList = [
       {
         title: "Income",
         color: "#FBC02D",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 10011,
         parentvalue: 100,
         customCategory: false,
@@ -761,14 +763,14 @@ export const CategoryList = [
     value: 110,
     title: "Others",
     color: "#9E9E9E",
-    iconName: "shopping_bag",
+    icon: "shopping_bag",
     parentvalue: null,
     selectable: false,
     children: [
       {
         title: "Others",
         color: "#9E9E9E",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 11000,
         parentvalue: 110,
         customCategory: false,
@@ -776,7 +778,7 @@ export const CategoryList = [
       {
         title: "Missing",
         color: "#9E9E9E",
-        iconName: "shopping_bag",
+        icon: "shopping_bag",
         value: 11001,
         parentvalue: 110,
         customCategory: false,
@@ -790,7 +792,7 @@ export const getCategoryTreeNodes = (CategoryList) => {
     return CategoryList.map((c) => {
       return (
         <TreeNode
-          value={c.value}
+          value={c.identifier}
           title={
             <Row align="middle">
               <Col
@@ -798,10 +800,9 @@ export const getCategoryTreeNodes = (CategoryList) => {
                 style={{
                   backgroundColor: c.color,
                   marginRight: "5px",
-                }}
-              >
-                <svg className={`icon icon-${c.iconName}`}>
-                  <use href={`${icons}#icon-${c.iconName}`}></use>
+                }}>
+                <svg className={`icon icon-${c.icon}`}>
+                  <use href={`${icons}#icon-${c.icon}`}></use>
                 </svg>
               </Col>
               <Col>
@@ -810,8 +811,7 @@ export const getCategoryTreeNodes = (CategoryList) => {
             </Row>
           }
           selectable={c.selectable}
-          key={c.value}
-        >
+          key={c.value}>
           {getCategoryTreeNodes(c.children)}
         </TreeNode>
       );

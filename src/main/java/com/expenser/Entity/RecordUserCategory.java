@@ -1,5 +1,6 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
 
@@ -31,7 +32,7 @@ import lombok.Setter;
 @Setter
 @Where(clause = "deleted !=1")
 @SQLDelete(sql = "update user_category set deleted=1 where id=?")
-public class RecordUserCategory extends AuditEntity{
+public class RecordUserCategory extends AuditEntity implements Serializable{
 
 	@Id
 	@SequenceGenerator(name = "userRecordCatSeq", sequenceName = "USER_RECORD_CAT_SEQ", allocationSize = 1)
@@ -41,15 +42,15 @@ public class RecordUserCategory extends AuditEntity{
 	@Column(name ="identifier")
 	private String identifier;
 	
-	@ManyToOne(fetch =FetchType.LAZY )
-	@JoinColumn(name ="user_identifier")
-	private User user;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "client_identifier", referencedColumnName = "client_identifier")
+	private Client client;
 	
 	@Column(name ="category_title")
 	private String title;
 	
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinColumn(name = "parent_identifier")
+	@JoinColumn(name = "parent_identifier", referencedColumnName = "identifier")
 	private RecordUserCategory parent;
 
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")	
@@ -67,17 +68,17 @@ public class RecordUserCategory extends AuditEntity{
 	@Column(name ="is_default_category")
 	private boolean defaultCategory;
 
-	@Transient
-	@OneToOne(mappedBy = "category")
-	private UserRecord record;
-	
+//	@Transient
+//	@OneToOne(mappedBy = "category")
+//	private UserRecord record;
+//	
 	public RecordUserCategory() {
 	}
 
-	public RecordUserCategory(String identifier, User user, List<RecordUserCategory> children, String icon,
+	public RecordUserCategory(String identifier, Client client, List<RecordUserCategory> children, String icon,
 			String color, boolean hidden, boolean defaultCategory) {
 		this.identifier = identifier;
-		this.user = user;
+		this.client = client;
 		this.children = children;
 		this.icon = icon;
 		this.color = color;

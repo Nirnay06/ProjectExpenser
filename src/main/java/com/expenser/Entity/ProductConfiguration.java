@@ -1,5 +1,7 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -18,7 +20,7 @@ import lombok.Setter;
 @Table(name ="product_configurations")
 @Where(clause = "deleted != 1 ")
 @SQLDelete(sql = "update product_configurations set deleted = 1 where id = ?")
-public class ProductConfiguration extends AuditEntity{
+public class ProductConfiguration extends AuditEntity implements Serializable{
 
 	@Id
 	@SequenceGenerator(name = "ProductConfigSeq", allocationSize = 1 , sequenceName = "PRODUCT_CONFIG_SEQ")

@@ -1,5 +1,6 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 import javax.persistence.Column;
@@ -26,7 +27,7 @@ import lombok.Setter;
 @Setter
 @Where(clause = "deleted !=1")
 @SQLDelete(sql = "update user_labels set deleted=1 where id=?")
-public class UserLabel extends AuditEntity{
+public class UserLabel extends AuditEntity implements Serializable{
 
 	@Id
 	@SequenceGenerator(name = "userLabelSequence",sequenceName = "USER_LABEL_SEQ", allocationSize = 1)
@@ -37,8 +38,8 @@ public class UserLabel extends AuditEntity{
 	private String identifier;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "user_identifier")
-	private User user;
+	@JoinColumn(name = "client_identifier", referencedColumnName = "client_identifier")
+	private Client client;
 	
 	@Column(name ="is_archive")
 	private boolean archive;
@@ -56,9 +57,9 @@ public class UserLabel extends AuditEntity{
 		
 	}
 
-	public UserLabel(String identifier, User user, boolean archive, String title, String color, boolean defaultAssign) {
+	public UserLabel(String identifier, Client client, boolean archive, String title, String color, boolean defaultAssign) {
 		this.identifier = identifier;
-		this.user = user;
+		this.client = client;
 		this.archive = archive;
 		this.title = title;
 		this.color = color;

@@ -1,14 +1,14 @@
 import { Tag } from "antd";
 
 const TagRender = (props) => {
-  const { label, value, closable, onClose, options } = props;
-
+  const { label, closable, onClose, options } = props;
+  console.log(props);
   const onPreventMouseDown = (event) => {
     event.preventDefault();
     event.stopPropagation();
   };
 
-  const color = options.filter((o) => o.value === value)[0].color;
+  const color = options.filter((o) => o.label === label)[0].color;
 
   return (
     <Tag
@@ -18,8 +18,7 @@ const TagRender = (props) => {
       onClose={onClose}
       style={{
         marginRight: 3,
-      }}
-    >
+      }}>
       {label}
     </Tag>
   );

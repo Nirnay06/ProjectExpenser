@@ -1,5 +1,7 @@
 package com.expenser.Entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -21,7 +23,7 @@ import lombok.Setter;
 @Setter
 @Table(name ="authorities")
 @Where(clause = "deleted !=1")
-public class Authority extends AuditEntity {
+public class Authority extends AuditEntity implements Serializable {
 	
 	@Id
 	@SequenceGenerator(name = "AuthoritySequence", sequenceName = "AUTHORITY_SEQ", allocationSize = 1)

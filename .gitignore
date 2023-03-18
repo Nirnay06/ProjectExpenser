@@ -36,3 +36,4 @@ src/main/frontend/build
 src/main/frontend/node_modules
 src/main/frontend/dist
 src/main/frontend/package-lock.json
+workspaces

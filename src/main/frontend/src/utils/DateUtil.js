@@ -1,3 +1,42 @@
+import dayjs from 'dayjs';
+import customParseFormat from 'dayjs/plugin/customParseFormat';
+const DEFAULT_FORMAT = 'MM/DD/YYYY';
+const DEFAULT_FORMAT_TIME = 'HH:mm';
+
+
+dayjs.extend(customParseFormat);
+
+
+export const parseDate = (date, format = DEFAULT_FORMAT) => {
+    dayjs.extend(customParseFormat);
+    return dayjs(date, format);
+}
+
+export const now = () => {
+    return dayjs();
+}
+export const getDate = (date) => {
+    return parseDate(date).toDate();
+}
+
+export const getDateString = (date) => {
+    return dayjs(date).toString();
+}
+
+export const getFormattedDate = (date, format = DEFAULT_FORMAT) => {
+    if (!date)
+        return null;
+    return dayjs(date).format(format)
+}
+
+export const getFormattedTime = (date, format = DEFAULT_FORMAT_TIME) => {
+    if (!date)
+        return null;
+    return dayjs(date).format(format)
+}
+
+
+
 export function getFirstAndLastWeekDays(datecopy = new Date()) {
     let date = new Date(datecopy);
     var firstDay = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate() - date.getDay()));
@@ -59,3 +98,4 @@ export function getMonthAndDate(odate = new Date()) {
 export function isFutureDate(targetDate) {
     return targetDate > new Date();
 }
+

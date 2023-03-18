@@ -25,6 +25,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.Getter;
 import lombok.Setter;
+import java.io.Serializable;
 
 @Entity
 @Getter
@@ -32,7 +33,7 @@ import lombok.Setter;
 @Table(name = "users")
 @Where(clause = "deleted !=1")
 @SQLDelete(sql = "update users set deleted=1 where id=?")
-public class User extends AuditEntity{
+public class User extends AuditEntity implements Serializable{
 	
 	@Id
 	@SequenceGenerator(name = "UserSequence", sequenceName = "USER_SEQ", allocationSize = 1)
@@ -41,6 +42,7 @@ public class User extends AuditEntity{
 	
 	@Column(name = "user_identifier")
 	private String userIdentifier;
+	
 	private String username;
 	
 	@JsonIgnore
