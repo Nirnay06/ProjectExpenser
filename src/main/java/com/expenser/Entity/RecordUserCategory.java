@@ -23,6 +23,9 @@ import javax.persistence.Transient;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -42,6 +45,7 @@ public class RecordUserCategory extends AuditEntity implements Serializable{
 	@Column(name ="identifier")
 	private String identifier;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "client_identifier", referencedColumnName = "client_identifier")
 	private Client client;
@@ -49,10 +53,12 @@ public class RecordUserCategory extends AuditEntity implements Serializable{
 	@Column(name ="category_title")
 	private String title;
 	
+	@JsonIgnore
 	@ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "parent_identifier", referencedColumnName = "identifier")
 	private RecordUserCategory parent;
 
+	@JsonIgnoreProperties(value = "parent")
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "parent")	
 	private List<RecordUserCategory> children;
 	
@@ -68,15 +74,17 @@ public class RecordUserCategory extends AuditEntity implements Serializable{
 	@Column(name ="is_default_category")
 	private boolean defaultCategory;
 
-//	@Transient
-//	@OneToOne(mappedBy = "category")
-//	private UserRecord record;
-//	
+	@Column(name = "category_order")
+	private Integer order;
+	
+	@Column(name ="selectable")
+	private boolean selectable;
+	
 	public RecordUserCategory() {
 	}
 
 	public RecordUserCategory(String identifier, Client client, List<RecordUserCategory> children, String icon,
-			String color, boolean hidden, boolean defaultCategory) {
+			String color, boolean hidden, boolean defaultCategory, Integer order, boolean selectable) {
 		this.identifier = identifier;
 		this.client = client;
 		this.children = children;
@@ -84,6 +92,8 @@ public class RecordUserCategory extends AuditEntity implements Serializable{
 		this.color = color;
 		this.hidden = hidden;
 		this.defaultCategory = defaultCategory;
+		this.order = order;
+		this.selectable = selectable;
 	}
 	
 	@PrePersist

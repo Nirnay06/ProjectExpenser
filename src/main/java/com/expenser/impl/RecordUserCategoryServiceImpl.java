@@ -1,16 +1,26 @@
 package com.expenser.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.ParameterMode;
 import javax.persistence.PersistenceContext;
 import javax.persistence.StoredProcedureQuery;
+
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.Cache;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 
 import com.expenser.Entity.Client;
 import com.expenser.Entity.RecordUserCategory;
 import com.expenser.api.RecordUserCategoryService;
+import com.expenser.model.RecordCategoryDTO;
 import com.expenser.repository.RecordUserCategoryReporsitory;
 import com.expenser.util.SecurityUtils;
 
@@ -22,6 +32,9 @@ public class RecordUserCategoryServiceImpl implements RecordUserCategoryService{
 	
     @PersistenceContext
     private EntityManager entityManager;
+    
+    @Autowired
+    ModelMapper mapper;
 	
 	@Override
 	public RecordUserCategory findByIdentifier(String identifier) {
@@ -45,6 +58,25 @@ public class RecordUserCategoryServiceImpl implements RecordUserCategoryService{
 		}catch(Exception e) {
 			e.printStackTrace();
 		}
+	}
+
+
+	public List<RecordCategoryDTO> findCategoryListByClientAndStatus(String clientIdentifier, boolean hidden){
+		if(clientIdentifier !=null) {
+			List<RecordUserCategory> records = recordUserCategoryRepository.findCategoryTreeByClientAndHiddenStatus(clientIdentifier, hidden);
+			if(!CollectionUtils.isEmpty(records)) {
+				List<RecordCategoryDTO> list = RecordCategoryDTO.mapCategoryListToDTO(records,null);			
+				return list;
+			}
+			return null;
+		}
+		return null;
+	}
+	
+	@Override
+	@Cacheable("categoryCache")
+	public List<RecordCategoryDTO> findAllCategoryByClient(String clientIdentifier) {
+		return findCategoryListByClientAndStatus(clientIdentifier, false);
 	}
 
 }

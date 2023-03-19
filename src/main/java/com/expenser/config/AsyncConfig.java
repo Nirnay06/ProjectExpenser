@@ -1,5 +1,10 @@
 package com.expenser.config;
 
+import java.lang.reflect.Method;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.aop.interceptor.AsyncUncaughtExceptionHandler;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.AsyncConfigurer;
@@ -25,4 +30,23 @@ public class AsyncConfig implements AsyncConfigurer{
     public DelegatingSecurityContextAsyncTaskExecutor taskExecutor(ThreadPoolTaskExecutor delegate) {
         return new DelegatingSecurityContextAsyncTaskExecutor(delegate);
     }
+    
+    @Override
+	public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
+		return new AsyncUncaughtExceptionHandler() {
+
+			Logger logger = LogManager.getLogger(AsyncUncaughtExceptionHandler.class);
+			
+			@Override
+			public void handleUncaughtException(Throwable ex, Method method, Object... params) {
+				logger.error("Throwable Exception message : " + ex.getMessage());
+				logger.error("Method name                 : " + method.getName());
+				for (Object param : params) {
+					logger.error("Parameter value             : " + param);
+				}
+				logger.error("stack Trace ");
+				logger.error(ex.getStackTrace().toString());
+			}
+		};
+	}
 }

@@ -1,0 +1,8 @@
+#NOTE: This is a Maven Resolver internal implementation file, its format can be changed without prior notice.
+#Wed Oct 19 16:37:55 IST 2022
+https\://artifactory.internal.uzio.com/artifactory/repo/.error=
+https\://repo.maven.apache.org/maven2/.lastUpdated=1666177675683
+https\://repo.spring.io/milestone/.error=
+https\://repo.spring.io/milestone/.lastUpdated=1666177672955
+https\://repo.maven.apache.org/maven2/.error=
+https\://artifactory.internal.uzio.com/artifactory/repo/.lastUpdated=1665252675876

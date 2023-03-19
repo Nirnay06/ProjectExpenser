@@ -1,12 +1,11 @@
 import { Button, Col, DatePicker, Form, Input, Radio, Row, Select, Tag, TimePicker, TreeSelect } from "antd";
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./RecordModal.module.scss";
 import moment from "moment";
 import TagRender from "../UI/TagRender";
 import TextArea from "antd/lib/input/TextArea";
 import LocationSearch from "../LocationComponents/LocationSearch";
 import useServices from "../../hooks/useSevices";
-import { CategoryList, getCategoryTreeNodes } from "../../utils/CategoryList";
 import { useState } from "react";
 import useHttp from "../../hooks/useHttp";
 import { getFieldName } from "../../utils/StringUtils";
@@ -17,10 +16,14 @@ const Option = Select.Option;
 dayjs.extend(CustonParseFormat);
 const RecordModalContainer = (props) => {
   const [divColor, setDivColor] = useState("brown");
-  const { RecordService } = useServices();
+  const [categoryList, setCategoryList] = useState([]);
+  const { RecordService, CategoryService } = useServices();
   const { sendRequest } = useHttp();
   const labelList = RecordService.fetchAllLabelsByUser();
   const accountList = RecordService.fetchAllAccountsByUser();
+  useEffect(() => {
+    CategoryService.fetchUserCategory(setCategoryList);
+  }, []);
   const {
     initialValues = {
       currencyIdentifier: "d8e7c565-802c-41a8-808b-5c60b7ce7da9",
@@ -181,7 +184,7 @@ const RecordModalContainer = (props) => {
                       placeholder="Please select"
                       treeDefaultExpandAll={false}
                       treeExpandAction={"click"}>
-                      {getCategoryTreeNodes(CategoryList)}
+                      {CategoryService.getCategoryTreeNodes(categoryList)}
                     </TreeSelect>
                   </Form.Item>
                   <Form.Item name="recordDate" label="Date">
