@@ -2,13 +2,12 @@ import { Tag } from "antd";
 
 const TagRender = (props) => {
   const { label, closable, onClose, options } = props;
-  console.log(props);
   const onPreventMouseDown = (event) => {
     event.preventDefault();
     event.stopPropagation();
   };
 
-  const color = options.filter((o) => o.label === label)[0].color;
+  const color = options.filter((o) => o.title === label)[0].color;
 
   return (
     <Tag

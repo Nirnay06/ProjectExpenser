@@ -7,7 +7,6 @@ const useCategoryService = () => {
   const { sendRequest } = useHttp();
 
   const getCategoryTreeNodes = (CategoryList) => {
-    console.log(CategoryList);
     if (CategoryList && CategoryList.length > 0) {
       return CategoryList.map((c) => {
         return (
@@ -41,7 +40,6 @@ const useCategoryService = () => {
 
   const fetchUserCategory = (setCategoryList) => {
     sendRequest({ url: "/api/category/findCategoriesForRecord" }, (data) => {
-      console.log(data);
       setCategoryList(data);
     });
   };

@@ -15,7 +15,6 @@ import { Switch } from "react-router";
 
 const AccountsPage = (props) => {
   function handleMenuClick(e) {
-    console.log("click", e);
   }
 
   const menu = (

@@ -37,21 +37,61 @@ const AccountRecords = (props) => {
       account: "B9",
       amount: 123,
       key: "10",
-      date: "13-03-2022",
+      date: "09-03-2022",
     },
     {
       title: "A12",
       account: "B12",
       amount: 123,
       key: "11",
-      date: "13-03-2022",
+      date: "09-03-2022",
+    },
+    {
+      title: "A9",
+      account: "B9",
+      amount: 123,
+      key: "12",
+      date: "09-03-2022",
+    },
+    {
+      title: "A12",
+      account: "B12",
+      amount: 123,
+      key: "13",
+      date: "09-03-2022",
+    },
+    {
+      title: "A9",
+      account: "B9",
+      amount: 123,
+      key: "14",
+      date: "09-03-2022",
+    },
+    {
+      title: "A12",
+      account: "B12",
+      amount: 123,
+      key: "15",
+      date: "09-03-2022",
+    },
+    {
+      title: "A9",
+      account: "B9",
+      amount: 123,
+      key: "16",
+      date: "09-03-2022",
+    },
+    {
+      title: "A12",
+      account: "B12",
+      amount: 123,
+      key: "17",
+      date: "09-03-2022",
     },
   ];
 
   const onCheckAllChange = (e) => {
-    setCheckedList(
-      e.target.checked ? new Set(records.map((r) => r.key)) : new Set()
-    );
+    setCheckedList(e.target.checked ? new Set(records.map((r) => r.key)) : new Set());
     setIndeterminate(false);
     setCheckAll(e.target.checked);
   };
@@ -90,8 +130,7 @@ const AccountRecords = (props) => {
         records={recordsByDate[date]}
         onRecordChecked={onRecordChecked}
         checkedList={checkedList}
-        onRecordClicked={props.onRecordClicked}
-      ></AccountRecordGroup>
+        onRecordClicked={props.onRecordClicked}></AccountRecordGroup>
     );
   }
 
@@ -99,11 +138,7 @@ const AccountRecords = (props) => {
     <table className={styles.table}>
       <thead className={styles.table__header}>
         <td className={styles.table__header__item}>
-          <Checkbox
-            indeterminate={indeterminate}
-            onChange={onCheckAllChange}
-            checked={checkAll}
-          >
+          <Checkbox indeterminate={indeterminate} onChange={onCheckAllChange} checked={checkAll}>
             <span>{`${checkAll ? "De-Select All" : "Select All"}`}</span>
           </Checkbox>
         </td>
@@ -111,19 +146,10 @@ const AccountRecords = (props) => {
           {checkedList.size > 0 && (
             <>
               <span>{`${checkedList.size} Rows selected`}</span>
-              <Button
-                className={styles.table__header__button}
-                size="small"
-                type="primary"
-              >
+              <Button className={styles.table__header__button} size="small" type="primary">
                 Edit
               </Button>
-              <Button
-                className={styles.table__header__button}
-                size="small"
-                type="primary"
-                danger
-              >
+              <Button className={styles.table__header__button} size="small" type="primary" danger>
                 Delete
               </Button>
             </>
@@ -131,10 +157,7 @@ const AccountRecords = (props) => {
         </td>
         <td className={styles.table__header__item}>
           <span className={`text--dark-2`}>
-            $
-            {records
-              .filter((r) => checkedList.size === 0 || checkedList.has(r.key))
-              .reduce((sum, r) => (sum = sum + r.amount), +0)}
+            ${records.filter((r) => checkedList.size === 0 || checkedList.has(r.key)).reduce((sum, r) => (sum = sum + r.amount), +0)}
           </span>
         </td>
       </thead>

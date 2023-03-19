@@ -17,19 +17,19 @@ dayjs.extend(CustonParseFormat);
 const RecordModalContainer = (props) => {
   const [divColor, setDivColor] = useState("brown");
   const [categoryList, setCategoryList] = useState([]);
-  const { RecordService, CategoryService } = useServices();
+  const [labelList, setLabelList] = useState([]);
+  const { RecordService, CategoryService, LabelService } = useServices();
   const { sendRequest } = useHttp();
-  const labelList = RecordService.fetchAllLabelsByUser();
+
   const accountList = RecordService.fetchAllAccountsByUser();
   useEffect(() => {
     CategoryService.fetchUserCategory(setCategoryList);
+    LabelService.fetchAllLabelsByUserForRecord(setLabelList);
   }, []);
   const {
     initialValues = {
       currencyIdentifier: "d8e7c565-802c-41a8-808b-5c60b7ce7da9",
       accountIdentifier: "f34cdf77-3bc7-49ef-b023-a2ce7c6527df",
-      categoryIdentifer: "c7446fcb-2a84-49e4-957f-b0677d3204e5",
-      category: "10",
       recordDate: moment(new Date(), "yyyy-MM-dd"),
       recordTime: moment(new Date(), "HH:MM"),
       recordType: "Expense",
@@ -38,7 +38,7 @@ const RecordModalContainer = (props) => {
   const [form] = Form.useForm();
   const accountTagRender = (props) => {
     const { label, value, closable, onClose } = props;
-    console.log(props);
+
     const onPreventMouseDown = (event) => {
       event.preventDefault();
       event.stopPropagation();
@@ -132,7 +132,6 @@ const RecordModalContainer = (props) => {
                       optionLabelProp="label"
                       maxTagCount={3}>
                       {accountList.map((value) => {
-                        console.log(value);
                         return (
                           <Option value={value.identifier} label={value.accountName} key={value.identifier}>
                             <Row align="middle">
@@ -197,7 +196,6 @@ const RecordModalContainer = (props) => {
                       mode="multiple"
                       showArrow
                       tagRender={(props) => {
-                        console.log(props);
                         return <TagRender label={props.label} options={labelList} />;
                       }}
                       style={{
@@ -207,7 +205,7 @@ const RecordModalContainer = (props) => {
                       maxTagCount={3}>
                       {labelList.map((value) => {
                         return (
-                          <Option value={value.userLabelIdentifier} label={value.label}>
+                          <Option value={value.identifier} label={value.title}>
                             <Row align="middle">
                               <Col
                                 className="dot"
@@ -216,7 +214,7 @@ const RecordModalContainer = (props) => {
                                   marginRight: "5px",
                                 }}></Col>
                               <Col>
-                                <span>{value.label}</span>
+                                <span>{value.title}</span>
                               </Col>
                             </Row>
                           </Option>

@@ -13,7 +13,6 @@ const AuthProvider = (props) => {
   const setJWTUser = () => {
     const jwt = window.sessionStorage.getItem("Authorization");
     const details = parseJwt(jwt);
-    console.log(details);
     if (!isFutureDate(details.expiredAt)) {
       AuthenticationService.logoutHandler();
     } else {
@@ -34,8 +33,7 @@ const AuthProvider = (props) => {
         JWTUser,
         setJWTUser,
         logoutHandler,
-      }}
-    >
+      }}>
       {props.children}
     </AuthContext.Provider>
   );
