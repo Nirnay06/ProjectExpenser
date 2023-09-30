@@ -2,6 +2,7 @@
   display: inline-block;
   background-repeat: no-repeat;
   background-image: url(./../assets/sprite.svg);
+  fill: white;
 }
 .icon-key {
   width: 18px;
@@ -307,4 +308,66 @@
   width: 18px;
   height: 18px;
   background-position: -68px -204px;
+}
+.icon-loader {
+  width: 72px;
+  height: 72px;
+  background-position: -102px -204px;
+}
+.icon-location {
+  width: 12px;
+  height: 12px;
+  background-position:  -190px -204px;
+  fill: white;
+}
+.icon-move {
+  width: 16px;
+  height: 16px;
+  background-position: -218px -204px;
+  opacity: 0.6;
+}
+
+.icon-menu {
+  width: 24px;
+  height: 24px;
+  background-position: -250px -204px;
+  opacity: 0.6;
+}
+
+.icon-caret-down {
+  width: 14px;
+  height: 24px;
+  background-position: -290px -204px;
+}
+
+.icon-arrow-up-green {
+  width: 22px;
+  height: 24px;
+  background-position: -320px -204px;
+}
+
+.icon-arrow-down-red {
+  width: 22px;
+  height: 24px;
+  background-position: -320px -204px;
+}
+
+.icon-arrow-circle-right {
+  width: 18px;
+  height: 18px;
+  background-position: -396px -204px;
+  &:hover{
+    background-position: -464px -204px;
+  }
+}
+.icon-arrow-circle-left {
+  width: 18px;
+  height: 18px;
+  background-position: -430px -204px;
+}
+
+.icon-arrow-circle-right-primary {
+  width: 18px;
+  height: 18px;
+  background-position: -464px -204px;
 }

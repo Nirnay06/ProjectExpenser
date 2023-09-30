@@ -16,7 +16,7 @@ public class RedisConfig {
 
 	@Bean
 	public RedisCacheConfiguration cacheConfiguration() {
-	    return RedisCacheConfiguration.defaultCacheConfig()
+	    return RedisCacheConfiguration.defaultCacheConfig(Thread.currentThread().getContextClassLoader())
 	      .entryTtl(Duration.ofMinutes(60))
 	      .disableCachingNullValues()
 	      .serializeValuesWith(SerializationPair.fromSerializer(new GenericJackson2JsonRedisSerializer()));
@@ -26,8 +26,15 @@ public class RedisConfig {
 	public RedisCacheManagerBuilderCustomizer redisCacheManagerBuilderCustomizer() {
 	    return (builder) -> builder
 	      .withCacheConfiguration("categoryCache",
-	        RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(10)))
+	        RedisCacheConfiguration.defaultCacheConfig(Thread.currentThread().getContextClassLoader())
+	        		.entryTtl(Duration.ofMinutes(10)))
 	    .withCacheConfiguration("labelCache",
-		        RedisCacheConfiguration.defaultCacheConfig().entryTtl(Duration.ofMinutes(10)));
+		        RedisCacheConfiguration.defaultCacheConfig(Thread.currentThread().getContextClassLoader()).entryTtl(Duration.ofMinutes(10)))
+	    .withCacheConfiguration("accountCache",
+		        RedisCacheConfiguration.defaultCacheConfig(Thread.currentThread().getContextClassLoader()).entryTtl(Duration.ofMinutes(20)))
+	    .withCacheConfiguration("userCache",
+		        RedisCacheConfiguration.defaultCacheConfig(Thread.currentThread().getContextClassLoader()).entryTtl(Duration.ofMinutes(60)))
+	    .withCacheConfiguration("recordCache",
+		        RedisCacheConfiguration.defaultCacheConfig(Thread.currentThread().getContextClassLoader()).entryTtl(Duration.ofMinutes(60)));
 	}
 }

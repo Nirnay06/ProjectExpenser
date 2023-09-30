@@ -13,13 +13,12 @@ public class RecordLabelDTO {
 	private String identifier;
 	private String userLabelIdentifier;
 	private ClientDTO client;
-	private RecordDTO record;
+	private String recordIdentifier;
 	private UserLabel userLabel;
-	public RecordLabelDTO(String identifier, ClientDTO client, RecordDTO record, UserLabel userLabel) {
+	public RecordLabelDTO(String identifier, ClientDTO client, UserLabel userLabel) {
 		
 		this.identifier = identifier;
 		this.client = client;
-		this.record = record;
 		this.userLabel = userLabel;
 	}
 	public RecordLabelDTO() {

@@ -41,7 +41,7 @@ const CustomModal = (props) => {
             onCancel={onCancel}
             title={title}
             footer={null}
-            style={{ borderRadius: "5px", overflow: "hidden", top: '20px', ...style }}
+            style={{ borderRadius: "5px", overflow: "hidden", top: '20px',  ...style }}
             {...others}
         >
             {children}

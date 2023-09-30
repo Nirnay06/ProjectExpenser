@@ -1,8 +1,197 @@
+@import './../base';
+
 .chartbox {
-  background-color: crimson;
-  padding: 1rem;
+  background-color: white;
+  padding:  0.3rem 1rem;
   width: 100%;
-  height: 40rem;
+  height: 35rem;
+  // overflow: hidden;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+
+  &:hover > * {
+    opacity: 1;
+  }
+  &__drag{
+    display: flex;
+    justify-content: space-between;
+    opacity: 0;
+    align-items: center;
+    &__1{
+      text-align: center;
+    }
+    &__2{
+      text-align: right;
+    }
+  }
+  &__header{
+    padding: 0rem 1rem;
+    flex : 1;
+    display: flex;
+    justify-content: space-between;
+  }
+  &__body{
+    padding: 1rem;
+    flex : 9;
+  }
+
+  &__empty{
+    height: 100%;
+    width: 100%;
+    display: grid;
+    place-items: center;
+  }
+}
+
+.chartbox__addMore{
+  background-color: transparent;
+  width: 100%;
+  height: 35rem;
   overflow: auto;
   border-radius: 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  border: dashed 2px $color-grey-dark-3;
+  &-circle{
+    height: 5rem;
+    width: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-size: 32px;
+    color: $background-color;
+    background-color:  $color-grey-dark-3;
+    
+  }
+  &:hover{
+   border-color: $color-active;
+   & > div{
+    background-color: $color-active;
+   }
+   & > p {
+    color: $color-active !important;
+   }
+  }
+  
+}
+
+.lastRecord{
+
+  &__record{
+    display: flex;
+    width: 100%;
+    padding: 0.5rem;
+    align-items: center;
+    &:not(:first-of-type){
+      border-top: solid 1px $color-grey-light-3;
+      margin-top: 1.5rem;
+      padding-top: 1rem;
+    }
+  }
+
+  &__content{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+
+    &_account{
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+  }
+
+  &__detail{
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+    text-align: right;
+  }
+
+}
+
+
+.cashflow{
+  &__detail{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    &--previous{
+      text-align: right;
+      &-2{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+    }
+  }
+
+  &__income{
+
+    &--detail{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+  &__expense{
+
+    &--detail{
+      display: flex;
+      justify-content: space-between;
+    }
+  }
+}
+
+
+.accountlist{
+  
+  &__account{
+    display: flex;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    align-items: center;
+
+    &:not(:first-of-type){
+      border-top: solid 1px $color-grey-light-3;
+      margin-top: 1rem;
+      padding-top: 0.5rem;
+    }
+    &-icon{
+
+    }
+    &-detail{
+      flex-grow: 1;
+      & > *{
+        line-height: 1.5;
+      }
+    }
+    &-amount{
+
+    }
+    &-nav{
+      & > *{
+        display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 0.4rem;
+      border-radius: 2px;
+      
+      }
+      
+    }
+  }
+
+}
+
+.dashboardGauge{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(10rem, 1fr));
 }

@@ -7,8 +7,10 @@ import java.util.Set;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 
+import org.hibernate.Hibernate;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.token.TokenService;
@@ -52,10 +54,13 @@ public class UserServiceImpl implements UserService {
 	ClientService clientService;
 
 	@Override
+	@Cacheable("userCache")
 	public User getUserByUsername(String username) {
 		List<User> users=  userRepository.findByUsername(username);
 		if(users.size() > 0 ) {
-			return users.get(0);
+			User user =  users.get(0);
+			Hibernate.initialize(user.getAuthorities());
+			return user;
 		}
 		return null;
 	}

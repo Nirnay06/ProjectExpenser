@@ -1,8 +1,53 @@
+@import './../base';
 .account__button {
-  background-color: crimson;
   height: 5rem;
   border-radius: 1rem;
   padding: 1rem 2rem;
   text-align: center;
+  border: 1px solid black;
   color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  &--selected{
+    opacity: 0.3;
+  }
+  &--add{
+    border: 2px dashed grey;
+    background-color: transparent;
+    justify-content: center;
+    color: grey;
+    &:hover{
+      border: 2px dashed $color-primary;
+      color: $color-primary;
+    }
+  }
+  &-icon{
+    flex-grow: 1;
+    margin-right: 0.5rem;
+  }
+  &-detail{
+    flex-grow: 3;
+    text-align: left;
+  }
+  &-edit{
+    flex-grow: 1;
+    align-self: flex-start;
+    visibility: hidden;
+  }
+  &:hover {
+    opacity: 0.8;
+    .account__button-edit {
+      visibility: visible;
+    }
+  }
+}
+
+.selectAllButton{
+  grid-column: 1 / -1; 
+  margin-top: -2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

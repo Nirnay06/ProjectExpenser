@@ -1,6 +1,6 @@
 import HeaderButton from "./HeaderButton";
 import CustomModal from "../UI/Modal";
-import { useState } from "react";
+import {  useState } from "react";
 import RecordModalContainer from "../Record/RecordModal";
 
 const HeaderButtons = (props) => {
@@ -22,7 +22,7 @@ const HeaderButtons = (props) => {
                 title="Add Record"
                 bodyStyle={{ padding: 0, paddingBottom: "1rem" }}
             >
-                <RecordModalContainer />
+                <RecordModalContainer addRecord={true} onSaveCloseModal={()=>{toggleRecordModal(false)}}/>
             </CustomModal>
             <div className={props.className}>
                 {DUMMY_BUTTONS.map((btn => {

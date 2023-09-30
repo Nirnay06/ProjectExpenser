@@ -5,7 +5,7 @@ const Spinner = () => {
     return (
         <>  {
             ReactDOM.createPortal(<div className="spinner">
-                <svg>
+                <svg className='icon icon-loader'>
                     <use href={`${icons}#icon-loader`}></use>
                 </svg>
             </div >, overlayDiv)

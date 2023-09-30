@@ -20,6 +20,11 @@ import javax.persistence.Table;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnoreType;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -39,12 +44,13 @@ public class RecordLabel  extends AuditEntity implements Serializable{
 	@Column(name  ="identifier")
 	private String identifier;
 	
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	@JoinColumn(name ="record_identifier", referencedColumnName = "identifier")
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name ="record_id")
 	private UserRecord record;
 	
 	@OneToOne()
-	@JoinColumn(name ="user_label_identifier", referencedColumnName = "identifier")
+	@JoinColumn(name ="user_label_id")
 	private UserLabel userLabel;
 	
 	@PrePersist

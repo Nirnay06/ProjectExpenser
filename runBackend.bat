@@ -1,1 +1,1 @@
- @cmd /k "mvn spring-boot:run -Dskip.node -DskipCodeQualityCheck=true -Dmaven.test.skip=true -DskipCompression=true -Dskip.npm -Dspring-boot.run.jvmArguments="-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005""
+ @cmd /k "mvn spring-boot:run -Dskip.node -DskipCodeQualityCheck=true -Dmaven.test.skip=true -DskipCompression=true -Dskip.npm -Dspring-boot.run.jvmArguments="-javaagent:C:/soft/glowroot-0.14.0-dist/glowroot/glowroot.jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005""

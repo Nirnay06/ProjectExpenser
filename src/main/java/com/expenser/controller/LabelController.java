@@ -35,4 +35,14 @@ public class LabelController {
 		}
 		return new ResponseEntity<>(new APIResponseDTO("Something went wrong", false), HttpStatus.BAD_REQUEST);
 	}
+	
+	@GetMapping("/getDefaultLabels")
+	public ResponseEntity<?> fetchDefaultLabelsForUser() throws AccessDeniedException, BusinessException{
+		ClientDTO client = SecurityUtils.getClientFromSession();
+		if(client!=null) {
+			List<String> labels = userLabelService.fetchDefaultLabelsIdentifierByClientIdentifier(client.getClientIdentifier());
+			return new ResponseEntity<>(labels, HttpStatus.OK);
+		}
+		return new ResponseEntity<>(new APIResponseDTO("Something went wrong", false), HttpStatus.BAD_REQUEST);
+	}
 }

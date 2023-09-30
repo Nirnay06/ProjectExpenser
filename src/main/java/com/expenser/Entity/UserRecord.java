@@ -19,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PostLoad;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -26,15 +27,15 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Transient;
 
+import org.hibernate.annotations.NaturalId;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
 import com.expenser.enums.RecordType;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
 @Entity
@@ -43,23 +44,23 @@ import lombok.Setter;
 @Setter
 @Where(clause = "deleted !=1")
 @SQLDelete(sql = "update user_record set deleted=1 where id=?")
-@AllArgsConstructor
-@NoArgsConstructor
 public class UserRecord extends AuditEntity  implements Serializable{
 
 	@Id
 	@SequenceGenerator(name = "userRecordSequence",sequenceName = "USER_RECORD_SEQ", allocationSize = 1)
 	@GeneratedValue(generator = "userRecordSequence", strategy = GenerationType.SEQUENCE)
+	@Column(name ="id")
 	private long id;
 	
 	@Column(name ="identifier")
-	private String identifier;
+	@NaturalId
+	private String recordIdentifier;
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name ="client_identifier", referencedColumnName = "client_identifier")
 	private Client client;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
+	@ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name ="account_identifier", referencedColumnName = "account_identifier")
 	private UserAccount account;
 	
@@ -67,14 +68,14 @@ public class UserRecord extends AuditEntity  implements Serializable{
 	@Column(name ="record_type")
 	private RecordType recordType;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE )
 	@JoinColumn(name ="user_currency_identifier", referencedColumnName = "identifier")
 	private UserCurrency currency;
 	
 	@Column(name ="amount")
 	private BigDecimal amount;
 	
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	@JoinColumn(name ="user_category_identifier", referencedColumnName = "identifier")
 	private RecordUserCategory category;
 	
@@ -102,16 +103,60 @@ public class UserRecord extends AuditEntity  implements Serializable{
 	@Column(name ="payee")
 	private String payee;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "record", cascade = CascadeType.ALL)
 	private List<RecordLabel> labels;
 	
-	@OneToOne(mappedBy = "record", cascade = CascadeType.ALL)
+	@OneToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name = "record_location_id")
 	private RecordLocation location;
+	
+	@Transient
+	private BigDecimal baseCurrencyAmount;
 	
 	@PrePersist
 	public void PrePersist() {
-		if(this.identifier==null) {
-			this.identifier=UUID.randomUUID().toString();
+		if(this.recordIdentifier==null) {
+			this.recordIdentifier=UUID.randomUUID().toString();
 		}
 	}
+	
+	@PostLoad
+	public void postLoad() {
+		this.baseCurrencyAmount = getBaseCurrencyAmount(this.amount, this.currency.getCurrencyRate());
+	}
+	
+	public BigDecimal getBaseCurrencyAmount(BigDecimal amount, long currencyRate) {
+		return amount.multiply(new BigDecimal(currencyRate));
+	}
+
+	public UserRecord(long id, String recordIdentifier, Client client, UserAccount account, RecordType recordType,
+			UserCurrency currency, BigDecimal amount, RecordUserCategory category, Date date, String paymentType,
+			String paymentStatus, UserRecord refundTx, UserRecord transferTx, 
+			String comments, String payee,
+			List<RecordLabel> labels, RecordLocation location
+			) {
+		this.id = id;
+		this.recordIdentifier = recordIdentifier;
+		this.client = client;
+		this.account = account;
+		this.recordType = recordType;
+		this.currency = currency;
+		this.amount = amount;
+		this.category = category;
+		this.date = date;
+		this.paymentType = paymentType;
+		this.paymentStatus = paymentStatus;
+		this.refundTx = refundTx;
+		this.transferTx = transferTx;
+		this.comments = comments;
+		this.payee = payee;
+		this.labels = labels;
+		this.location = location;
+	}
+
+	public UserRecord() {
+		
+	}
+	
 }

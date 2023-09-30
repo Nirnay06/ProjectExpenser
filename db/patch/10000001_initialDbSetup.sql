@@ -248,9 +248,6 @@ CREATE SEQUENCE USER_LABEL_SEQ INCREMENT BY 1 START WITH 100 MINVALUE 100
 CREATE SEQUENCE USER_RECORD_CAT_SEQ INCREMENT BY 1 START WITH 100 MINVALUE 100
 /
 
-insert into master_currency(id,identifier, currency_symbol, current_conversion_rate) values (MASTER_CURRENCY_SEQ.nextval, (select getsysuuid from dual), 'INR', '1')
-/
-
 alter table user_Category add  category_title varchar2(2000) not null
 /
 

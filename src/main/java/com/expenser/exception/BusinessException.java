@@ -6,7 +6,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@RequiredArgsConstructor
 public class BusinessException extends Exception {
 
 	/**
@@ -16,6 +15,13 @@ public class BusinessException extends Exception {
 	
 	private String message;
 	private String errorCode;
+	
+	public BusinessException() {
+	}
+	
+	public BusinessException(String message) {
+		this.message = message;
+	}
 	
 	
 

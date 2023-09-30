@@ -63,7 +63,7 @@ const HeaderUser = (props) => {
                     <Avatar style={{ width: 'none', height: 'none', lineHeight: 'none' }} size={64}
                         icon={<UserOutlined />} shape='circle' />
                     <p className='user__name'>{USERNAME}</p>
-                    <svg className='user__icon'>
+                    <svg className='user__icon icon-caret-down icon'>
                         <use href={`${icons}#icon-caret-down`}></use>
                     </svg>
                 </div>

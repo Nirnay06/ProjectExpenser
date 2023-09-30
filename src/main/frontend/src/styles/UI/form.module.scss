@@ -48,8 +48,9 @@
 
     &-invalid {
       & input {
-        background-color: $color-danger-light;
-        border: 2px solid $color-danger-dark;
+        background-color: white;
+        border: 2px solid $color-danger-dark2;
+        color : black;
       }
     }
     &-disabled {
@@ -77,6 +78,7 @@
       width: 100%;
       height: 100%;
     }
+    
   }
 }
 

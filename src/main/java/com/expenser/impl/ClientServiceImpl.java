@@ -4,6 +4,7 @@ import javax.transaction.Transactional;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import com.expenser.Entity.Client;
@@ -39,6 +40,7 @@ public class ClientServiceImpl implements ClientService{
 	}
 
 	@Override
+	@Cacheable("userCache")
 	public Client findByUserIdentifier(String userIdentifier) {
 		
 		if(userIdentifier != null) {

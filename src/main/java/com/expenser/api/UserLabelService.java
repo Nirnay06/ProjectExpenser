@@ -14,4 +14,6 @@ public interface UserLabelService {
 	Map<String, UserLabel> findLabelsByIdentifiers(List<String> identifiers);
 
 	List<UserLabelDTO> fetchAllActiveLabelsByClientIdentifier(String clientIdentifier);
+
+	List<String> fetchDefaultLabelsIdentifierByClientIdentifier(String clientIdentifier);
 }

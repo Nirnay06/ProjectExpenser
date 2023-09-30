@@ -7,13 +7,15 @@ const useHttp = () => {
     let history = useHistory();
     const authCtx = useContext(AuthContext);
     const defaultErrorHandlingFunction = (data) => { message.error(data.message ? data.message : 'Something went wrong !!') }
-    const sendRequest = useCallback(async (requestConfig, applyData = () => { }, handleError = defaultErrorHandlingFunction) => {
+    const sendRequest = useCallback(async (requestConfig, applyData = () => {}, handleError = defaultErrorHandlingFunction, hideLoader = false) => {
         let auth = sessionStorage.getItem("Authorization");
         if (auth) {
             requestConfig.headers = { ...requestConfig.headers, "Authorization": auth }
         }
         try {
-            authCtx.setDisplaySpinner(true);
+            if(!hideLoader){
+                authCtx.setDisplaySpinner(true);
+            }
             const response = await fetch(requestConfig.url, {
                 method: requestConfig.method ? requestConfig.method : 'GET',
                 headers: requestConfig.headers ? requestConfig.headers : {},
@@ -45,7 +47,9 @@ const useHttp = () => {
         catch (err) {
             console.log(err);
         }
-        authCtx.setDisplaySpinner(false);
+        if(!hideLoader){
+            authCtx.setDisplaySpinner(false);
+        }
     }, []);
 
     return { sendRequest };

@@ -1,0 +1,64 @@
+@for $i from 0 to 20 {
+    .gutter#{$i * 5} {
+      padding: #{$i * 5}px !important;
+    }
+  }
+  
+  .gutterT0 {
+    padding-top: 0 !important;
+  }
+  
+  @for $i from 0 to 20 {
+    .gutterL#{$i * 5} {
+      padding-left: #{$i * 5}px !important;
+    }
+  }
+  
+  @for $i from 0 to 20 {
+    .gutterR#{$i * 5} {
+      padding-right: #{$i * 5}px !important;
+    }
+  }
+  
+  @for $i from 0 to 20 {
+    .offsetT#{$i * 5} {
+      margin-top: #{$i * 5}px !important;
+    }
+  }
+  
+  @for $i from 0 to 20 {
+    .offsetB#{$i * 5} {
+      margin-bottom: #{$i * 5}px !important;
+    }
+  }
+
+  @for $i from 0 to 20 {
+    .offsetR#{$i * 5} {
+      margin-right: #{$i * 5}px !important;
+    }
+  }
+  
+  @for $i from 0 to 20 {
+    .offsetL#{$i * 5} {
+      margin-left: #{$i * 5}px !important;
+    }
+  }
+  
+  
+  
+  @for $i from 0 to 20 {
+    .width#{$i * 5} {
+      width: #{$i * 5}px !important;
+    }
+  }
+  
+  @for $i from 5 to 20 {
+    .font#{$i * 2} {
+      font-size: #{$i * 2}px !important;
+    }
+  }
+
+
+  .fontBold{
+    font-weight: bold;
+  }

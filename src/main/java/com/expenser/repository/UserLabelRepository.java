@@ -18,4 +18,13 @@ public interface UserLabelRepository  extends JpaRepository<UserLabel, Long>{
 	@Query(value = "select new com.expenser.model.UserLabelDTO(l.identifier, l.client.clientIdentifier, "
 			+ " l.archive, l.title, l.color, l.defaultAssign) from UserLabel l where l.client.clientIdentifier=:clientIdentifier and l.archive=:isArchived")
 	List<UserLabelDTO> fetchLabelsByClientAndArchiveStatus(String clientIdentifier, boolean isArchived);
+
+	@Query(value = "select new com.expenser.model.UserLabelDTO(l.identifier, l.client.clientIdentifier, "
+			+ " l.archive, l.title, l.color, l.defaultAssign) from UserLabel l where l.client.clientIdentifier=:clientIdentifier and l.archive=:isArchived "
+			+ "and l.defaultAssign=true ")
+	List<UserLabelDTO> fetchDefaultLabelsByClientAndArchiveStatus(String clientIdentifier, boolean isArchived);
+
+	@Query(value = "select l.identifier from UserLabel l where l.client.clientIdentifier=:clientIdentifier and l.archive=:isArchived "
+			+ "and l.defaultAssign=true ")
+	List<String> fetchDefaultLabelsIdentifierByClientAndStatus(String clientIdentifier, boolean isArchived);
 }

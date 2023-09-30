@@ -1,45 +1,38 @@
 import { AutoComplete, Select, Space } from "antd";
+import { useEffect } from "react";
 import { useState } from "react";
+import { useGeolocated } from "react-geolocated";
 import LocationMapContainer from "./LocationMap";
+import useServices from "../../hooks/useSevices";
 const { Option } = AutoComplete;
-
-let timeout;
-let currentValue;
-
-const fetchLocations = (value, callback) => {
-  if (timeout) {
-    clearTimeout(timeout);
-    timeout = null;
-  }
-
-  currentValue = value;
-
-  const sendLocationAPI = () => {
-    fetch(`https://api.geoapify.com/v1/geocode/autocomplete?text=${value}&apiKey=3b4517dcf1b547cbaba0643e1615c1c2`)
-      .then((response) => response.json())
-      .then((d) => {
-        if (currentValue === value) {
-          const { features } = d;
-          const data = features.map((feature) => ({
-            name: feature.properties.formatted,
-            lon: feature.properties.lon,
-            lat: feature.properties.lat,
-            place_id: feature.properties.place_id,
-          }));
-          callback(data);
-        }
-      });
-  };
-
-  timeout = setTimeout(sendLocationAPI, 300);
-};
 
 const LocationSearch = (props) => {
   const [data, setData] = useState([]);
-  const [updatedValue, setValue] = useState(props.value);
+  const [updatedValue, setUpdatedValue] = useState(
+    props.value ? [{ name: props.value?.title, lat: props.value?.latitude, lon: props.value?.longitude }] : null
+  );
+  const { LocationService } = useServices();
+  const setValue = (data) => {
+    setUpdatedValue(data);
+    let d = data[0];
+    props.onChange({ ...d, title: d.name, latitude: d.lat, longitude: d.lon });
+  };
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } = useGeolocated({
+    positionOptions: {
+      enableHighAccuracy: true,
+    },
+    userDecisionTimeout: 5000,
+  });
+
+  useEffect(() => {
+    if (props.value == null && isGeolocationAvailable && isGeolocationEnabled && coords) {
+      LocationService.reverseGeocoding(coords, setValue, setData);
+    }
+  }, [coords]);
+
   const handleSearch = (newValue) => {
     if (newValue) {
-      fetchLocations(newValue, setData);
+      LocationService.fetchLocations(newValue, setData);
     } else {
       setData([]);
     }
@@ -51,6 +44,9 @@ const LocationSearch = (props) => {
     props.onChange({ latitude: locationValue.lat, longitude: locationValue.lon, title: locationValue.name, identifier: locationValue.placeId });
   };
 
+  const changeMarkerCallback = (coords) => {
+    LocationService.reverseGeocoding(coords, setValue, setData);
+  };
   const options = data.map((d) => (
     <Option key={d.place_id} lat={d.lat} lon={d.lon}>
       {d.name}
@@ -65,7 +61,7 @@ const LocationSearch = (props) => {
       }}>
       <Select
         showSearch
-        value={props.value && props.value.name}
+        value={updatedValue && updatedValue[0].name}
         placeholder={props.placeholder}
         style={props.style}
         defaultActiveFirstOption={false}
@@ -76,10 +72,13 @@ const LocationSearch = (props) => {
         {options}
       </Select>
 
-      <LocationMapContainer
-        lat={updatedValue && updatedValue[0] && updatedValue[0].lat ? updatedValue[0].lat : 0}
-        lon={updatedValue && updatedValue[0] && updatedValue[0].lon ? updatedValue[0].lon : 0}
-        name={updatedValue && updatedValue[0] && updatedValue[0].name ? updatedValue[0].name : ""}></LocationMapContainer>
+      {updatedValue && updatedValue[0] && updatedValue[0].lat && (
+        <LocationMapContainer
+          changeMarkerCallback={changeMarkerCallback}
+          lat={updatedValue && updatedValue[0] && updatedValue[0].lat ? updatedValue[0].lat : 0}
+          lon={updatedValue && updatedValue[0] && updatedValue[0].lon ? updatedValue[0].lon : 0}
+          name={updatedValue && updatedValue[0] && updatedValue[0].name ? updatedValue[0].name : ""}></LocationMapContainer>
+      )}
     </Space>
   );
 };

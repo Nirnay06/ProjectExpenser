@@ -2,18 +2,20 @@
 $color-primary: #f38e82;
 $color-grad-1: #fbdb89;
 $color-grad-2: #f48982;
+$color-active : #007AFF;
 
-$color-grey-light-1: #f9f5f3; // Light background
-$color-grey-light-2: #f2efee; // Light lines
-$color-grey-light-3: #d3c7c3; // Light text (placeholder)
-$color-grey-dark-1: #413b39; // dark text
-$color-grey-dark-2: #615551; // Normal text
-$color-grey-dark-3: #918581; // Lighter text
+$color-grey-light-1: #BEBFC5; // Light background
+$color-grey-light-2: #E5E4E2; // Light lines
+$color-grey-light-3: #F8F8FF; // Light text (placeholder)
+$color-grey-dark-1: #272829; // dark text
+$color-grey-dark-2: #61677A; // Normal text
+$color-grey-dark-3: #C0C0C0; // Lighter text
 
-$background-color: rgb(233, 228, 228);
+$background-color: #E5E4E2;
 
-$color-danger-light: rgba(255, 190, 190, 1);
+$color-danger-light: #ffeaea9e;
 $color-danger-dark: rgb(255, 96, 96);
+$color-danger-dark2: #ff7c7cad;
 
 $gradient: linear-gradient(to right bottom, $color-grad-1, $color-grad-2);
 $box-shadow: 0 2px 10px rgba(0, 0, 0, 0.26);
@@ -48,7 +50,7 @@ body {
   font-weight: 400;
   line-height: 1.6;
   color: $color-grey-dark-1;
-  background-color: rgb(233, 228, 228);
+  background-color: $background-color;
   background-size: cover;
   background-repeat: no-repeat;
   min-height: calc(100vh);
@@ -97,4 +99,9 @@ body {
     justify-content: center;
     align-items: center;
   }
+}
+
+
+.piechart {
+  translate: 20% 0 0 ;
 }

@@ -1,5 +1,5 @@
 import './styles/main.scss';
-import 'antd/dist/antd.css';
+// import 'antd/dist/antd.css';
 import RoutesComponent from "./utils/RoutesComponent";
 import { useLocation } from "react-router-dom";
 import Spinner from './components/UI/Spinner';

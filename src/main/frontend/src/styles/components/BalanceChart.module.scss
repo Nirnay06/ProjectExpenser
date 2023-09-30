@@ -10,13 +10,14 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: space-between;
     margin-bottom: 10rem;
   }
 }
 
 .header {
   &__item {
-    width: 30rem;
+    width: 35rem;
     height: 4rem;
     display: flex;
     flex-direction: column;

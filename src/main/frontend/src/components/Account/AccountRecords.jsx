@@ -1,97 +1,26 @@
 import { Button, Checkbox } from "antd";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "./../../styles/components/AccountRecords.module.scss";
 import AccountRecordGroup from "./AccountRecordGroup";
+import useServices from "../../hooks/useSevices";
+import { useContext } from "react";
+import UserContext from "../../store/UserContext";
+import {getCurrencyFormatted} from "../../utils/StringUtils";
 const AccountRecords = (props) => {
   const [checkedList, setCheckedList] = useState(new Set());
   const [indeterminate, setIndeterminate] = useState(false);
   const [checkAll, setCheckAll] = useState(false);
-  const records = [
-    { title: "A", account: "B", amount: 123, key: "A1", date: "11-03-2022" },
-    { title: "A", account: "B", amount: 123, key: "B1", date: "11-03-2022" },
-
-    {
-      title: "A2",
-      account: "B2",
-      amount: 123,
-      key: "A3",
-      date: "12-03-2022",
-    },
-    {
-      title: "A3",
-      account: "B3",
-      amount: 123,
-      key: "A4",
-      date: "12-03-2022",
-    },
-    {
-      title: "A4",
-      account: "B4",
-      amount: 123,
-      key: "A5",
-      date: "12-03-2022",
-    },
-
-    {
-      title: "A9",
-      account: "B9",
-      amount: 123,
-      key: "10",
-      date: "09-03-2022",
-    },
-    {
-      title: "A12",
-      account: "B12",
-      amount: 123,
-      key: "11",
-      date: "09-03-2022",
-    },
-    {
-      title: "A9",
-      account: "B9",
-      amount: 123,
-      key: "12",
-      date: "09-03-2022",
-    },
-    {
-      title: "A12",
-      account: "B12",
-      amount: 123,
-      key: "13",
-      date: "09-03-2022",
-    },
-    {
-      title: "A9",
-      account: "B9",
-      amount: 123,
-      key: "14",
-      date: "09-03-2022",
-    },
-    {
-      title: "A12",
-      account: "B12",
-      amount: 123,
-      key: "15",
-      date: "09-03-2022",
-    },
-    {
-      title: "A9",
-      account: "B9",
-      amount: 123,
-      key: "16",
-      date: "09-03-2022",
-    },
-    {
-      title: "A12",
-      account: "B12",
-      amount: 123,
-      key: "17",
-      date: "09-03-2022",
-    },
-  ];
+  const [accountRecords, setAccountrecords] = useState([]);
+  const { AccountService } = useServices();
+  const userCtx = useContext(UserContext);
+  useEffect(() => {
+    if (props.accountIdentifier) {
+      AccountService.getAllRecordsByAccount(props.accountIdentifier, setAccountrecords);
+    }
+  }, [userCtx.refresh]);
 
   const onCheckAllChange = (e) => {
-    setCheckedList(e.target.checked ? new Set(records.map((r) => r.key)) : new Set());
+    setCheckedList(e.target.checked ? new Set(accountRecords.map((r) => r.recordIdentifier)) : new Set());
     setIndeterminate(false);
     setCheckAll(e.target.checked);
   };
@@ -102,7 +31,7 @@ const AccountRecords = (props) => {
         setIndeterminate(false);
         setCheckAll(false);
       } else {
-        if (prev.size === records.length) {
+        if (prev.size === accountRecords.length) {
           setCheckAll(true);
           setIndeterminate(false);
         } else {
@@ -113,10 +42,10 @@ const AccountRecords = (props) => {
       return new Set(prev);
     });
   };
-  const recordsByDate = records.reduce(
+  const recordsByDate = accountRecords.reduce(
     (dates, item) => ({
       ...dates,
-      [item.date]: [...(dates[item.date] || []), item],
+      [item.recordDate]: [...(dates[item.recordDate] || []), item],
     }),
     {}
   );
@@ -157,7 +86,9 @@ const AccountRecords = (props) => {
         </td>
         <td className={styles.table__header__item}>
           <span className={`text--dark-2`}>
-            ${records.filter((r) => checkedList.size === 0 || checkedList.has(r.key)).reduce((sum, r) => (sum = sum + r.amount), +0)}
+            {getCurrencyFormatted(accountRecords
+              .filter((r) => checkedList.size === 0 || checkedList.has(r.recordIdentifier))
+              .reduce((sum, r) => (sum = sum + r.amount), +0))}
           </span>
         </td>
       </thead>

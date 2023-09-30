@@ -80,6 +80,15 @@ $table-header-margin-bottom: 1rem;
       &-right {
         justify-self: end;
       }
+      &-left {
+        width: 40rem;
+      }
+      &-center {
+        flex-grow: 1;
+        display: flex;
+        justify-content: left;
+        
+      }
     }
     &__icon {
       border-radius: 50%;

@@ -1,8 +1,8 @@
-import { Button, Radio, Space } from "antd";
+import { Button, Divider, Radio, Space } from "antd";
 import React, { useContext, useState } from "react";
 import DatePicker, { CalendarContainer } from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { checkIfDatesAreInSameWeek, getDateWithoutTime, getFirstAndLastMonthDays, getFirstAndLastWeekDays, getFirstAndLastYearDays, getUTCDate, subtractDaysFromDate, subtractMonthsFromDate } from "../../../utils/DateUtil";
+import { checkIfDatesAreInSameWeek, getDateWithoutTime, getFirstAndLastMonthDays, getFirstAndLastWeekDays, getFirstAndLastYearDays, getMonthAndDate, getMonthAndYear, getUTCDate, getYear, subtractDaysFromDate, subtractMonthsFromDate } from "../../../utils/DateUtil";
 import { DateRangeContext } from "./DateRangePicker";
 
 
@@ -13,7 +13,7 @@ const CalenderContainer = ({ className, children }) => {
     );
 }
 const RangeContainer = (props) => {
-    const { activeTabRadio, activeTabBtn, setActiveTab, setDateRange, setDropDownVisible } = props
+    const { activeTabRadio, activeTabBtn, setActiveTab, setDateRange, setDropDownVisible, setPeriodLabel } = props
     const [startDate, setStartDate] = useState(new Date());
     const [endDate, setEndDate] = useState(null);
     const onChange = (dates) => {
@@ -22,6 +22,7 @@ const RangeContainer = (props) => {
         setEndDate(end);
         if (start && end) {
             setDateRange({ startDate: getUTCDate(start), endDate: getUTCDate(end) });
+            setPeriodLabel(getMonthAndDate(start) + ' - ' + getMonthAndDate(end));
             setDropDownVisible(false);
         }
     };
@@ -31,15 +32,19 @@ const RangeContainer = (props) => {
         if (value !== 'custom') {
             setDropDownVisible(false);
             if (value === '7days') {
+                setPeriodLabel('Last 7 Days');
                 setDateRange({ endDate: getUTCDate(), startDate: subtractDaysFromDate(getUTCDate(), 7) })
             }
             if (value === '30days') {
+                setPeriodLabel('Last 30 Days');
                 setDateRange({ endDate: getUTCDate(), startDate: subtractDaysFromDate(getUTCDate(), 30) })
             }
             if (value === '90days') {
+                setPeriodLabel('Last 90 Days');
                 setDateRange({ endDate: getUTCDate(), startDate: subtractDaysFromDate(getUTCDate(), 90) })
             }
             if (value === '12months') {
+                setPeriodLabel('Last 12 Months');
                 setDateRange({ endDate: getUTCDate(), startDate: subtractMonthsFromDate(getUTCDate(), 12) })
             }
         }
@@ -56,7 +61,9 @@ const RangeContainer = (props) => {
 
             </Space>
         </Radio.Group>
+       
         {activeTabRadio === 'custom' ? (
+            <> <Divider style={{margin :'12px 0'}}/>
             <DatePicker
                 calendarContainer={CalenderContainer}
                 selected={startDate}
@@ -66,18 +73,20 @@ const RangeContainer = (props) => {
                 selectsRange
                 inline
             />
+            </>
         ) : null}
     </>)
 }
 
 
 const WeekContainer = (props) => {
-    const { dateRange, setDateRange, setDropDownVisible } = props;
+    const { dateRange, setDateRange, setDropDownVisible,  setPeriodLabel } = props;
 
     const setWeekDates = (date) => {
         setDropDownVisible(false);
         const { firstDay: startDate, lastDay: endDate } = getFirstAndLastWeekDays(date)
         setDateRange({ startDate, endDate });
+        setPeriodLabel(getMonthAndDate(startDate) + ' - ' +getMonthAndDate(endDate));
     }
     let { startDate } = dateRange;
     return (
@@ -93,11 +102,12 @@ const WeekContainer = (props) => {
     )
 }
 const MonthContainer = (props) => {
-    const { dateRange, setDateRange, setDropDownVisible } = props;
+    const { dateRange, setDateRange, setDropDownVisible, setPeriodLabel } = props;
     const setMonthDates = (date) => {
         setDropDownVisible(false);
         const { firstDay: startDate, lastDay: endDate } = getFirstAndLastMonthDays(date);
         setDateRange({ startDate, endDate });
+        setPeriodLabel(getMonthAndYear(date));
     }
     let { startDate } = dateRange;
     return (
@@ -112,11 +122,12 @@ const MonthContainer = (props) => {
     )
 }
 const YearContainer = (props) => {
-    const { dateRange, setDateRange, setDropDownVisible } = props;
+    const { dateRange, setDateRange, setDropDownVisible, setPeriodLabel } = props;
     const setYearDates = (date) => {
         setDropDownVisible(false);
         const { firstDay: startDate, lastDay: endDate } = getFirstAndLastYearDays(date);
         setDateRange({ startDate, endDate });
+        setPeriodLabel(getYear(date));
     }
     let { startDate } = dateRange;
     return (
@@ -133,7 +144,7 @@ const YearContainer = (props) => {
 
 const DateRangeModal = (props) => {
     const dateCtx = useContext(DateRangeContext);
-    const { activeTab, setActiveTab, dateRange, setDateRange, setDropDownVisible } = dateCtx;
+    const { activeTab, setActiveTab, dateRange, setDateRange, setDropDownVisible, setPeriodLabel } = dateCtx;
     const { activeTabBtn, activeTabRadio = '' } = activeTab;
     return (
         <div className="modal" >
@@ -166,6 +177,7 @@ const DateRangeModal = (props) => {
                     setActiveTab={setActiveTab}
                     dateRange={dateRange}
                     setDateRange={setDateRange}
+                    setPeriodLabel={setPeriodLabel}
                     setDropDownVisible={setDropDownVisible}
                 >
                 </RangeContainer>}
@@ -174,6 +186,7 @@ const DateRangeModal = (props) => {
                 {activeTabBtn === 'Week' && <WeekContainer
                     dateRange={dateRange}
                     setDateRange={setDateRange}
+                    setPeriodLabel={setPeriodLabel}
                     setDropDownVisible={setDropDownVisible}
                 />}
 
@@ -181,6 +194,7 @@ const DateRangeModal = (props) => {
                 {activeTabBtn === 'Month' && <MonthContainer
                     dateRange={dateRange}
                     setDateRange={setDateRange}
+                    setPeriodLabel={setPeriodLabel}
                     setDropDownVisible={setDropDownVisible}
                 >
                 </MonthContainer>}
@@ -189,6 +203,7 @@ const DateRangeModal = (props) => {
                 {activeTabBtn === 'Year' && <YearContainer
                     dateRange={dateRange}
                     setDateRange={setDateRange}
+                    setPeriodLabel={setPeriodLabel}
                     setDropDownVisible={setDropDownVisible}
                 >
                 </YearContainer>}

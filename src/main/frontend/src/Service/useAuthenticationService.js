@@ -4,10 +4,12 @@ import { validEmail, validName, validPassword } from "../utils/RegexUtil";
 import { useHistory } from "react-router-dom";
 import { useContext } from "react";
 import AuthContext from "../store/AuthContext";
+import UserContext from "../store/UserContext";
 const useAuthenticationService = () => {
     const { sendRequest } = useHttp();
     const history = useHistory();
     const authCtx = useContext(AuthContext);
+    const userCtx = useContext(UserContext);
     const createUser = (data) => {
         try {
             formattingSignupData(data);
@@ -116,6 +118,7 @@ const useAuthenticationService = () => {
             (data) => {
                 authCtx.setLoggedIn(true);
                 authCtx.setJWTUser();
+                userCtx.loadInitialData();
             }
         );
     };

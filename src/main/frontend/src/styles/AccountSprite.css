@@ -1,0 +1,328 @@
+.accountIcon {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url(./../assets/AccountSprite.svg);
+}
+
+.accountIcon-white {
+  display: inline-block;
+  background-repeat: no-repeat;
+  background-image: url(./../assets/AccountSprite-white.svg);
+}
+
+.accountIcon-coins {
+  width: 64px;
+  height: 64px;
+  background-position: 0 0;
+}
+
+.accountIcon-dollar {
+  width: 76px;
+  height: 64px;
+  background-position: -75px 0;
+}
+
+.accountIcon-wallet {
+  width: 64px;
+  height: 64px;
+  background-position: -235px 0;
+}
+
+.accountIcon-pig {
+  width: 64px;
+  height: 64px;
+  background-position: -315px 0;
+}
+
+.accountIcon-safe {
+  width: 64px;
+  height: 64px;
+  background-position: -395px 0;
+}
+
+.accountIcon-pig1 {
+  width: 64px;
+  height: 64px;
+  background-position: -475px 0;
+}
+
+.accountIcon-dollar1 {
+  width: 76px;
+  height: 64px;
+  background-position: -555px 0;
+}
+
+.accountIcon-wallet1 {
+  width: 64px;
+  height: 64px;
+  background-position: -715px 0;
+}
+
+.accountIcon-banknote {
+  width: 64px;
+  height: 64px;
+  background-position: -795px 0;
+}
+
+.accountIcon-wallet11 {
+  width: 64px;
+  height: 64px;
+  background-position: -875px 0;
+}
+
+.accountIcon-credit-card {
+  width: 60px;
+  height: 56px;
+  background-position: -5 -80px;
+}
+
+.accountIcon-cc-mastercard {
+  width: 72px;
+  height: 56px;
+  background-position: -67px -80px;
+}
+
+.accountIcon-library {
+  width: 68px;
+  height: 64px;
+  background-position: -1px -144px;
+}
+
+.accountIcon-coin-dollar {
+  width: 64px;
+  height: 64px;
+  background-position: -75px -142px;
+}
+
+.accountIcon-coin-euro {
+  width: 64px;
+  height: 64px;
+  background-position: -145px -142px;
+}
+
+.accountIcon-coin-pound {
+  width: 64px;
+  height: 64px;
+  background-position: -225px -142px;
+}
+
+.accountIcon-coin-yen {
+  width: 64px;
+  height: 64px;
+  background-position: -305px -142px;
+}
+
+.accountIcon-credit-card1 {
+  width: 64px;
+  height: 64px;
+  background-position: -385px -142px;
+}
+
+.accountIcon-coins-small {
+  width: 32px;
+  height: 32px;
+  background-position: 0 -220px;
+}
+
+.accountIcon-dollar-small {
+  width: 38px;
+  height: 32px;
+  background-position: -48px -220px;
+}
+
+.accountIcon-wallet-small {
+  width: 32px;
+  height: 32px;
+  background-position: -96px -220px;
+}
+
+.accountIcon-pig-small {
+  width: 32px;
+  height: 32px;
+  background-position: -144px -220px;
+}
+
+.accountIcon-safe-small {
+  width: 32px;
+  height: 32px;
+  background-position: -192px -220px;
+}
+
+.accountIcon-pig1-small {
+  width: 32px;
+  height: 32px;
+  background-position: -240px -220px;
+}
+
+.accountIcon-dollar1-small {
+  width: 38px;
+  height: 32px;
+  background-position: -288px -220px;
+}
+
+.accountIcon-wallet1-small {
+  width: 32px;
+  height: 32px;
+  background-position: -336px -220px;
+}
+
+.accountIcon-banknote-small {
+  width: 32px;
+  height: 32px;
+  background-position: -384px -220px;
+}
+
+.accountIcon-wallet11-small {
+  width: 32px;
+  height: 32px;
+  background-position: -432px -220px;
+}
+
+.accountIcon-credit-card-small {
+  width: 30px;
+  height: 28px;
+  background-position: 0 -268px;
+}
+
+.accountIcon-cc-mastercard-small {
+  width: 36px;
+  height: 28px;
+  background-position: -44px -268px;
+}
+
+.accountIcon-library-small {
+  width: 34px;
+  height: 32px;
+  background-position: 7px -304px;
+}
+
+.accountIcon-coin-dollar-small {
+  width: 32px;
+  height: 32px;
+  background-position: -38px -304px;
+}
+
+.accountIcon-coin-euro-small {
+  width: 32px;
+  height: 32px;
+  background-position: -86px -304px;
+}
+
+.accountIcon-coin-pound-small {
+  width: 32px;
+  height: 32px;
+  background-position: -124px -304px;
+}
+
+.accountIcon-coin-yen-small {
+  width: 32px;
+  height: 32px;
+  background-position: -182px -304px;
+}
+
+.accountIcon-credit-card1-small {
+  width: 32px;
+  height: 32px;
+  background-position: -230px -304px;
+}
+.accountIcon-coins-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: 0 -360px;
+}
+.accountIcon-dollar-tiny {
+  width: 29px;
+  height: 24px;
+  background-position: -40px -360px;
+}
+.accountIcon-wallet-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -80px -360px;
+}
+.accountIcon-pig-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -120px -360px;
+}
+.accountIcon-safe-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -160px -360px;
+}
+.accountIcon-pig1-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -200px -360px;
+}
+.accountIcon-dollar1-tiny {
+  width: 29px;
+  height: 24px;
+  background-position: -240px -360px;
+}
+.accountIcon-wallet1-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -280px -360px;
+}
+.accountIcon-banknote-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -320px -360px;
+}
+.accountIcon-wallet11-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -360px -360px;
+}
+.accountIcon-location_on-tiny {
+  width: 12px;
+  height: 12px;
+  background-position: 0 -400px;
+}
+.accountIcon-credit-card-tiny {
+  width: 26px;
+  height: 24px;
+  background-position: 0 -428px;
+}
+.accountIcon-cc-mastercard-tiny {
+  width: 31px;
+  height: 24px;
+  background-position: -40px -428px;
+}
+.accountIcon-library-tiny {
+  width: 26px;
+  height: 24px;
+  background-position: 0 -468px;
+}
+.accountIcon-coin-dollar-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -40px -468px;
+}
+.accountIcon-coin-euro-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -80px -468px;
+}
+.accountIcon-coin-pound-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -120px -468px;
+}
+.accountIcon-coin-yen-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -160px -468px;
+}
+.accountIcon-credit-card1-tiny {
+  width: 24px;
+  height: 24px;
+  background-position: -200px -468px;
+}
+
+.accountIcon-pencil-tiny {
+  width: 14px;
+  height: 16px;
+  background-position: -240px -468px;
+}

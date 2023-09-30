@@ -6,14 +6,17 @@ import { CookiesProvider } from 'react-cookie';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import AuthProvider from './store/AuthProvider';
+import UserProvider from './store/UserProvider';
 
 ReactDOM.render(
   <React.StrictMode>
     <CookiesProvider>
       <AuthProvider>
+        <UserProvider>
         <HashRouter hashType='noslash'>
           <App />
         </HashRouter>
+        </UserProvider>
       </AuthProvider>
     </CookiesProvider>
   </React.StrictMode>,

@@ -36,6 +36,9 @@ public class ExpenserCurrency extends AuditEntity implements Serializable {
 	@Column(name = "identifier")
 	private String identifier;
 	
+	@Column(name = "currency_title")
+	private String currencyTitle;
+	
 	@Column(name = "currency_symbol")
 	private String currencySymbol;
 	

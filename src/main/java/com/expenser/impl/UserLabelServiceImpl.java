@@ -32,13 +32,22 @@ public class UserLabelServiceImpl implements UserLabelService{
 	}
 	
 	@Override
-//	@Cacheable(value = "labelCache")
+	@Cacheable(value = "labelCache")
 	public List<UserLabelDTO> fetchAllActiveLabelsByClientIdentifier(String clientIdentifier) {
 		return fetchLabelsByClientAndStatus(clientIdentifier, false);
 	}
 
 	public List<UserLabelDTO> fetchLabelsByClientAndStatus(String clientIdentifier, boolean isArchived) {
 		return userLabelRepository.fetchLabelsByClientAndArchiveStatus(clientIdentifier, isArchived);
+	}
+	
+	public List<UserLabelDTO> fetchDefaultLabelsByClientAndStatus(String clientIdentifier, boolean isArchived) {
+		return userLabelRepository.fetchDefaultLabelsByClientAndArchiveStatus(clientIdentifier, isArchived);
+	}
+
+	@Override
+	public List<String> fetchDefaultLabelsIdentifierByClientIdentifier(String clientIdentifier) {
+		return userLabelRepository.fetchDefaultLabelsIdentifierByClientAndStatus(clientIdentifier, false);
 	}
 
 }

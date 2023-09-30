@@ -1,5 +1,7 @@
 package com.expenser.model;
 
+import java.io.Serializable;
+
 import com.expenser.Entity.UserLabel;
 
 import lombok.Getter;
@@ -7,7 +9,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class UserLabelDTO {
+public class UserLabelDTO implements Serializable{
 
 	private String identifier;
 	private String clientIdentifier;

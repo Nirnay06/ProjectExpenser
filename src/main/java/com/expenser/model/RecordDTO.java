@@ -4,6 +4,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import javax.validation.constraints.NotNull;
+
 import com.expenser.Entity.RecordLabel;
 import com.expenser.Entity.RecordLocation;
 import com.expenser.enums.RecordType;
@@ -38,6 +39,8 @@ public class RecordDTO {
 	private String payee;
 	private List<RecordLabelDTO> labels = new ArrayList<RecordLabelDTO>();
 	private RecordLocationDTO location;
+	private List<String> userLabelIdentifiers;
+	private BigDecimal baseCurrencyAmount;
 	
 	public RecordDTO() {
 		

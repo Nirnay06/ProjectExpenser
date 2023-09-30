@@ -81,8 +81,10 @@
 .account {
   &__icon {
     font-size: 5rem;
+    height: 9rem;
+    border : 1px solid black;
     color: $color-grey-light-1;
-    padding: 2rem;
+    padding: 1rem;
     border-radius: 2rem;
     margin-right: 3rem;
   }

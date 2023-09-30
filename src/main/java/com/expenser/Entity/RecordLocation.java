@@ -39,10 +39,6 @@ public class RecordLocation extends AuditEntity implements Serializable{
 	@Column(name ="identifier")
 	private String identifier;
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name ="record_identifier", referencedColumnName = "identifier")
-	private UserRecord record;
-	
 	@Column(name ="latitude")
 	private BigDecimal latitude;
 	
@@ -78,10 +74,9 @@ public class RecordLocation extends AuditEntity implements Serializable{
 		
 	}
 
-	public RecordLocation(String identifier, UserRecord record, BigDecimal latitude, BigDecimal longitude,
+	public RecordLocation(String identifier, BigDecimal latitude, BigDecimal longitude,
 			String title, String addressLine, String city, String state, String country, boolean modified) {
 		this.identifier = identifier;
-		this.record = record;
 		this.latitude = latitude;
 		this.longitude = longitude;
 		this.title = title;

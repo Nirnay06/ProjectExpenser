@@ -14,21 +14,22 @@ export const DateRangeContext = React.createContext({
 
 const DateRangePicker = (props) => {
     const [dropdownVisible, setDropDownVisible] = useState(false);
-    const [activeTab, setActiveTab] = useState({ activeTabBtn: 'Range', activeTabRadio: '7days' });
-    const { dateRange, setDateRange } = props
+    
+    const [activeTab, setActiveTab] = useState({ activeTabBtn: 'Range', activeTabRadio: '30days' });
+    const { dateRange, setDateRange, setPeriodLabel } = props
     return (
         <div className="datepicker" style={props.style}>
-            <DateRangeContext.Provider value={{ activeTab, setActiveTab, dateRange, setDateRange, setDropDownVisible }}>
+            <DateRangeContext.Provider value={{ activeTab, setActiveTab, dateRange, setDateRange, setDropDownVisible, setPeriodLabel }}>
                 <Dropdown
-                    overlay={<DateRangeModal dateRange={dateRange} setDateRange={setDateRange} />}
+                    overlay={<DateRangeModal />}
                     trigger="click"
                     className="datepicker"
                     placement="bottom"
-                    visible={dropdownVisible}
+                    open={dropdownVisible}
                     arrow={{ pointAtCenter: true }}
                 >
-                    <Button onClick={() => { setDropDownVisible(true) }}>
-                        Button <DownOutlined />
+                    <Button style={{textAlign : 'center'}} onClick={() => { setDropDownVisible(p=>!p) }}>
+                        {props.periodLabel} <DownOutlined />
                     </Button>
                 </Dropdown>
             </DateRangeContext.Provider>

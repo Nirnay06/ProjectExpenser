@@ -1,4 +1,4 @@
-import AccountsPage from "../pages/Acoounts";
+import AccountsPage from "../pages/Accounts";
 import AnalyticsPage from "../pages/Analytics";
 import DashboardPage from "../pages/Dashboard";
 import ForgetPasswordPage from "../pages/ForgetPassword";

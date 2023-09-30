@@ -5,7 +5,7 @@ import HeaderUser from './HeaderUser';
 import logo from './../../assets/expenser.png';
 const Header = () => {
     return (
-        <div className="page__header">
+        <div className="page__header font12">
             <Link to="/"><img src={logo} alt="expenser" className='page__header--logo' /></Link>
             <HeaderLinks className='page__header--links'></HeaderLinks>
             <HeaderButtons className='page__header--buttons'></HeaderButtons>

@@ -35,3 +35,11 @@
   width: 50wh;
   height: 50vh;
 }
+
+.ant-color-picker-trigger.custom-color-picker{
+  min-width: 10rem;
+
+  .ant-color-picker-color-block{
+    min-width: 8rem;
+  }
+}

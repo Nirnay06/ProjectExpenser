@@ -1,4 +1,6 @@
+@import './../base';
 .searchField {
+  border: 1px solid $color-grey-dark-3;
   padding: 0.5rem 1rem;
   display: flex;
   flex-direction: row;

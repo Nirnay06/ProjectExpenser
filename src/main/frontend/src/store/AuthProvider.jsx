@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import useServices from "../hooks/useSevices";
 import { isFutureDate } from "../utils/DateUtil";
 import { parseJwt } from "../utils/JWTparser";
@@ -10,14 +10,21 @@ const AuthProvider = (props) => {
   const [displaySpinner, setDisplaySpinner] = useState(false);
   const [JWTUser, setSessionUser] = useState({});
 
+  useEffect(()=>{
+    setJWTUser();
+  },[])
   const setJWTUser = () => {
     const jwt = window.sessionStorage.getItem("Authorization");
-    const details = parseJwt(jwt);
-    if (!isFutureDate(details.expiredAt)) {
+    if(jwt){
+      const details = parseJwt(jwt);
+      if (isFutureDate(details.expiredAt)) {
+        setLoggedIn(true);
+        setSessionUser(details.user);
+      } 
+    }else {
       AuthenticationService.logoutHandler();
-    } else {
-      setSessionUser(details.user);
     }
+    AuthenticationService.logoutHandler();
   };
   const logoutHandler = () => {
     setLoggedIn(false);

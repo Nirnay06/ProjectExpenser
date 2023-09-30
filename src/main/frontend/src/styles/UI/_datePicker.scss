@@ -1,3 +1,4 @@
+@import './../base';
 .datepicker {
   & button {
     border-radius: 1rem;
@@ -13,6 +14,7 @@
   padding: 1rem;
   background-color: #fff;
   border-radius: 5px;
+  border : 1px solid $color-grey-dark-2;
   display: flex;
   flex-direction: column;
   &:not(:last-child) {
@@ -22,7 +24,7 @@
 .tabs {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  background-color: #000;
+  background-color: #fff;
   border-radius: 5px;
   overflow: hidden;
   &:not(:last-child) {
@@ -30,7 +32,7 @@
   }
   & > button {
     border-radius: 0;
-    border: 0.5px solid rgba(33, 150, 243, 1);
+    border: 0.5px solid $color-active;
     padding: 0;
     &:not(:last-child) {
       border-right: none;
