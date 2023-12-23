@@ -1,0 +1,11 @@
+.importStep{
+    margin : 2rem 0;
+    & > :not(:first-child){
+        margin-top: 1rem;
+    }
+    &__switch{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+     }
+}

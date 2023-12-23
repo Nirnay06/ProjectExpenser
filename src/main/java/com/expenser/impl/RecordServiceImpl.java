@@ -35,6 +35,7 @@ import com.expenser.controller.AuthRestController;
 import com.expenser.exception.BusinessException;
 import com.expenser.mapper.RecordMapper;
 import com.expenser.model.ClientDTO;
+import com.expenser.model.FileUploadDTO;
 import com.expenser.model.RecordDTO;
 import com.expenser.model.RecordLabelDTO;
 import com.expenser.model.SearchRequest;
@@ -42,7 +43,10 @@ import com.expenser.repository.RecordRepository;
 import com.expenser.repository.RecordRepositoryCustom;
 import com.expenser.util.DateUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 @Service
+@Slf4j
 public class RecordServiceImpl implements RecordService{
 
 	@Autowired
@@ -225,5 +229,16 @@ public class RecordServiceImpl implements RecordService{
 	public List<RecordDTO> findRecordsFromAccountsByDate(List<String> accountIdentifiers, String startDate,
 			String endDate, SearchRequest searchRequest) {
 		return recordRepositoryCustom.findRecordsFromAccountsByDate(accountIdentifiers, startDate, endDate, searchRequest);
+	}
+
+	@Override
+	public Integer importRecordFromFile(int recordStartIndex, int recordEndIndex, FileUploadDTO fileUploadDTO) {
+		StringBuffer b = new StringBuffer("");
+		for(int i =recordStartIndex;i<recordEndIndex; i++) {
+			b.append(i);
+			b.append(",");
+		}
+		log.error(b.toString());
+		return 1;
 	}
 }

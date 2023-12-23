@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.expenser.Entity.UserRecord;
 import com.expenser.exception.BusinessException;
 import com.expenser.model.ClientDTO;
+import com.expenser.model.FileUploadDTO;
 import com.expenser.model.RecordDTO;
 import com.expenser.model.SearchRequest;
 
@@ -22,4 +23,5 @@ public interface RecordService {
 	void deleteUserRecord(String recordIdentifier, ClientDTO clientDTO) throws AccessDeniedException, BusinessException;
 	List<RecordDTO> findRecordsFromAccountsByDate(List<String> accountIdentifiers, String startDate, String endDate,
 			SearchRequest searchRequest);
+	Integer importRecordFromFile(int recordStartIndex, int recordEndIndex, FileUploadDTO fileUploadDTO);
 }	

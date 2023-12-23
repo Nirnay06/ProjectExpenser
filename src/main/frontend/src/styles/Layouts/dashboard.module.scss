@@ -46,15 +46,21 @@
   background-color: rgba($color-grey-light-3, 0.8);
   flex: 1;
   display: flex;
+  max-width: 30rem;
   flex-direction: column;
   justify-content: flex-start;
   padding: 2rem;
-  :not(:last-child) {
-    margin-bottom: 2rem;
+  > :last-child {
+    margin-bottom: 0;  // Reset margin on last immediate child
+  }
+
+  > *:not(:last-child) {
+    margin-bottom: 2rem;  // Apply margin to all immediate children except the last
   }
 }
 .main__content {
-  background-color: $color-grey-light-1;
+  background-color: $color-grey-light-3;
+  max-width: calc(100% - 30rem);
   flex: 4;
 }
 

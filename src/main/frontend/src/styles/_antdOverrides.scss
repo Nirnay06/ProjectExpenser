@@ -1,6 +1,6 @@
 @import "./base";
 .RadioTransparent.ant-radio-button-wrapper {
-  color: $color-grey-light-1;
+  color: $color-grey-light-3;
   background-color: transparent;
   padding: 0 2rem;
 
@@ -8,7 +8,7 @@
     color: $color-grey-light-3;
   }
   &.ant-radio-button-wrapper-checked {
-    background-color: $color-grey-light-1;
+    background-color: $color-grey-light-3;
     color: $color-grey-dark-1;
     outline: none;
     border: none;
@@ -42,4 +42,8 @@
   .ant-color-picker-color-block{
     min-width: 8rem;
   }
+}
+
+.custom-steps.ant-steps.ant-steps-navigation .ant-steps-item-container{
+  width : 8.5rem;
 }

@@ -1,0 +1,55 @@
+@import './../../styles/base';
+
+.fileUpload{
+
+    &__table{
+        background-color: $background-color;
+        padding: 0.3rem;
+        padding-bottom: 1rem;
+        display: grid;
+        max-height: 90dvh;
+        min-height: 100%;
+        overflow: auto;
+        grid-gap: 0.5rem;
+        justify-items : stretch;
+        align-items: stretch;
+        &_cell{
+            padding : 1rem 2rem;
+            background-color: $color-grey-light-3;
+            width: 100%;
+            font-weight: 600;
+            color: $color-grey-dark-2;
+            & > *{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+           
+        }
+        &_header{
+            background-color:#81CBFE;
+            color : $color-grey-light-3;
+        }
+        &_highlighted{
+            background-color:#c4e8ff;
+        }
+    }
+    &__alphaHeader{
+        background-color: $color-grey-light-3;
+     }
+     &__numRow{
+         background-color: $color-grey-dark-2;
+         color : $color-grey-light-3;
+     }
+
+     
+}
+
+.fileName__header{
+    font-size: 24px;
+    font-weight: bolder;
+   display: flex;
+   flex-direction: row;
+   width : auto;
+   align-items: center;
+}
