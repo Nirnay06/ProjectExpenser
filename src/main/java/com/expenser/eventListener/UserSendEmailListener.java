@@ -11,12 +11,12 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
 
-import com.expenser.api.LinkTokenService;
 import com.expenser.enums.EmailType;
 import com.expenser.enums.LinkTokenType;
 import com.expenser.events.SendUserEmailEvent;
 import com.expenser.model.UserDTO;
 import com.expenser.repository.ProductConfigurationRepository;
+import com.expenser.service.LinkTokenService;
 
 
 @Component

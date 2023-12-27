@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.expenser.api.RecordUserCategoryService;
 import com.expenser.exception.BusinessException;
 import com.expenser.model.APIResponseDTO;
 import com.expenser.model.ClientDTO;
 import com.expenser.model.RecordCategoryDTO;
+import com.expenser.service.RecordUserCategoryService;
 import com.expenser.util.SecurityUtils;
 
 @RestController

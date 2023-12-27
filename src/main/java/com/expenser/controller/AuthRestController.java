@@ -35,12 +35,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expenser.Entity.User;
-import com.expenser.api.UserService;
 import com.expenser.model.APIResponseDTO;
 import com.expenser.model.LoginRequestDTO;
 import com.expenser.model.SignupRequestDTO;
 import com.expenser.model.UserDTO;
 import com.expenser.security.SecurityConstants;
+import com.expenser.service.UserService;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
@@ -84,7 +84,7 @@ public class AuthRestController {
 		}catch(BadCredentialsException e) {
 			return new ResponseEntity<>(new APIResponseDTO(e.getMessage(), false), HttpStatus.FORBIDDEN);
 		}catch(Exception e ) {
-			logger.error(e.getStackTrace().toString());
+			logger.error(e);
 			return new ResponseEntity<>(new APIResponseDTO("Something went wrong", false), HttpStatus.INTERNAL_SERVER_ERROR);
 		}
 		return null;
@@ -115,7 +115,7 @@ public class AuthRestController {
 						HttpStatus.BAD_REQUEST);
 			}
 		}catch(Exception e) {
-			logger.error(e.getStackTrace().toString());
+			logger.error(e);
 			return new ResponseEntity<>(new APIResponseDTO("Something went wrong", false),
 					HttpStatus.INTERNAL_SERVER_ERROR);
 		}
@@ -140,7 +140,7 @@ public class AuthRestController {
 			}catch(BadCredentialsException e) {
 				return new ResponseEntity<>(new APIResponseDTO(e.getMessage(), false), HttpStatus.BAD_REQUEST);
 			}catch(Exception e) {
-				logger.error(e.getStackTrace().toString());
+				logger.error(e);
 				return new ResponseEntity<>(new APIResponseDTO("Something went wrong", false), HttpStatus.INTERNAL_SERVER_ERROR);
 			}
 		}

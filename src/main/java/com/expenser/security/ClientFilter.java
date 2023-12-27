@@ -16,10 +16,10 @@ import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.expenser.Entity.Client;
 import com.expenser.Entity.User;
-import com.expenser.api.ClientService;
 import com.expenser.exception.BusinessException;
 import com.expenser.model.ClientDTO;
 import com.expenser.model.UserDTO;
+import com.expenser.service.ClientService;
 import com.expenser.util.SecurityUtils;
 
 @Component

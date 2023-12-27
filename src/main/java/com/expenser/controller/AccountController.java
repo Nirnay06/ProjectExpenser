@@ -16,13 +16,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.expenser.api.AccountService;
-import com.expenser.api.RecordService;
 import com.expenser.exception.BusinessException;
 import com.expenser.model.AccountDTO;
 import com.expenser.model.ClientDTO;
 import com.expenser.model.IntervalBalanceDTO;
 import com.expenser.model.RecordDTO;
+import com.expenser.service.AccountService;
+import com.expenser.service.RecordService;
 import com.expenser.util.SecurityUtils;
 
 @RestController

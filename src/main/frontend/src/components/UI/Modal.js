@@ -39,9 +39,11 @@ const CustomModal = (props) => {
             width={1000}
             keyboard={true}
             onCancel={onCancel}
+            destroyOnClose={true}
             title={title}
             footer={null}
-            style={{ borderRadius: "5px", overflow: "hidden", top: '20px',  ...style }}
+            zIndex={1000}
+            style={{ borderRadius: "5px", overflow: "hidden", top: '20px', ...style }}
             {...others}
         >
             {children}

@@ -18,7 +18,7 @@
 		<frontend-src-dir>${project.basedir}/src/main/frontend</frontend-src-dir>
 		<node.version>v14.15.4</node.version>
 		<npm.version>v6.14.11</npm.version>
-		<frontend-maven-plugin.version>1.7.6</frontend-maven-plugin.version>
+		<frontend-maven-plugin.version>1.12.1</frontend-maven-plugin.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -151,6 +151,11 @@
         <artifactId>poi-ooxml</artifactId>
         <version>4.1.2</version> <!-- Use the same version as poi -->
     </dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
+		</dependency>
 	</dependencies>
 
 	<build>

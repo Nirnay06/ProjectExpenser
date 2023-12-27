@@ -31,8 +31,8 @@ import java.io.Serializable;
 @Getter
 @Setter
 @Table(name = "users")
-@Where(clause = "deleted !=1")
-@SQLDelete(sql = "update users set deleted=1 where id=?")
+@Where(clause = "deleted=CAST(0 as boolean)")
+@SQLDelete(sql = "update users set deleted=cast(1 as boolean) where id=?")
 public class User extends AuditEntity implements Serializable{
 	
 	@Id

@@ -23,7 +23,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "master_currency")
-@Where(clause = "deleted !=1")
+@Where(clause = "deleted=CAST(0 as boolean)")
 @Getter
 @Setter
 public class ExpenserCurrency extends AuditEntity implements Serializable {
@@ -43,17 +43,20 @@ public class ExpenserCurrency extends AuditEntity implements Serializable {
 	private String currencySymbol;
 	
 	@Column(name = "current_conversion_rate")
-	private long conversionRate;
+	private BigDecimal conversionRate;
 	
 	@Column(name ="last_synced_date")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date syncDate;
 	
+	@Column(name = "currency_abbr")
+	private String currencyAbbreviation;
+	
 	public ExpenserCurrency() {
 		
 	}
 
-	public ExpenserCurrency(String identifier, String currencySymbol, long conversionRate, Date syncDate) {
+	public ExpenserCurrency(String identifier, String currencySymbol, BigDecimal conversionRate, Date syncDate) {
 		this.identifier= identifier;
 		this.currencySymbol = currencySymbol;
 		this.conversionRate = conversionRate;

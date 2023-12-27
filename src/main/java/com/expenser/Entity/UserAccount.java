@@ -31,8 +31,8 @@ import lombok.Setter;
 @Table(name = "user_accounts")
 @Getter
 @Setter
-@Where(clause = "deleted !=1")
-@SQLDelete(sql = "update user_accounts set deleted=1 where id=?")
+@Where(clause = "deleted=CAST(0 as boolean)")
+@SQLDelete(sql = "update user_accounts set deleted=cast(1 as boolean) where id=?")
 public class UserAccount extends AuditEntity implements Serializable{
 	
 	private static final long SerialVersionUID = 812772172712l;

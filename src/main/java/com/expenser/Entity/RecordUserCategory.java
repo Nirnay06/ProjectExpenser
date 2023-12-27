@@ -33,8 +33,8 @@ import lombok.Setter;
 @Table(name="user_category")
 @Getter
 @Setter
-@Where(clause = "deleted !=1")
-@SQLDelete(sql = "update user_category set deleted=1 where id=?")
+@Where(clause = "deleted=CAST(0 as boolean)")
+@SQLDelete(sql = "update user_category set deleted=cast(1 as boolean) where id=?")
 public class RecordUserCategory extends AuditEntity implements Serializable{
 
 	@Id

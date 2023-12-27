@@ -24,7 +24,7 @@ import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import com.expenser.Entity.User;
-import com.expenser.api.UserService;
+import com.expenser.service.UserService;
 
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;

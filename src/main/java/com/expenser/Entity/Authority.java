@@ -22,7 +22,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name ="authorities")
-@Where(clause = "deleted !=1")
+@Where(clause = "deleted=CAST(0 as boolean)")
 public class Authority extends AuditEntity implements Serializable {
 	
 	@Id

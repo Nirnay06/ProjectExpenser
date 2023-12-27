@@ -7,24 +7,24 @@ const useHttp = () => {
     let history = useHistory();
     const authCtx = useContext(AuthContext);
     const defaultErrorHandlingFunction = (data) => { message.error(data.message ? data.message : 'Something went wrong !!') }
-    const sendRequest = useCallback(async (requestConfig, applyData = () => {}, handleError = defaultErrorHandlingFunction, hideLoader = false) => {
+    const sendRequest = useCallback(async (requestConfig, applyData = () => { }, handleError = defaultErrorHandlingFunction, hideLoader = false) => {
         let auth = sessionStorage.getItem("Authorization");
         if (auth) {
             requestConfig.headers = { ...requestConfig.headers, "Authorization": auth }
         }
         try {
-            if(!hideLoader){
+            if (!hideLoader) {
                 authCtx.setDisplaySpinner(true);
             }
             const response = await fetch(requestConfig.url, {
-              method: requestConfig.method ? requestConfig.method : "GET",
-              headers: requestConfig.headers ? requestConfig.headers : {},
-              body:
-                 requestConfig.body
-                  ? requestConfig.isJson ==false
-                    ? requestConfig.body
-                    : JSON.stringify(requestConfig.body)
-                  : null,
+                method: requestConfig.method ? requestConfig.method : "GET",
+                headers: requestConfig.headers ? requestConfig.headers : {},
+                body:
+                    requestConfig.body
+                        ? requestConfig.isJson == false
+                            ? requestConfig.body
+                            : JSON.stringify(requestConfig.body)
+                        : null,
             });
             let data = {};
             try {
@@ -36,6 +36,7 @@ const useHttp = () => {
                 if ([401, 403].includes(response.status)) {
                     window.sessionStorage.removeItem('Authorization');
                     if (history) {
+                        authCtx.setLoggedIn(false);
                         history.push('/login');
                     }
                     // authCtx.logoutHandler();
@@ -52,7 +53,7 @@ const useHttp = () => {
         catch (err) {
             console.log(err);
         }
-        if(!hideLoader){
+        if (!hideLoader) {
             authCtx.setDisplaySpinner(false);
         }
     }, []);

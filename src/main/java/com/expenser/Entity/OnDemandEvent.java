@@ -19,7 +19,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name ="on_demand_event")
-@Where(clause = "deleted=0")
+@Where(clause = "deleted=CAST(0 as boolean)")
 public class OnDemandEvent extends AuditEntity{
 
 	@Id

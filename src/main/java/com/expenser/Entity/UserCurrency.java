@@ -27,8 +27,8 @@ import lombok.Setter;
 @Table(name ="user_currency")
 @Getter
 @Setter
-@Where(clause = "deleted !=1")
-@SQLDelete(sql = "update user_currency set deleted=1 where id=?")
+@Where(clause = "deleted=CAST(0 as boolean)")
+@SQLDelete(sql = "update user_currency set deleted=cast(1 as boolean) where id=?")
 public class UserCurrency extends AuditEntity  implements Serializable{
 	
 	private static final long SerialVersionUID = 8127721722221l;
@@ -45,14 +45,8 @@ public class UserCurrency extends AuditEntity  implements Serializable{
 	@JoinColumn(name = "client_identifier", referencedColumnName = "client_identifier")
 	private Client client;
 	
-	@Column(name = "currency_title")
-	private String title;
-	
-	@Column(name = "currency_icon")
-	private String icon;
-	
 	@Column(name ="user_currency_rate")
-	private long currencyRate;
+	private BigDecimal currencyRate;
 	
 	@Column(name ="IS_RATE_OVERRIDEN")
 	private boolean rateOverriden;
@@ -60,22 +54,34 @@ public class UserCurrency extends AuditEntity  implements Serializable{
 	@Column(name ="is_base_currency")
 	private boolean baseCurrency;
 	
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "master_currency_identifier", referencedColumnName = "identifier" )
 	private ExpenserCurrency currency;
+	
+	@Column(name ="display_order")
+	private long displayOrder;
 
-	public UserCurrency(String identifier, String title, String icon, long currencyRate, boolean rateOverriden,
-			boolean baseCurrency, ExpenserCurrency currency, Client client) {
-		this.identifier = identifier;
-		this.title = title;
-		this.icon = icon;
+	public UserCurrency( BigDecimal currencyRate, boolean rateOverriden,
+			boolean baseCurrency, ExpenserCurrency currency, Client client, long displayOrder) {
 		this.currencyRate = currencyRate;
 		this.rateOverriden = rateOverriden;
 		this.baseCurrency = baseCurrency;
 		this.currency = currency;
 		this.client = client;
+		this.displayOrder = displayOrder;
 	}
 
+	public UserCurrency(String identifier,  BigDecimal currencyRate, boolean rateOverriden,
+			boolean baseCurrency, ExpenserCurrency currency, Client client, long displayOrder) {
+		this.identifier = identifier;
+		this.currencyRate = currencyRate;
+		this.rateOverriden = rateOverriden;
+		this.baseCurrency = baseCurrency;
+		this.currency = currency;
+		this.displayOrder = displayOrder;
+		this.client = client;
+	}
+	
 	public UserCurrency() {
 	}
 	

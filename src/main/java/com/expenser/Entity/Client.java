@@ -25,8 +25,7 @@ import lombok.Setter;
 
 @Entity
 @Table(name= "client")
-@Where(clause = "deleted !=1")
-@SQLDelete(sql = "update users set deleted=1 where id=?")
+@Where(clause = "deleted=CAST(0 as boolean)")
 @Getter
 @Setter
 public class Client extends AuditEntity implements Serializable{

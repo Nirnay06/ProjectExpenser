@@ -15,12 +15,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.expenser.api.AccountService;
-import com.expenser.api.DashboardService;
 import com.expenser.exception.BusinessException;
 import com.expenser.model.ClientDTO;
 import com.expenser.model.CurrencyDTO;
 import com.expenser.model.RecordDTO;
+import com.expenser.service.AccountService;
+import com.expenser.service.DashboardService;
 import com.expenser.util.SecurityUtils;
 
 @RestController

@@ -25,7 +25,8 @@ export const routes = [
     { path: "/analytics", component: AnalyticsPage, layout: DashboardLayout, exact: true },
     { path: "/imports", component: ImportsPage, layout: DashboardLayout, exact: true },
     { path: "/wallet-life", component: WalletLifePage, layout: DashboardLayout, exact: true },
-    { path: "/settings", component: SettingsPage, layout: DashboardLayout, exact: true },
+    { path: "/settings", redirect : "/settings/accounts", layout: DashboardLayout, exact : true},
+    { path: "/settings/:pageId", component: SettingsPage, layout: DashboardLayout},
     { path: "/upgrade", component: UpgradePage, layout: DashboardLayout, exact: true },];
 
 export const anonymousRoutes = [

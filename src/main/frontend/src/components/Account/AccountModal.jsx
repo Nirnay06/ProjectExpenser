@@ -11,20 +11,19 @@ const AccountModalContainer = (props) => {
   useEffect(() => {
     CurrencyService.fetchCurrencyListForRecord(setCurrencyList);
   }, []);
-  const {
-    initialValues = {
-      accountType : "General",
-      currenyIdentifier :userCtx.defaultCurrency,
-      accountColor  :  '#1677FF',
-      initialBalance : 0
-    },setAccountDetail = ()=>{}
-  } = props;
-
+  const { setAccountDetail = () => {} } = props;
+  const initialValues = {
+    accountType: "General",
+    currenyIdentifier: userCtx.defaultCurrency,
+    accountColor: "#1677FF",
+    initialBalance: 0,
+    ...props.initialValues,
+  };
   const onFinishHandler = (values) => {
-    if(typeof values.accountColor === "object"){
+    if (typeof values.accountColor === "object") {
       values.accountColor = values.accountColor.toHexString();
     }
-    AccountService.addOrEditAccount({ identifier :  'addNew', ...initialValues, ...values }, setAccountDetail);
+    AccountService.addOrEditAccount({ identifier: "addNew", ...initialValues, ...values }, setAccountDetail);
     props.closePopup();
   };
   const [form] = Form.useForm();
@@ -32,7 +31,6 @@ const AccountModalContainer = (props) => {
     <>
       <div>
         <Form onFinish={onFinishHandler} initialValues={initialValues} buttonText="Save" form={form} layout="vertical">
-
           <Row gutter={25}>
             <Col span={18}>
               <Form.Item label="Account Name" name="accountName">
@@ -41,7 +39,7 @@ const AccountModalContainer = (props) => {
             </Col>
             <Col span={6}>
               <Form.Item name={"accountColor"} label={"Account Color"}>
-                <ColorPicker size="middle" format="hex" className="custom-color-picker"/>
+                <ColorPicker size="middle" format="hex" className="custom-color-picker" />
               </Form.Item>
             </Col>
           </Row>
@@ -53,7 +51,8 @@ const AccountModalContainer = (props) => {
                   showArrow
                   style={{
                     width: "100%",
-                  }}>
+                  }}
+                >
                   {AccountService.getAccountsType().map((value) => AccountService.getAccountOptionForDropdown(value))}
                 </Select>
               </Form.Item>
@@ -72,21 +71,22 @@ const AccountModalContainer = (props) => {
                   showArrow
                   style={{
                     width: "100%",
-                  }}>
+                  }}
+                >
                   {currencyList.map((value) => CurrencyService.getOptionForCurrencyDropdown(value))}
                 </Select>
               </Form.Item>
             </Col>
           </Row>
           <Row gutter={[25, 5]} justify="center">
-                  <Col span={16}>
-                    <Form.Item style={{ marginBottom: 0 }}>
-                      <Button type="primary" block size="large" shape="round" htmlType="submit">
-                        {props.initialValues ? 'Update Account' : 'Add Account'}
-                      </Button>
-                    </Form.Item>
-                  </Col>
-                  </Row>
+            <Col span={16}>
+              <Form.Item style={{ marginBottom: 0 }}>
+                <Button type="primary" block size="large" shape="round" htmlType="submit">
+                  {props.initialValues ? "Update Account" : "Add Account"}
+                </Button>
+              </Form.Item>
+            </Col>
+          </Row>
         </Form>
       </div>
     </>

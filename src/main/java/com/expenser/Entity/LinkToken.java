@@ -23,7 +23,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Table(name ="link_token")
-@Where(clause = "deleted !=1")
+@Where(clause = "deleted=CAST(0 as boolean)")
 public class LinkToken extends AuditEntity implements Serializable{
 
 	@Id

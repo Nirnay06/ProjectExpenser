@@ -18,8 +18,8 @@ import org.springframework.stereotype.Component;
 
 import com.expenser.Entity.Authority;
 import com.expenser.Entity.User;
-import com.expenser.api.UserService;
 import com.expenser.repository.UserRepository;
+import com.expenser.service.UserService;
 
 @Component
 public class ExpenserAuthenticationProvider implements AuthenticationProvider{

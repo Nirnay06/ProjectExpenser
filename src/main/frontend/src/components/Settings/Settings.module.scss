@@ -1,0 +1,31 @@
+@import "./../../styles/base";
+.Settings {
+  &_tabs {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+  }
+
+  &_tab {
+    padding: 1rem 0.5rem;
+    font-size: 1.5rem;
+    color: $color-grey-dark-1;
+    text-decoration: none;
+    width: 100%;
+    &:hover {
+      background-color: $color-grey-light-2;
+    }
+  }
+
+  &_main {
+    &__header {
+      padding: 1rem 2rem;
+      background-color: rgba($color-grey-light-1, 0.2);
+      border-bottom: 1px solid $color-grey-light-1;
+    }
+    &__subheader {
+      border-bottom: 1px solid $color-grey-light-1;
+    }
+  }
+}

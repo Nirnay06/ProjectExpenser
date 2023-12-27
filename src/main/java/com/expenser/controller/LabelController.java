@@ -11,11 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expenser.Entity.UserLabel;
-import com.expenser.api.UserLabelService;
 import com.expenser.exception.BusinessException;
 import com.expenser.model.APIResponseDTO;
 import com.expenser.model.ClientDTO;
 import com.expenser.model.UserLabelDTO;
+import com.expenser.service.UserLabelService;
 import com.expenser.util.SecurityUtils;
 
 @RestController

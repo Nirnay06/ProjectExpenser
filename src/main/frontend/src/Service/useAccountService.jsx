@@ -1,7 +1,7 @@
 import { Col, Row, Select } from "antd";
 import icons from "../assets/sprite.svg";
 import useHttp from "../hooks/useHttp";
-import {useContext} from "react";
+import { useContext } from "react";
 import UserContext from "../store/UserContext";
 
 const useAccountService = () => {
@@ -13,7 +13,8 @@ const useAccountService = () => {
         <Col
           style={{
             marginRight: "5px",
-          }}>
+          }}
+        >
           {value.icon ? (
             <svg className={`accountIcon accountIcon-${value.icon}-tiny`}>
               <use href={`${icons}#icon-${value.icon}-tiny`}></use>
@@ -29,6 +30,7 @@ const useAccountService = () => {
     );
   };
   const getAccountOptionForDropdown = (value) => {
+    console.log(value);
     return (
       <Select.Option value={value.identifier} label={getAccountDisplayRowForDrowdown(value)} key={value.identifier}>
         {getAccountDisplayRowForDrowdown(value)}
@@ -60,66 +62,76 @@ const useAccountService = () => {
     });
   };
 
-  const getAccountsType= ()=>{
-    return [{
-      "accountName": "General",
-      "icon": "wallet",
-      "identifier": "General"
-  }, {
-      "accountName": "Cash",
-      "icon": "coins",
-      "identifier": "Cash"
-  }, {
-      "accountName": "Current Account",
-      "icon": "safe",
-      "identifier": "Current Account"
-  }, {
-      "accountName": "Credit Card",
-      "icon": "credit-card1",
-      "identifier": "Credit Card"
-  }, {
-      "accountName": "Account with Overdraft",
-      "icon": "banknote",
-      "identifier": "Account with Overdraft"
-  }, {
-      "accountName": "Saving Account",
-      "icon": "pig1",
-      "identifier": "Saving Account"
-  }, {
-      "accountName": "Bonus",
-      "icon": "dollar1",
-      "identifier": "Bonus"
-  }, {
-      "accountName": "Insurance",
-      "icon": "coin-yen",
-      "identifier": "Insurance"
-  }, {
-      "accountName": "Investment",
-      "icon": "coin-pound",
-      "identifier": "Investment"
-  }, {
-      "accountName": "Loan",
-      "icon": "coin-euro",
-      "identifier": "Loan"
-  }, {
-      "accountName": "Mortgage",
-      "icon": "library",
-      "identifier": "Mortgage"
-  },
-];
-  }
+  const getAccountsType = () => {
+    return [
+      {
+        accountName: "General",
+        icon: "wallet",
+        identifier: "General",
+      },
+      {
+        accountName: "Cash",
+        icon: "coins",
+        identifier: "Cash",
+      },
+      {
+        accountName: "Current Account",
+        icon: "safe",
+        identifier: "Current_Account",
+      },
+      {
+        accountName: "Credit Card",
+        icon: "credit-card1",
+        identifier: "Credit_Card",
+      },
+      {
+        accountName: "Account with Overdraft",
+        icon: "banknote",
+        identifier: "Account_With_Overdraft",
+      },
+      {
+        accountName: "Saving Account",
+        icon: "pig1",
+        identifier: "Saving_Account",
+      },
+      {
+        accountName: "Bonus",
+        icon: "dollar1",
+        identifier: "Bonus",
+      },
+      {
+        accountName: "Insurance",
+        icon: "coin-yen",
+        identifier: "Insurance",
+      },
+      {
+        accountName: "Investment",
+        icon: "coin-pound",
+        identifier: "Investment",
+      },
+      {
+        accountName: "Loan",
+        icon: "coin-euro",
+        identifier: "Loan",
+      },
+      {
+        accountName: "Mortgage",
+        icon: "library",
+        identifier: "Mortgage",
+      },
+    ];
+  };
 
-  const addOrEditAccount = (values, setAccountDetail)=>{
-    sendRequest( { url: "/api/account/addOrEditAccount", method: "POST", headers: { "Content-Type": "application/json" }, body: values },
-    (data)=>{
+  const addOrEditAccount = (values, setAccountDetail) => {
+    sendRequest({ url: "/api/account/addOrEditAccount", method: "POST", headers: { "Content-Type": "application/json" }, body: values }, (data) => {
       setAccountDetail(data);
       userCtx.triggerRefresh();
-    })
-  }
+    });
+  };
 
-  const getAccountIconByType=  (accounType)=>{
-    return getAccountsType().find(ac => ac.accountName===accounType)?.icon;
-  }
+  const getAccountIconByType = (accounType) => {
+    return getAccountsType().find((ac) => ac.accountName === accounType)?.icon;
+  };
   return {
     AccountService: {
       getAccountOptionForDropdown,
@@ -129,7 +141,7 @@ const useAccountService = () => {
       getAllRecordsByAccount,
       getAccountsType,
       addOrEditAccount,
-      getAccountIconByType
+      getAccountIconByType,
     },
   };
 };

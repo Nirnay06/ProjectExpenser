@@ -42,8 +42,8 @@ import lombok.Setter;
 @Table(name ="user_records")
 @Getter
 @Setter
-@Where(clause = "deleted !=1")
-@SQLDelete(sql = "update user_record set deleted=1 where id=?")
+@Where(clause = "deleted=CAST(0 as boolean)")
+@SQLDelete(sql = "update user_record set deleted=cast(1 as boolean) where id=?")
 public class UserRecord extends AuditEntity  implements Serializable{
 
 	@Id
@@ -126,8 +126,8 @@ public class UserRecord extends AuditEntity  implements Serializable{
 		this.baseCurrencyAmount = getBaseCurrencyAmount(this.amount, this.currency.getCurrencyRate());
 	}
 	
-	public BigDecimal getBaseCurrencyAmount(BigDecimal amount, long currencyRate) {
-		return amount.multiply(new BigDecimal(currencyRate));
+	public BigDecimal getBaseCurrencyAmount(BigDecimal amount, BigDecimal currencyRate) {
+		return amount.multiply(currencyRate);
 	}
 
 	public UserRecord(long id, String recordIdentifier, Client client, UserAccount account, RecordType recordType,

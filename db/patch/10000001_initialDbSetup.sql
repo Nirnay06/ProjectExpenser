@@ -67,7 +67,6 @@ created_by varchar2(2000) ,  updated_by varchar2(2000) ,  created_date TIMESTAMP
 CREATE SEQUENCE PRODUCT_CONFIG_SEQ INCREMENT BY 1 START WITH 100 MINVALUE 100
 /
 
-/
 
 create or replace NONEDITIONABLE function getSysUUID
 RETURN varchar2

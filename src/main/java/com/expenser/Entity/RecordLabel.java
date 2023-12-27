@@ -32,8 +32,8 @@ import lombok.Setter;
 @Table(name ="record_labels")
 @Getter
 @Setter
-@Where(clause = "deleted !=1")
-@SQLDelete(sql = "update record_labels set deleted=1 where id=?")
+@Where(clause = "deleted=CAST(0 as boolean)")
+@SQLDelete(sql = "update record_labels set deleted=cast(1 as boolean) where id=?")
 public class RecordLabel  extends AuditEntity implements Serializable{
 
 	@Id

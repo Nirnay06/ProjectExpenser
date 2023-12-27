@@ -28,8 +28,8 @@ import lombok.Setter;
 
 @Entity
 @Table(name = "file_upload")
-@Where(clause = "deleted=0")
-@SQLDelete(sql = "update file_upload set deleted=0 where id=?")
+@Where(clause = "deleted=CAST(0 as boolean)")
+@SQLDelete(sql = "update file_upload set deleted=CAST(1 as boolean) where id=?")
 @Getter
 @Setter
 public class FileUpload extends AuditEntity {
