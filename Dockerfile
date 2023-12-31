@@ -1,5 +1,5 @@
 # Use a base image with Java 11 installed
-FROM adoptopenjdk:11-jre-hotspot
+FROM openjdk:11-jre-slim
 
 # Set the working directory inside the container
 WORKDIR /app

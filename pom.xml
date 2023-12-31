@@ -157,6 +157,26 @@
 			<scope>runtime</scope>
 		</dependency>
 	</dependencies>
+	<profiles>
+    <profile>
+        <id>local</id>
+        <activation>
+            <activeByDefault>true</activeByDefault>
+        </activation>
+        <properties>
+            <spring.profiles.active>local</spring.profiles.active>
+            <property.folder>local</property.folder>
+        </properties>
+    </profile>
+    <profile>
+        <id>production</id>
+        <!-- You can activate this profile with a Maven command-line option or in your CI/CD environment -->
+        <properties>
+            <spring.profiles.active>production</spring.profiles.active>
+            <property.folder>production</property.folder>
+        </properties>
+    </profile>
+</profiles>
 
 	<build>
 		<plugins>
@@ -188,12 +208,14 @@
 					<goals>
 						<goal>install-node-and-npm</goal>
 					</goals>
+					<phase>validate</phase>
 				</execution>
 				<execution>
 					<id>npm install</id>
 					<goals>
 						<goal>npm</goal>
 					</goals>
+					<phase>initialize</phase>
 					<configuration>
 						<arguements>install</arguements>
 					</configuration>
@@ -204,7 +226,7 @@
 						<goals>
 							<goal>npm</goal>
 						</goals>
-						<phase>prepare-package</phase>
+						<phase>generate-sources</phase>
 						<configuration>
 							<arguments>run build</arguments>
 						</configuration>
@@ -219,9 +241,9 @@
 						<goals>
 							<goal>copy-resources</goal>
 						</goals>
-						<phase>prepare-package</phase>
+						<phase>generate-resources</phase>
 						<configuration>
-							<outputDirectory>${project.build.outputDirectory}/static</outputDirectory>
+							<outputDirectory>${project.basedir}/src/main/resources/static</outputDirectory>
 							<resources>
 								<resource>
 									<directory>${frontend-src-dir}/build</directory>

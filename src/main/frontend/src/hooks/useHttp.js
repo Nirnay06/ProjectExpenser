@@ -9,6 +9,9 @@ const useHttp = () => {
     const defaultErrorHandlingFunction = (data) => { message.error(data.message ? data.message : 'Something went wrong !!') }
     const sendRequest = useCallback(async (requestConfig, applyData = () => { }, handleError = defaultErrorHandlingFunction, hideLoader = false) => {
         let auth = sessionStorage.getItem("Authorization");
+        if (process.env.NODE_ENV !== 'development') {
+            requestConfig.url = requestConfig.url.replace(/^\/api/, "");
+        }
         if (auth) {
             requestConfig.headers = { ...requestConfig.headers, "Authorization": auth }
         }

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.annotation.Order;
+import org.springframework.security.web.util.matcher.RequestMatcher;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -22,6 +23,11 @@ import com.expenser.model.UserDTO;
 import com.expenser.service.ClientService;
 import com.expenser.util.SecurityUtils;
 
+import org.springframework.security.web.util.matcher.AndRequestMatcher;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
+import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
+import org.springframework.security.web.util.matcher.OrRequestMatcher;
+
 @Component
 @Order(2)
 public class ClientFilter extends OncePerRequestFilter{
@@ -31,6 +37,19 @@ public class ClientFilter extends OncePerRequestFilter{
 	
 	@Autowired
 	private ModelMapper mapper;
+	
+	private RequestMatcher requestMatcher = 
+            new OrRequestMatcher(
+                    new AntPathRequestMatcher("/**/*.png"),
+                    new AntPathRequestMatcher("/**/*.gif"),
+                    new AntPathRequestMatcher("/**/*.svg"),
+                    new AntPathRequestMatcher("/**/*.jpg"),
+                    new AntPathRequestMatcher("/**/*.html"),
+                    new AntPathRequestMatcher("/**/*.css"),
+                    new AntPathRequestMatcher("/**/*.js"),
+                    new AntPathRequestMatcher("/**/*.manifest")
+                    
+    );
 	
 	@Override
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
@@ -54,6 +73,6 @@ public class ClientFilter extends OncePerRequestFilter{
 
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-		return request.getServletPath().contains("/auth");
+		return request.getServletPath().contains("/auth") || requestMatcher.matches(request);
 	}
 }

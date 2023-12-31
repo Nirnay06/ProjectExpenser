@@ -1,7 +1,4 @@
-FROM openjdk:11-jre-slim
+mvn clean installed
 
-WORKDIR /app
+docker build --platform linux/amd64 -t nirnay06/expenser:latest .
 
-COPY ./project-expenser-0.0.1-SNAPSHOT.jar .
-
-CMD ["java", "-jar", "project-expenser-0.0.1-SNAPSHOT.jar"]
