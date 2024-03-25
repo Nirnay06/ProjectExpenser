@@ -27,6 +27,7 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +36,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.expenser.Entity.User;
+import com.expenser.enums.AuthProvider;
 import com.expenser.model.APIResponseDTO;
 import com.expenser.model.LoginRequestDTO;
 import com.expenser.model.SignupRequestDTO;
@@ -59,6 +61,9 @@ public class AuthRestController {
 	
 	@Autowired
 	ModelMapper mapper;
+	
+	@Autowired
+	PasswordEncoder passwordEncoder;
 
 	@PostMapping("/login")
 	public ResponseEntity<?> login(@RequestBody LoginRequestDTO loginRequest, HttpServletRequest request,
@@ -104,6 +109,8 @@ public class AuthRestController {
 			if (signupRequest.getUsername() != null && signupRequest.getPassword() != null) {
 				
 				if (!userService.checkIfUsernameExists(signupRequest.getUsername())) {
+					signupRequest.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+					signupRequest.setProvider(AuthProvider.local);
 					userService.addUser(signupRequest, appURL);
 					return new ResponseEntity<>(new APIResponseDTO("User added successfully. A confirmation email will be sent to you inbox.", true), HttpStatus.OK);
 				} else {
@@ -187,6 +194,7 @@ public class AuthRestController {
 			String appURL = request.getContextPath();
 			signupRequest.setUsername(signupRequest.getUsername().toLowerCase());
 			if (signupRequest.getUsername() != null && signupRequest.getPassword() != null) {
+				signupRequest.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
 				userService.updatePassword(signupRequest);
 				return new ResponseEntity<>(new APIResponseDTO("Password reset successfully", true),
 						HttpStatus.OK);
@@ -205,4 +213,5 @@ public class AuthRestController {
 		}
 		
 	}
+	
 }

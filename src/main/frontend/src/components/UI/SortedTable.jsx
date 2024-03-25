@@ -49,7 +49,6 @@ const SortedTable = ({ list, sortProperty, columns, setUpdatedData, pagination, 
     );
   };
   const onDragEnd = ({ active, over }) => {
-    console.log(active, over);
     if (active.id !== over?.id) {
       setUpdatedData((previous) => {
         const activeIndex = previous.findIndex((i) => i[sortProperty] === active.id);

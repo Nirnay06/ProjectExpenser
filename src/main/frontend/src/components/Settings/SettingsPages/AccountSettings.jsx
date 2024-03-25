@@ -27,7 +27,6 @@ const AccountSettings = () => {
       width: "10%",
       render: (_, record) => {
         const value = AccountService.getAccountsType().find((t) => t.identifier === record.accountType);
-        console.log(record.accountsType, value);
         return (
           <svg className={`accountIcon accountIcon-${value?.icon}-tiny`}>
             <use href={`${icons}#icon-${value?.icon}-tiny`}></use>

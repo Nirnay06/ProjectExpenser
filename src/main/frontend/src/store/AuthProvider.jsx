@@ -3,6 +3,7 @@ import useServices from "../hooks/useSevices";
 import { isFutureDate } from "../utils/DateUtil";
 import { parseJwt } from "../utils/JWTparser";
 import AuthContext from "./AuthContext";
+import Cookies from "js-cookie";
 
 const AuthProvider = (props) => {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -10,18 +11,19 @@ const AuthProvider = (props) => {
   const [displaySpinner, setDisplaySpinner] = useState(false);
   const [JWTUser, setSessionUser] = useState({});
 
-  useEffect(()=>{
+  useEffect(() => {
     setJWTUser();
-  },[])
+  }, []);
+
   const setJWTUser = () => {
     const jwt = window.sessionStorage.getItem("Authorization");
-    if(jwt){
+    if (jwt) {
       const details = parseJwt(jwt);
       if (isFutureDate(details.expiredAt)) {
         setLoggedIn(true);
         setSessionUser(details.user);
-      } 
-    }else {
+      }
+    } else {
       AuthenticationService.logoutHandler();
     }
     AuthenticationService.logoutHandler();
@@ -29,6 +31,7 @@ const AuthProvider = (props) => {
   const logoutHandler = () => {
     setLoggedIn(false);
     window.sessionStorage.removeItem("Authorization");
+    Cookies.remove("Authorization");
   };
   return (
     <AuthContext.Provider
@@ -40,7 +43,8 @@ const AuthProvider = (props) => {
         JWTUser,
         setJWTUser,
         logoutHandler,
-      }}>
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

@@ -17,6 +17,8 @@ public class SecurityUtils {
 
 	private static ClientDTO client = null;
 	
+	private static String baseUrl = null;
+	
 	/*<p>This function will return the user from Spring session</p>
 	 * @return userDTO -> the detail of the user
 	 * @throw AccessDenied Exception
@@ -42,5 +44,13 @@ public class SecurityUtils {
 
 	public static void setClientDetails(ClientDTO clientDTO) {
 		client = clientDTO;
+	}
+	
+	public static void setBaseUrl(String url) {
+		baseUrl= url;
+	}
+	
+	public static String getBaseUrl() {
+		return baseUrl;
 	}
 }

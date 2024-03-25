@@ -13,13 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.security.authentication.BadCredentialsException;
-import org.springframework.security.core.token.TokenService;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.expenser.Entity.Authority;
 import com.expenser.Entity.LinkToken;
 import com.expenser.Entity.User;
+import com.expenser.enums.AuthProvider;
 import com.expenser.enums.AuthorityEnum;
 import com.expenser.enums.EmailType;
 import com.expenser.enums.LinkTokenType;
@@ -38,8 +37,7 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	UserRepository userRepository;
 
-	@Autowired
-	PasswordEncoder passwordEncoder;
+
 	
 	@Autowired
 	ApplicationEventPublisher applicationEventPublisher;
@@ -67,12 +65,16 @@ public class UserServiceImpl implements UserService {
 
 	@Transactional
 	@Override
-	public void addUser(SignupRequestDTO signupRequest, String appURL) {
+	public User addUser(SignupRequestDTO signupRequest, String appURL) {
 		User user = new User();
 		user.setFirstname(signupRequest.getFirstname());
 		user.setLastname(signupRequest.getLastname());
 		user.setUsername(signupRequest.getUsername());
-		user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+		user.setPassword(signupRequest.getPassword());
+		user.setProvider(signupRequest.getProvider());
+		if(signupRequest.getFullname()!=null) {
+			user.setName(signupRequest.getFullname());
+		}
 		Set<Authority> auths = new HashSet<>();
 		Authority auth = new Authority(AuthorityEnum.USER.name());
 		auth.setUser(user);
@@ -82,7 +84,8 @@ public class UserServiceImpl implements UserService {
 		if(newUser!=null) {
 			clientService.createNewClient(user);
 		}
-		sendRegistrationEmailToUser(user, appURL,EmailType.REGISTRATION_CONFIRM);
+//		sendRegistrationEmailToUser(user, appURL,EmailType.REGISTRATION_CONFIRM);
+		return newUser;
 	}
 
 	@Override
@@ -155,7 +158,7 @@ public class UserServiceImpl implements UserService {
 		User user = getUserByUsername(signupRequest.getUsername());
 		if(user!=null) {	
 			if(user.isEnabled()) {
-				user.setPassword(passwordEncoder.encode(signupRequest.getPassword()));
+				user.setPassword(signupRequest.getPassword());
 				userRepository.save(user);
 				return;
 			}

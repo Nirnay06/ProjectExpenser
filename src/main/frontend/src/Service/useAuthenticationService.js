@@ -126,7 +126,11 @@ const useAuthenticationService = () => {
     const logoutHandler = () => {
         authCtx.logoutHandler();
     };
-    return { "AuthenticationService": { createUser, sendConfirmationMail, sendResetPasswordMail, fetchUserDetailsForToken, resetUserPassword, loginHandler, logoutHandler } };
+
+    const socialLogin = (provider) => {
+        sendRequest({ url: `/api/oauth2/authorize/${provider}?redirect_uri=http://localhost:3000/oauth2/redirect` })
+    }
+    return { "AuthenticationService": { createUser, sendConfirmationMail, sendResetPasswordMail, fetchUserDetailsForToken, resetUserPassword, loginHandler, logoutHandler, socialLogin } };
 }
 
 export default useAuthenticationService;

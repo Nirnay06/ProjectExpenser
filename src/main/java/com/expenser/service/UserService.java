@@ -13,7 +13,7 @@ import com.expenser.model.UserDTO;
 public interface UserService {
 	public  User getUserByUsername(String username);
 
-	public void addUser(SignupRequestDTO signupRequest, String appURL);
+	public User addUser(SignupRequestDTO signupRequest, String appURL);
 
 	boolean checkIfUsernameExists(String username);
 

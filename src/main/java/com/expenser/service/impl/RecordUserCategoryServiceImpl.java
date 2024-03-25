@@ -49,12 +49,13 @@ public class RecordUserCategoryServiceImpl implements RecordUserCategoryService{
 	@Async
 	public void createDefaultCategories(Client newClient) {
 		try {
-			StoredProcedureQuery query = entityManager.createStoredProcedureQuery("createDefaultCategoryForClient");
-			query.registerStoredProcedureParameter("clientIdentifier", String.class, ParameterMode.IN);
-			query.registerStoredProcedureParameter("createdBy", String.class, ParameterMode.IN);
-			query.setParameter("clientIdentifier", newClient.getClientIdentifier());
-			query.setParameter("createdBy", SecurityUtils.getLoggedUserFromSession().getUserIdentifier());
-			query.execute();
+//			StoredProcedureQuery query = entityManager.createStoredProcedureQuery("createDefaultCategoryForClient");
+//			query.registerStoredProcedureParameter("clientIdentifier", String.class, ParameterMode.IN);
+//			query.registerStoredProcedureParameter("createdBy", String.class, ParameterMode.IN);
+//			query.setParameter("clientIdentifier", newClient.getClientIdentifier());
+//			query.setParameter("createdBy", newClient.getUser().getUserIdentifier());
+//			query.execute();
+			recordUserCategoryRepository.createDefaultCategories(newClient.getClientIdentifier(), newClient.getUser().getUserIdentifier());
 		}catch(Exception e) {
 			e.printStackTrace();
 		}

@@ -28,9 +28,11 @@ public class AuditEntityListner {
 		aud.setUpdatedDate(date);
 	}
 	private String getLoggedInUser() {
-		String username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
-		if(username==null) {
-			username = "SYSTEM";
+		
+		String username = "SYSTEM";
+		
+		if(SecurityContextHolder.getContext().getAuthentication()!=null && SecurityContextHolder.getContext().getAuthentication().getPrincipal()!=null) {
+			username = SecurityContextHolder.getContext().getAuthentication().getPrincipal().toString();
 		}
 		return username;
 	}

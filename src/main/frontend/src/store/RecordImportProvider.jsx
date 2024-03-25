@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import RecordImportContext from "./RecordImportContext";
-import {useEffect} from "react";
-
+import { useEffect } from "react";
 
 const RecordImportProvider = (props) => {
-
-  const [fileImportData, setFileImportData] =useState({
+  const [fileImportData, setFileImportData] = useState({
     // "data": [
     //     [
     //         "Transaction name ",
@@ -122,49 +120,48 @@ const RecordImportProvider = (props) => {
     //     "M",
     //     "N"
     // ]
-});
-const [currentStep, setCurrentStep] = useState(0);
-  const [fileMetaData, setFileMetaData] = useState({headerToggle : false});
-  
-  const updateFileImportData = (key, value)=>{
-    setFileImportData(p=>{
-      return {...p, key : value}
-    })
-  }
+  });
+  const [currentStep, setCurrentStep] = useState(0);
+  const [fileMetaData, setFileMetaData] = useState({ headerToggle: false });
 
-  const updateFileMetaData = (field, value)=>{
-    setFileMetaData(p=>{
-      return {...p, [`${field}`] : value}
-    })
-  }
- 
-  const isCellHighlighted = (rowIndex, colIndex)=>{
-    console.log('nirnay');
-    if(fileMetaData.headerToggle == true && fileMetaData.selectedHeaderRow ==rowIndex){
+  const updateFileImportData = (key, value) => {
+    setFileImportData((p) => {
+      return { ...p, key: value };
+    });
+  };
+
+  const updateFileMetaData = (field, value) => {
+    setFileMetaData((p) => {
+      return { ...p, [`${field}`]: value };
+    });
+  };
+
+  const isCellHighlighted = (rowIndex, colIndex) => {
+    if (fileMetaData.headerToggle == true && fileMetaData.selectedHeaderRow == rowIndex) {
       return false;
     }
-    if(currentStep==1){
-      let highlightCell =false;
-      if(fileMetaData.isIncomeExpenseDiff){
-        highlightCell = colIndex==fileMetaData.incomeColumn || colIndex==fileMetaData.expenseColumn;
-      }else{
-         highlightCell =  colIndex==fileMetaData.amountColumn;
+    if (currentStep == 1) {
+      let highlightCell = false;
+      if (fileMetaData.isIncomeExpenseDiff) {
+        highlightCell = colIndex == fileMetaData.incomeColumn || colIndex == fileMetaData.expenseColumn;
+      } else {
+        highlightCell = colIndex == fileMetaData.amountColumn;
       }
-      if(highlightCell==false && fileMetaData.isFeeApplicable){
-        highlightCell =  colIndex==fileMetaData.feeColumn;
+      if (highlightCell == false && fileMetaData.isFeeApplicable) {
+        highlightCell = colIndex == fileMetaData.feeColumn;
       }
       return highlightCell;
     }
 
-    if(currentStep==2){
-        return colIndex==fileMetaData.dateColumn ;
+    if (currentStep == 2) {
+      return colIndex == fileMetaData.dateColumn;
     }
 
-    if(currentStep==3){
-      return colIndex==fileMetaData.noteColumn || colIndex==fileMetaData.payeeColumn || colIndex==fileMetaData.currencyColumn;
-  }
+    if (currentStep == 3) {
+      return colIndex == fileMetaData.noteColumn || colIndex == fileMetaData.payeeColumn || colIndex == fileMetaData.currencyColumn;
+    }
     return false;
-  }
+  };
   return (
     <RecordImportContext.Provider
       value={{
@@ -175,8 +172,10 @@ const [currentStep, setCurrentStep] = useState(0);
         setFileMetaData,
         updateFileMetaData,
         isCellHighlighted,
-        currentStep, setCurrentStep
-      }}>
+        currentStep,
+        setCurrentStep,
+      }}
+    >
       {props.children}
     </RecordImportContext.Provider>
   );

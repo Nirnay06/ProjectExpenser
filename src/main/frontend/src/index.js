@@ -13,9 +13,9 @@ ReactDOM.render(
     <CookiesProvider>
       <AuthProvider>
         <UserProvider>
-        <HashRouter hashType='noslash'>
-          <App />
-        </HashRouter>
+          <HashRouter hashType='noslash'>
+            <App />
+          </HashRouter>
         </UserProvider>
       </AuthProvider>
     </CookiesProvider>

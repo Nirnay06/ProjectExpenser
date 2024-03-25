@@ -69,6 +69,8 @@ public class Client extends AuditEntity implements Serializable{
 		if(this.clientIdentifier==null) {
 			this.clientIdentifier=UUID.randomUUID().toString();
 		}
-		this.fullName = this.firstName.concat(Constants.NAME_DELIMITER).concat(this.lastName);
+		if(this.firstName!=null) {			
+			this.fullName = this.firstName.concat(Constants.NAME_DELIMITER).concat(this.lastName);
+		}
 	}
 }

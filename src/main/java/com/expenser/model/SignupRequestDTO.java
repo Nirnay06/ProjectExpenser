@@ -6,6 +6,8 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
+import com.expenser.enums.AuthProvider;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -27,6 +29,15 @@ public class SignupRequestDTO {
 	
 	@Pattern(regexp = "^.([A-Za-z0-9])*$", message="Name should be alphanumeric")
 	private String lastname;
+	
+	@Pattern(regexp = "^.([A-Za-z0-9])*$", message="Name should be alphanumeric")
+	private String fullname;
+	
+	private AuthProvider provider;
+	private String providerId;
+	private String imageUrl;
+	
+	
 	
 	public boolean isValidUsername() {
 		if(this.username !=null && java.util.regex.Pattern.matches("^\\w+([\\.-]?\\w+)*@\\w+([\\.-]?\\w+)*(\\.\\w{2,3})+$", this.username)) {

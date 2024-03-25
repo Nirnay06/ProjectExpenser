@@ -2,3 +2,27 @@ mvn clean installed
 
 docker build --platform linux/amd64 -t nirnay06/expenser:latest .
 
+
+
+
+response_type: code
+client_id: 1047068622599-rg1aiadrq1b71rmo13gatued454khbti.apps.googleusercontent.com
+scope: openid profile email
+state: dUmBg28pe_Dw_sERy9-OVggoXkdNySo4jXtwaijbX6s=
+redirect_uri: http://localhost:8080/login/oauth2/code/google
+nonce: 1YygbHroJFhgG6rTDV-sgHcomlVzMDuIUjCkM-Se12o
+
+
+response_type: code
+client_id: 1047068622599-rg1aiadrq1b71rmo13gatued454khbti.apps.googleusercontent.com
+scope: openid profile email
+state: Jey-mO4FkzAUXIEoRxvnKpW1SNo2bQM_qhapaUVFkd0=
+redirect_uri: http://localhost:8080/login/oauth2/code/google
+nonce: OrW7KrS3EHbwqGnpGZt-Q5XcxO9nwypE0R_2Yk2nrBY
+
+
+/o/oauth2/v2/auth?response_type=code&client_id=1047068622599-rg1aiadrq1b71rmo13gatued454khbti.apps.googleusercontent.com&scope=openid%20profile%20email&state=TtkjPtnxOhGPjCm1PLA67tFb3lYBco01kmnJI1U0k14%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google&nonce=1Ly6NeU3L5-EtNeW6j4O0EH9HwpvM5GOCAdNfqYgCMg
+
+
+
+/o/oauth2/v2/auth?response_type=code&client_id=1047068622599-rg1aiadrq1b71rmo13gatued454khbti.apps.googleusercontent.com&scope=openid%20profile%20email&state=i7oxvW_V4O31m0DijMU-dVaehpaI0woG2K-nws7rlmE%3D&redirect_uri=http://localhost:8080/login/oauth2/code/google&nonce=sHjA9a0coSJSGE2-eHdPd9GzVsrKgarE2v02uF_CND8

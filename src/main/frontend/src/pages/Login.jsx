@@ -5,6 +5,7 @@ import InputField from "../components/UI/InputField";
 import Spinner from "../components/UI/Spinner";
 import useServices from "../hooks/useSevices";
 import AuthContext from "../store/AuthContext";
+import { GithubLoginButton, FacebookLoginButton, GoogleLoginButton } from "react-social-login-buttons";
 
 const LoginPage = () => {
   const authCtx = useContext(AuthContext);
@@ -15,11 +16,7 @@ const LoginPage = () => {
     AuthenticationService.loginHandler(form["username"], form["password"]);
   };
   if (authCtx.isLoggedIn) {
-    history.push(
-      location && location.state && location.state.from
-        ? location.state.from
-        : "/"
-    );
+    history.push(location && location.state && location.state.from ? location.state.from : "/");
   }
 
   const initialValues = {
@@ -42,20 +39,8 @@ const LoginPage = () => {
           validationFunction={validationHandler}
           buttonText="Login"
         >
-          <InputField
-            label="Username"
-            type="email"
-            name="username"
-            placeholder="Enter your email address"
-            required="required"
-          />
-          <InputField
-            label="Password"
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            required="required"
-          />
+          <InputField label="Username" type="email" name="username" placeholder="Enter your email address" required="required" />
+          <InputField label="Password" type="password" name="password" placeholder="Enter your password" required="required" />
         </Form>
         <div className="Forget__password">
           <Link to="/reset-password">Reset Password</Link>
@@ -68,10 +53,17 @@ const LoginPage = () => {
         </div>
       </div>
       <div className="Login-box__right Login-box__dark">
-        <h3 className="heading--3 center uppercase">
-          this is the social login
-        </h3>
+        <h3 className="heading--3 center uppercase">this is the social login</h3>
         <h3 className="heading--3 center uppercase">coming soon!!</h3>
+        <a href="http://localhost:8080/oauth2/authorize/google">
+          <GoogleLoginButton />
+        </a>
+        <a href="http://localhost:8080/oauth2/authorize/github">
+          <GithubLoginButton />
+        </a>
+        <a href="http://localhost:8080/oauth2/authorize/facebook">
+          <FacebookLoginButton />
+        </a>
       </div>
     </>
   );

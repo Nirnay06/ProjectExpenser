@@ -7,6 +7,8 @@ import java.util.UUID;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,10 +17,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.PrePersist;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
+import com.expenser.enums.AuthProvider;
 import com.expenser.util.Constants;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -61,6 +65,14 @@ public class User extends AuditEntity implements Serializable{
 	@Column(name ="enabled")
 	private boolean enabled = Boolean.FALSE;
 	
+	private String imageUrl;
+	   
+    @NotNull
+    @Enumerated(EnumType.STRING)
+    private AuthProvider provider;
+
+    private String providerId;
+	
 	 @JsonIgnoreProperties("user")
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER,cascade = CascadeType.ALL, orphanRemoval = true)
 	private Set<Authority> authorities;
@@ -83,7 +95,9 @@ public class User extends AuditEntity implements Serializable{
 		if(this.userIdentifier==null) {
 			this.userIdentifier=UUID.randomUUID().toString();
 		}
-		this.name = this.firstname.concat(Constants.NAME_DELIMITER).concat(this.lastname);
+		if(this.firstname!=null) {			
+			this.name = this.firstname.concat(Constants.NAME_DELIMITER).concat(this.lastname);
+		}
 	}
 
 }

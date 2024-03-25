@@ -156,28 +156,13 @@
 			<artifactId>postgresql</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-oauth2-client</artifactId>
+	</dependency>
 	</dependencies>
-	<profiles>
-    <profile>
-        <id>local</id>
-        <activation>
-            <activeByDefault>true</activeByDefault>
-        </activation>
-        <properties>
-            <spring.profiles.active>local</spring.profiles.active>
-            <property.folder>local</property.folder>
-        </properties>
-    </profile>
-    <profile>
-        <id>production</id>
-        <!-- You can activate this profile with a Maven command-line option or in your CI/CD environment -->
-        <properties>
-            <spring.profiles.active>production</spring.profiles.active>
-            <property.folder>production</property.folder>
-        </properties>
-    </profile>
-</profiles>
 
+	
 	<build>
 		<plugins>
 			<plugin>

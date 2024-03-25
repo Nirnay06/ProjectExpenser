@@ -73,6 +73,6 @@ public class ClientFilter extends OncePerRequestFilter{
 
 	@Override
 	protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-		return request.getServletPath().contains("/auth") || requestMatcher.matches(request);
+		return request.getServletPath().contains("/auth") || request.getServletPath().equals("/") || requestMatcher.matches(request);
 	}
 }

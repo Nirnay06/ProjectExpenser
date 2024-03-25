@@ -11,12 +11,8 @@ const ResetPasswordPage = () => {
   const [data, setData] = useState();
   const params = useParams();
   useEffect(() => {
-    AuthenticationService.fetchUserDetailsForToken(
-      params.tokenIdentifier,
-      setData
-    );
+    AuthenticationService.fetchUserDetailsForToken(params.tokenIdentifier, setData);
   }, []);
-  console.log(data);
   const initialValues = {
     username: data ? data.username : "",
     password: "",
@@ -46,27 +42,9 @@ const ResetPasswordPage = () => {
             validationFunction={validationHandler}
             buttonText="Reset Password"
           >
-            <InputField
-              label="First Name"
-              type="text"
-              name="firstname"
-              placeholder="Enter your First Name"
-              disabled="disabled"
-            />
-            <InputField
-              label="Last Name"
-              type="text"
-              name="lastname"
-              placeholder="Enter your Last Name"
-              disabled="disabled"
-            />
-            <InputField
-              label="Username"
-              type="email"
-              name="username"
-              placeholder="Enter your email address"
-              disabled="disabled"
-            />
+            <InputField label="First Name" type="text" name="firstname" placeholder="Enter your First Name" disabled="disabled" />
+            <InputField label="Last Name" type="text" name="lastname" placeholder="Enter your Last Name" disabled="disabled" />
+            <InputField label="Username" type="email" name="username" placeholder="Enter your email address" disabled="disabled" />
             <InputField
               label="Password"
               type="password"
@@ -75,7 +53,6 @@ const ResetPasswordPage = () => {
               required="required"
               info="Pasword should have minimum 8 characters, at least 1 uppercase letter, 1 lowercase letter, 1 number and 1 special character"
             />
-            {console.log(data)}
           </Form>
         )}
         <div className="Forget__password">

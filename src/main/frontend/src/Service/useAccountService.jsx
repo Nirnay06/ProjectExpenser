@@ -30,7 +30,6 @@ const useAccountService = () => {
     );
   };
   const getAccountOptionForDropdown = (value) => {
-    console.log(value);
     return (
       <Select.Option value={value.identifier} label={getAccountDisplayRowForDrowdown(value)} key={value.identifier}>
         {getAccountDisplayRowForDrowdown(value)}
