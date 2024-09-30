@@ -1,0 +1,209 @@
+@import "antd/dist/antd.less";
+
+@primary-color: #03a9f4;
+@primary-color-dark: #0b98d8;
+@primary-color-light: #00bcd4;
+@registerBtn-color: #09c;
+@registerBtn-dark: #287ca8;
+@error-color: rgb(169, 68, 66);
+@link-color: @primary-color; // link color
+// @success-color: #52c41a; // success state color
+// @warning-color: #faad14; // warning state color
+// @font-size-base: 16px; // major text font size
+// @heading-color: rgba(0, 0, 0, 0.85); // heading text color
+// @text-color: rgba(0, 0, 0, 0.65); // major text color
+// @text-color-secondary: rgba(0, 0, 0, 0.45); // secondary text color
+// @disabled-color: rgba(0, 0, 0, 0.25); // disable state color
+// @border-radius-base: 2px; // major border radius
+// @border-color-base: #d9d9d9; // major border color
+// @box-shadow-base: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08),
+//   0 9px 28px 8px rgba(0, 0, 0, 0.05); // major shadow for layers
+
+.ant-notification-notice-close {
+  top: 5px;
+  right: 10px;
+}
+
+.uzButton.ant-btn.ant-btn-primary {
+  background-color: @primary-color;
+  color: white;
+  &:hover {
+    background: @primary-color-dark;
+    border-color: transparent;
+    color: white;
+  }
+}
+.registerBtn.uzButton.ant-btn.ant-btn-primary {
+  background-color: @registerBtn-color;
+  color: white;
+  &:hover {
+    background: @registerBtn-dark;
+    border-color: transparent;
+    color: white;
+  }
+}
+.uzButton.ant-btn {
+  height: auto;
+  border-radius: 4px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.42857;
+  margin-bottom: 0;
+  padding: 7px 20px;
+  text-align: center;
+  vertical-align: middle;
+  white-space: nowrap;
+  &[disabled] {
+    color: white;
+    opacity: 0.65;
+  }
+}
+.continueButton.ant-btn {
+  font-size: 18px;
+  padding: 6px 40px;
+}
+
+.buttonRow {
+  .ant-btn {
+    margin-left: 20px;
+  }
+}
+
+.uzCheckBox.ant-checkbox-wrapper {
+  align-items: flex-start;
+  margin-left: 2px;
+  .ant-checkbox {
+    margin-right: 3px;
+  }
+  .ant-checkbox-inner {
+    width: 25px;
+    height: 25px;
+    border-radius: 1px;
+    &:after {
+      top: 40%;
+      left: 20.5%;
+      width: 8.714286px;
+      height: 16.142857px;
+    }
+  }
+  &.small {
+    font-size: 13px;
+  }
+  &.error-checkbox {
+    .ant-checkbox-inner {
+      border-color: @error-color;
+    }
+  }
+}
+.ant-form label {
+  font-size: 16px;
+}
+.ant-checkbox-wrapper {
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  .ant-checkbox {
+    top: 0;
+  }
+}
+.ant-tooltip {
+  .ant-tooltip-inner {
+    background: #000;
+    font-size: 12px;
+    border-radius: 4px;
+  }
+  .ant-tooltip-arrow {
+    .ant-tooltip-arrow-content {
+      background-color: #000;
+    }
+  }
+}
+
+.ant-popover.redPopover {
+  .ant-popover-inner-content {
+    color: #fff;
+    background: @error-color;
+    border-radius: 4px;
+  }
+  .ant-popover-arrow {
+    .ant-popover-arrow-content {
+      background: @error-color;
+      &::before {
+        background: @error-color;
+      }
+    }
+  }
+}
+.ant-notification {
+  &.ant-notification-top {
+    width: 100%;
+    .ant-notification-notice {
+      width: 100%;
+      max-width: 100%;
+      border: 0;
+      padding: 12px;
+      box-shadow: none;
+      &.ant-notification-notice-error {
+        color: #a94442;
+        background: #f2dede;
+        .ant-notification-notice-message {
+          color: #a94442;
+        }
+        .ant-notification-notice-with-icon {
+          .icon-bulb {
+            margin: 0;
+          }
+        }
+      }
+      &.ant-notification-notice-success {
+        color: #b7eb8f;
+        background: #f6ffed;
+      }
+      &.ant-notification-notice-warning {
+        color: #ffe58f;
+        background: #fffbe6;
+      }
+      &.ant-notification-notice-info {
+        color: #91d5ff;
+        background: #e6f7ff;
+      }
+    }
+  }
+  .ant-notification-notice-with-icon .ant-notification-notice-message {
+    font-size: 14px;
+  }
+}
+
+.ant-alert {
+  border: 0 !important;
+  .ant-alert-icon {
+    margin-right: 20px;
+  }
+  &.ant-alert-error {
+    background: #f2dede;
+    .ant-alert-message {
+      color: #a94442;
+    }
+  }
+  &.ant-alert-success {
+    background: #41c4b6;
+    .ant-alert-message {
+      color: #fff;
+    }
+  }
+  &.ant-alert-warning {
+    background: #fcf8e3;
+    .ant-alert-message {
+      color: #8a6d3b;
+    }
+  }
+  .ant-alert-close {
+    font-size: 24px;
+    color: #000;
+  }
+}
+input[type="password"] {
+  font: inherit !important;
+}

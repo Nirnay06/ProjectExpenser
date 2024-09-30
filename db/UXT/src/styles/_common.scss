@@ -1,0 +1,102 @@
+body{
+  background: $body-bg !important;
+  font-family: 'Nunito', sans-serif;
+  color: $color-text;
+  font-size: $font16;
+}
+
+.container{
+  width: 1140px;
+  margin: 0 auto;
+}
+
+.well{
+  background: #FFFFFF 0% 0% no-repeat padding-box;
+  box-shadow: 0px 3px 6px #00000029;
+  border-radius: 3px;
+  padding: 30px;
+  margin-bottom: 30px;
+}
+.bottomButton {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 30px;
+  background: #F3F3F3;
+  z-index: 9;
+  box-shadow: 0 -10px 10px #e3e1db;
+}
+.d-flex{
+  display: flex;
+  &.justify-content-between{
+    justify-content: space-between;
+  }
+}
+footer{
+  a{
+    color: $color-secondary;
+    &:hover{
+      color: $color-secondary;
+      text-decoration: underline;
+    }
+  }
+}
+.listWithNumber{
+  padding: 0;
+  margin:0;
+  list-style-type: none;
+  counter-reset: section;
+  color: #00000094;
+  font-size: $font16;
+  li{
+    position: relative;
+    padding-left: 30px;
+    margin-bottom: 20px;
+    &::before{
+      counter-increment: section;                 /* Increment the value of section counter by 1 */
+      content: counter(section);
+      position: absolute;
+      left: 0;
+      top: 3px;
+      border: 1px solid #00000094;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      border-radius: 50%;
+      text-align: center;
+    }
+  }
+}
+hr{
+  border: 0;
+  border-bottom: 1px solid #707070 !important;
+  opacity: 0.24;
+}
+.text-center{
+  text-align: center;
+}
+.text-right{
+  text-align: right;
+}
+.text-color{
+  color: $color-text;
+}
+.text-dark{
+  color: $color-dark;
+}
+.text-secondary{
+  color: $color-secondary;
+}
+
+.pull-left{
+  float: left;
+}
+.pull-right{
+  float: right;
+}
+// #hiringDocPreview p span {
+//   font-size: $font14 !important;
+// }
+

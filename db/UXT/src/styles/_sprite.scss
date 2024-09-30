@@ -1,0 +1,60 @@
+$spriteSvg: '../images/sprite.svg';
+$spritePng: '../images/sprite.png';
+
+[class^="ant-icn-"],
+[class*="ant-icn-"] {
+  background: url($spriteSvg) no-repeat;
+  font-size: 0px;
+  line-height: 0px;
+  text-decoration: none;
+  display: inline-block;
+}
+
+[class^="ant-icon-"],
+[class*="ant-icon-"] {
+  background: url($spritePng) no-repeat;
+  font-size: 0px;
+  line-height: 0px;
+  text-decoration: none;
+  display: inline-block;
+  margin: 0;
+}
+
+@mixin icnSize($size, $left, $top) {
+  width: $size;
+  height: $size;
+  background-position: $left $top !important;
+}
+
+.ant-icn-draw {
+  @include icnSize(30px, 0px, -48px);
+}
+
+.active .ant-icn-draw {
+  @include icnSize(30px, -30px, -48px);
+}
+
+.ant-icn-upload {
+  @include icnSize(24px, -61px, -54px);
+}
+
+.active .ant-icn-upload {
+  @include icnSize(24px, -87px, -54px);
+}
+
+.ant-alert-error{
+  .ant-icon-bulb{
+    @include icnSize(30px, -72px, 0px);
+  }
+}
+.ant-alert-success{
+  .ant-icon-bulb{
+    @include icnSize(30px, -106px, 0px);
+  }
+}
+.ant-alert-warning{
+  .ant-icon-bulb{
+    @include icnSize(30px, -35px, 0px);
+  }
+}
+

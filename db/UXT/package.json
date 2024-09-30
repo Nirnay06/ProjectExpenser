@@ -1,0 +1,64 @@
+{
+  "name": "uzio-expense-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.13.3",
+    "@emotion/styled": "^11.13.0",
+    "@mui/icons-material": "^5.11.16",
+    "@mui/joy": "^5.0.0-beta.48",
+    "@mui/material": "^6.1.1",
+    "@mui/system": "^6.1.1",
+    "@testing-library/jest-dom": "^5.17.0",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/user-event": "^13.5.0",
+    "i18next": "^21.8.0",
+    "i18next-browser-languagedetector": "^6.1.4",
+    "i18next-http-backend": "^1.4.0",
+    "react": "^18.3.1",
+    "react-cookie": "^4.1.1",
+    "react-dom": "^18.3.1",
+    "react-helmet": "^6.1.0",
+    "react-i18next": "^11.16.9",
+    "react-router": "^5.2.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "5.0.1",
+    "web-vitals": "^2.1.4"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-proposal-class-properties": "^7.17.12",
+    "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "@hot-loader/react-dom": "^17.0.2",
+    "http-proxy-middleware": "^2.0.6",
+    "less": "^4.1.1",
+    "node-sass": "^4.5.3",
+    "sass": "^1.22.10",
+    "cross-env": "^7.0.3"
+  }
+}

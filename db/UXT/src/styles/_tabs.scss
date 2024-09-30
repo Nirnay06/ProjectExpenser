@@ -1,0 +1,82 @@
+.uzVerticalTabs {
+  .nav-tabs .nav-item .nav-link {
+    font-size: 0.85em;
+  }
+}
+
+.nav-tabs {
+  border-bottom: 1px solid #ddd;
+
+  li {
+    position: relative;
+    display: inline-block;
+
+    a {
+      border: 0;
+      background: 0 0;
+      color: #777;
+      padding: 5px 10px;
+      font-weight: 400;
+      cursor: pointer;
+      margin: 0;
+      font-size: 16px;
+      line-height: 22px;
+    }
+
+    &.active {
+      a::before {
+        height: 4px;
+        width: 100%;
+        background: #F7901F;
+        position: absolute;
+        content: "";
+        left: 0;
+        bottom: -1px;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+.uzVerticalTabs {
+  display: flex;
+  margin: -12px -10px;
+  ul.nav {
+    display: flex;
+    flex-direction: column;
+    background: #F0EEE6;
+    flex: 0 0 100px;
+    border-radius: 3px;
+    margin-bottom: 0;
+
+    li {
+      a {
+        background: 0 0;
+        justify-content: center;
+        align-items: center;
+        min-height: 80px;
+        color: rgba(0, 0, 0, .9);
+        border-radius: 3px;
+        text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+      }
+
+      &.active {
+        a {
+          color: #fff;
+          background: #F7901E !important;
+        }
+      }
+    }
+  }
+
+  .tab-content {
+    flex-grow: 1;
+    padding: 10px 30px;
+    .tab-pane{
+      min-height: 250px;
+    }
+  }
+}
