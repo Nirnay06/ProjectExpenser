@@ -1,0 +1,22 @@
+[
+  {
+    "text": "Dashboard",
+    "icon": "Dashboard",
+    "path": "/"
+  },
+  {
+    "text": "Expenses",
+    "icon": "Receipt",
+    "path": "/expenses"
+  },
+  {
+    "text": "Categories",
+    "icon": "Category",
+    "path": "/categories"
+  },
+  {
+    "text": "Settings",
+    "icon": "Settings",
+    "path": "/settings"
+  }
+]
